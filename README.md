@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 [![Travis-CI Build Status](https://travis-ci.org/RobertMyles/tidyrss.svg?branch=master)](https://travis-ci.org/RobertMyles/tidyrss)
 
-tidyrss is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS).
+tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS).
 
 It is easy to use as it only has one function, `tidyfeed()`, which takes one argument, the url of the feed. Running this function will return a tidy data frame of the information contained in the feed. If the url is not a feed, it will return an error message.
 

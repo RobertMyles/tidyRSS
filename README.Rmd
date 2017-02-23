@@ -29,3 +29,6 @@ At the moment, the package is only available from GitHub and will be submitted t
 devtools::install_github("https://github.com/RobertMyles/tidyrss")
 
 ```
+
+## To do:
+- full vignette coming soon. 
