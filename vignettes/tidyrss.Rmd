@@ -1,10 +1,10 @@
 ---
-title: "Analysing RSS data with tidyrss"
+title: "Analysing RSS data with tidyRSS"
 author: "Robert Myles McDonnell"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Analysing RSS data with tidyRSS}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,7 +13,7 @@ vignette: >
 
 ## Introduction  
 
-tidyrss is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS). It has one function, `tidyfeed()`, which takes one argument, the url of the feed. Included in the package is a simple dataset, a list of feed urls, which you can use to experiment with (they were taken from [here](https://raw.githubusercontent.com/DataWookie/feedeR/master/tests/testthat/test-feeds.txt) and then put into a data frame with `strsplit()`). This vignette is designed to give you an idea of what tidyrss can be used for.  
+tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS). It has one function, `tidyfeed()`, which takes one argument, the url of the feed. Included in the package is a simple dataset, a list of feed urls, which you can use to experiment with (they were taken from [here](https://raw.githubusercontent.com/DataWookie/feedeR/master/tests/testthat/test-feeds.txt) and then put into a data frame with `strsplit()`). This vignette is designed to give you an idea of what tidyrss can be used for.  
 
 ## Installation
 
@@ -27,6 +27,6 @@ devtools::install_github("https://github.com/RobertMyles/tidyrss")
 
 ## Usage 
 
-As tidyrss is based on the idea of tidy data, it forms part of the [tidyverse](), which means that it plays nice with any tidy-style package. Visualizations, summaries, further manipulation is all easy thanks to this underlying common structure.  
+As tidyRSS is based on the idea of tidy data, it forms part of the [tidyverse](), which means that it plays nice with any tidy-style package. Visualizations, summaries, further manipulation is all easy thanks to this underlying common structure.  
 
 **to do**
