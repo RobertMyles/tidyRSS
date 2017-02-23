@@ -1,6 +1,6 @@
 #' @import dplyr
 #' @importFrom magrittr "%>%"
-#' @importFrom httr GET
+#' @importFrom RCurl getURL
 #' @importFrom purrr map
 #' @import xml2
 #' @importFrom lubridate parse_date_time
@@ -50,10 +50,10 @@ tidyfeed <- function(feed){
   }
 
   document <- try(
-    GET(feed) %>%
+    getURL(feed) %>%
     xml2::read_xml() %>%
     xml2::as_list(),
-    silent = FALSE)
+    silent = F)
 
   if(class(document) == "try-error"){
     return(message("\nThis page does not appear to be a suitable feed.\nHave you checked that you entered the url correctly?"))
@@ -105,9 +105,12 @@ tidyfeed <- function(feed){
       # links
       if(grepl("origLink", item_doc$item[[1]])){
         df$item_link = unlist(map(item_doc, "origLink"))
+      } else if("origLink" %in% names(item_doc$item)){
+        df$item_link <- unlist(map(item_doc, "origLink"))
       } else{
         df$item_link = unlist(map(item_doc, "link"))
-      }
+        }
+
 
       # creator:
       if(grepl("creator", names(item_doc$item))){

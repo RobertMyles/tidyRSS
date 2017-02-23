@@ -3,7 +3,7 @@
 export(tidyfeed)
 import(dplyr)
 import(xml2)
-importFrom(httr,GET)
+importFrom(RCurl,getURL)
 importFrom(lubridate,parse_date_time)
 importFrom(magrittr,"%>%")
 importFrom(purrr,map)
