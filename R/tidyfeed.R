@@ -1,9 +1,43 @@
-#' @importFrom magrittr "%>%"
 #' @import dplyr
 #' @importFrom httr "GET"
 #' @importFrom purrr "map"
 #' @import xml2
 #' @importFrom lubridate "parse_date_time"
+#' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
+#' @references \url{https://en.wikipedia.org/wiki/RSS}
+#' @title Extract a tidy data frame from RSS and Atom feeds
+#' @description \code{tidyfeed()} downloads and parses rss feeds. The function
+#' produces a tidy data frame, easy to use for further manipulation and
+#' analysis.
+#' @param feed (\code{character}). The url for the feed.
+#' @return A tidy data frame that contains the following elements, assuming
+#' they exist in the feed itself:
+#'\itemize{
+#' \item item_title: The title of each feed post.
+#'
+#' \item item_date: The date of publciation. Returns \code{NA} if this
+#' does not exist.
+#'
+#' \item item_link: The original url of the item.
+#'
+#' \item creator: The author of the item, if this exists in the feed.
+#'
+#' \item categries: The categories used for indexing the item, separated
+#'  by a semi-colon, if this exists in the feed.
+#' @examples
+#' RSS feed:
+#' tidyfeed("http://feeds.feedburner.com/techcrunch")
+#'
+#' Atom feed:
+#' tidyfeed("http://journal.r-project.org/rss.atom")
+#'
+#' raw xml feed:
+#' tidyfeed("http://tools.cisco.com/security/center/eventResponses_20.xml")
+#' }
+#' \dontrun{
+#' tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
+#' ## not a feed.
+#' }
 #' @export
 tidyfeed <- function(feed){
 
@@ -55,12 +89,13 @@ tidyfeed <- function(feed){
       df$last_updated <- parse_date_time(df$last_updated,
                                          orders = formats)
     } else{
-      df <- data_frame(item_title = unlist(purrr::map(item_doc,
-                                                      "title")))
+      df <- data_frame(item_title = unlist(map(item_doc,
+                                               "title")))
 
       # date
       if(grepl("pubDate", item_doc[[1]])){
         df$item_date <- unlist(map(item_doc, "pubDate"))
+        df$item_date <- parse_date_time(df$item_date, orders = formats)
       } else{
         df$item_date <- NA
       }
@@ -106,56 +141,43 @@ tidyfeed <- function(feed){
 
       # dates
       if("lastBuildDate" %in% names(head_doc)){
-        df$last_updated = unlist(head_doc$lastBuildDate)
-      }
-
-      if("last_updated" %in% colnames(df)){
-        df <- df %>%
-          mutate(last_updated = parse_date_time(last_updated,
-                                                orders = formats),
-                 item_date = parse_date_time(item_date, orders = formats))
-      } else{
-        df <- df %>%
-          mutate(item_date = parse_date_time(item_date, orders = formats))
+        df$last_updated <- unlist(head_doc$lastBuildDate)
+        df$last_updated <- parse_date_time(df$last_updated,
+                                           orders = formats)
       }
     }
     return(df)
     } else{
 
-      ## ATOM:
-      entries <- document[grep("entry", names(document))]
+        ## ATOM:
+        entries <- document[grep("entry", names(document))]
 
-      df <- data_frame(item_title = unlist(map(entries, "title")),
-                       item_date = unlist(map(entries, "updated")),
-                       item_link = unlist(map(entries, "id")),
-                       head_title = unlist(document$title))
+        df <- data_frame(item_title = unlist(map(entries, "title")),
+                         item_date = unlist(map(entries, "updated")),
+                         item_link = unlist(map(entries, "id")),
+                         head_title = unlist(document$title))
 
-      if(length(grep("link", names(document))) > 1){
+        if(length(grep("link", names(document))) > 1){
 
-        x_link <- document[grep("link", names(document))]
-        x_link <- attr(x_link[[2]], "href")
-        df$head_link <- x_link
+          x_link <- document[grep("link", names(document))]
+          x_link <- attr(x_link[[2]], "href")
+          df$head_link <- x_link
 
-        } else{
-
-          df$head_link <- unlist(document$link)
-
+          } else{
+            df$head_link <- unlist(document$link)
           }
 
-      df$last_update <- unlist(document$updated)
+        df$last_update <- unlist(document$updated)
 
+        # dates
+        xx <- try(unlist(map(entries, "updated")), silent = F)
+        if(class(xx) == "try-error"){
+          df$item_date <- NA
+        } else {
+          df$item_date <- parse_date_time(xx, orders = formats)
+          }
 
-      # dates
-      xx <- try(unlist(map(entries, "updated")), silent = F)
-      if(class(xx) == "try-error"){
-        df$item_date <- NA
-      } else {
-        df$item_date <- xx
+        return(df)
       }
-
-      df <- df %>%
-        mutate(item_date = parse_date_time(item_date, orders = formats))
-
-      return(df)
-  })
+    )
 }

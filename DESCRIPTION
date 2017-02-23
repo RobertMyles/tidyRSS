@@ -6,15 +6,19 @@ Author: Robert Myles McDonnell
 Maintainer: Robert Myles McDonnell <robertmylesmcdonnell@gmail.com>
 Description:
     tidyRSS parses RSS and Atom xml feeds and returns a tidy data frame.
-License:
-URL:
-BugReports:
+URL: https://github.com/RobertMyles/tidyrss
+BugReports: https://github.com/RobertMyles/tidyrss/issues
 Encoding: UTF-8
+License: MIT + file LICENSE
 LazyData: true
+Depends: R (>= 2.10)
 Imports: dplyr (>= 0.5.0),
     purrr (>= 0.2.2),
     httr (>= 1.2.1),
     xml2 (>= 1.1.1),
     lubridate (>= 1.6.0)
-Suggests: testthat
+Suggests: testthat,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.0.0
+VignetteBuilder: knitr
