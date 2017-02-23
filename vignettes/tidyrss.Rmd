@@ -17,9 +17,10 @@ tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.o
 
 ## Installation
 
-At the moment, the package is only available from GitHub and is being submitted to CRAN. It can be installed using the devtools package.
+tidyRSS can be installed from GitHub, using the devtools package, or from CRAN directly.
 
 ```{r, eval = F}
+install.packages("tidyRSS")
 
 devtools::install_github("https://github.com/RobertMyles/tidyrss")
 
@@ -27,6 +28,13 @@ devtools::install_github("https://github.com/RobertMyles/tidyrss")
 
 ## Usage 
 
-As tidyRSS is based on the idea of tidy data, it forms part of the [tidyverse](), which means that it plays nice with any tidy-style package. Visualizations, summaries, further manipulation is all easy thanks to this underlying common structure.  
+As tidyRSS is based on the idea of tidy data, it forms part of the [tidyverse](http://tidyverse.org/), which means that it plays nice with any tidy-style package. Visualizations, summaries, further manipulation is all easy thanks to this underlying common structure.  
 
-**to do**
+```{r}
+library(tidyRSS)
+
+data("feeds")
+
+rss <- tidyfeed("http://feeds.feedburner.com/WalkingRandomly")
+```
+
