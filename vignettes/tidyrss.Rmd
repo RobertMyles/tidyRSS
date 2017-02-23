@@ -17,10 +17,9 @@ tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.o
 
 ## Installation
 
-tidyRSS can be installed from GitHub, using the devtools package, or from CRAN directly.
+tidyRSS can be installed from GitHub, using the devtools package.
 
 ```{r, message=F, eval = F}
-install.packages("tidyRSS")
 
 devtools::install_github("robertmyles/tidyrss")
 

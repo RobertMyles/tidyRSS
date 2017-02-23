@@ -4,7 +4,7 @@
 \alias{tidyfeed}
 \title{Extract a tidy data frame from RSS and Atom feeds}
 \usage{
-tidyfeed(feed, wait = 20)
+tidyfeed(feed)
 }
 \arguments{
 \item{feed}{(\code{character}). The url for the feed that you want to parse.}

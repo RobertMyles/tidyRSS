@@ -22,11 +22,9 @@ Included in the package is a simple dataset, a list of feed urls, which you can 
 
 ## Installation
 
-The package can be installed from GitHub with the devtools package, or directly from CRAN.
+The package can be installed from GitHub with the devtools package. 
 
 ```{r, eval = F}
-
-install.packages("tidyRSS")
 
 devtools::install_github("robertmyles/tidyrss")
 
