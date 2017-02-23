@@ -29,17 +29,16 @@ devtools::install_github("robertmyles/tidyrss")
 
 As tidyRSS is based on the idea of tidy data, it forms part of the [tidyverse](http://tidyverse.org/), which means that it plays nice with any tidy-style package. Visualizations, summaries, further manipulation is all easy thanks to this underlying common structure. For example, we can take a look at how statistician and political scientist [Andrew Gelman](http://andrewgelman.com/) has been feeling, at least from the (very!) superficial means of judging his blog post titles.  
 
-```{r}
+```{r, eval = F}
 library(tidyRSS)
 
 rss <- tidyfeed("http://andrewgelman.com/feed/") 
 
-head(rss)
 ```
 
 Since the data are already in a tidy format, it's straightforward to use it with other tidyverse packages such as [tidytext](https://github.com/juliasilge/tidytext).  
 
-```{r, message=F, warning=F}
+```{r, eval = F}
 library(tidytext)
 library(dplyr)
 library(ggplot2)
@@ -58,3 +57,5 @@ ggplot(rss_t, aes(x = sentiment)) +
   theme_classic() +
   scale_fill_manual(values = c("#616161", "#FFD700"))
 ```
+
+![](http://i.imgur.com/Y7c9sI9.png)
