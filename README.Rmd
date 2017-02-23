@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 
 [![Travis-CI Build Status](https://travis-ci.org/RobertMyles/tidyrss.svg?branch=master)](https://travis-ci.org/RobertMyles/tidyrss)
 
-tidyrss is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS).
+tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS).
 
 It is easy to use as it only has one function, `tidyfeed()`, which takes one argument, the url of the feed. Running this function will return a tidy data frame of the information contained in the feed. If the url is not a feed, it will return an error message.
 
@@ -36,4 +36,9 @@ devtools::install_github("robertmyles/tidyrss")
 ## Issues 
 
 RSS feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/RobertMyles/tidyrss/issues). Pull requests and general feedback are welcome.  
+
+## Related  
+
+The package is a 'tidy' version of two other related fantastic little packages, [rss](https://github.com/noahhl/r-does-rss) and [feedeR](https://github.com/DataWookie/feedeR), both of which return lists. In comparison to feedeR, tidyRSS returns more information from the RSS feed (if it exists), and develpment on rss seems to have stopped some time ago. Both packages were influences for tidyRSS.  
+
 

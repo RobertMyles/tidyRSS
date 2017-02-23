@@ -9,34 +9,36 @@
 #' @description \code{tidyfeed()} downloads and parses rss feeds. The function
 #' produces a tidy data frame, easy to use for further manipulation and
 #' analysis.
-#' @param feed (\code{character}). The url for the feed.
+#' @param feed (\code{character}). The url for the feed that you want to parse.
 #' @return A tidy data frame that contains the following elements, assuming
 #' they exist in the feed itself:
-#'\itemize{
-#' \item item_title: The title of each feed post.
 #'
-#' \item item_date: The date of publciation. Returns \code{NA} if this
+#' - item_title: The title of each feed post.
+#'
+#' - item_date: The date of publciation. Returns \code{NA} if this
 #' does not exist.
 #'
-#' \item item_link: The original url of the item.
+#' - item_link: The original url of the item.
 #'
-#' \item creator: The author of the item, if this exists in the feed.
+#' - creator: The author of the item, if this exists in the feed.
 #'
-#' \item categries: The categories used for indexing the item, separated
+#' - categries: The categories used for indexing the item, separated
 #'  by a semi-colon, if this exists in the feed.
+#'
 #' @examples
-#' RSS feed:
+#' # RSS feed:
+#'
 #' tidyfeed("http://feeds.feedburner.com/techcrunch")
 #'
-#' Atom feed:
+#' # Atom feed:
 #' tidyfeed("http://journal.r-project.org/rss.atom")
 #'
-#' raw xml feed:
+#' # raw xml feed:
 #' tidyfeed("http://tools.cisco.com/security/center/eventResponses_20.xml")
 #' }
 #' \dontrun{
 #' tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
-#' ## not a feed.
+#' ## (not a feed)
 #' }
 #' @export
 tidyfeed <- function(feed){
