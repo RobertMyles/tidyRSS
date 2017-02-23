@@ -1,0 +1,161 @@
+#' @importFrom magrittr "%>%"
+#' @import dplyr
+#' @importFrom httr "GET"
+#' @importFrom purrr "map"
+#' @import xml2
+#' @importFrom lubridate "parse_date_time"
+#' @export
+tidyfeed <- function(feed){
+
+  # first, clean the feed
+  if(!grepl("http://", feed)){
+    feed <- strsplit(feed, "://")[[1]][2]
+    feed <-paste0("http://", feed)
+  }
+
+  document <- try(
+    GET(feed) %>%
+    read_xml() %>%
+    as_list(),
+    silent = FALSE)
+
+  if(class(document) == "try-error"){
+    return(message("\nThis page does not appear to be a suitable feed.\nHave you checked that you entered the url correctly?"))
+  }
+
+  # date formats, taken from R package feedeR by A. Collier;
+  # https://github.com/DataWookie/feedeR/blob/master/R/read.R;
+  # added one extra for an error that came up in testing.
+  formats <- c("a, d b Y H:M:S z", "a, d b Y H:M z",
+               "Y-m-d H:M:S z", "d b Y H:M:S",
+               "d b Y H:M:S z", "a b d H:M:S z Y",
+               "a b dH:M:S Y")
+
+  # RSS:
+  suppressWarnings(
+    if(names(document) == "channel"){
+
+    document <- document[["channel"]]
+    head_doc <- document[names(document) != "item"]
+    item_doc <- document[names(document) == "item"]
+
+    if(length(item_doc) == 0){
+
+      items <- head_doc$items$Seq
+      at <- list()
+      for(i in 1:length(items)){
+        at[[i]] <- attributes(items[i]$li)$resource
+      }
+      at <- unlist(at)
+      df <- data_frame(item_url = at,
+                       head_title = unlist(head_doc$title),
+                       head_link = unlist(head_doc$link),
+                       last_updated = unlist(head_doc$date))
+
+      df$last_updated <- parse_date_time(df$last_updated,
+                                         orders = formats)
+    } else{
+      df <- data_frame(item_title = unlist(purrr::map(item_doc,
+                                                      "title")))
+
+      # date
+      if(grepl("pubDate", item_doc[[1]])){
+        df$item_date <- unlist(map(item_doc, "pubDate"))
+      } else{
+        df$item_date <- NA
+      }
+
+      # links
+      if(grepl("origLink", item_doc$item[[1]])){
+        df$item_link = unlist(map(item_doc, "origLink"))
+      } else{
+        df$item_link = unlist(map(item_doc, "link"))
+      }
+
+      # creator:
+      if(grepl("creator", names(item_doc$item))){
+        df$creator <- unlist(map(item_doc, "creator"))
+      }
+
+      # get categories:
+      if(grepl("category", item_doc$item)){
+        cats <- list()
+        for(i in 1:length(item_doc)){
+          cats[[i]] <- item_doc[[i]][grep("category", names(item_doc[[i]]))]
+        }
+        cats <- map(cats, unlist)
+        for(i in 1:length(cats)){
+          attr(cats[[i]], "names") <- NULL
+          cats[[i]] <- paste(cats[[i]], sep="", collapse="; ")
+        }
+        df$item_categories <- unlist(cats)
+      }
+
+      # head title
+      df$head_title <- unlist(head_doc$title)
+
+      # head link
+      if(length(grep("link", names(head_doc))) > 1){
+        x_link <- head_doc[grep("link", names(head_doc))]
+        x_link <- unlist(x_link[grep("http", x_link)])
+        attr(x_link, "names") <- NULL
+        df$head_link <- x_link
+      } else{
+        df$head_link <- unlist(head_doc$link)
+      }
+
+      # dates
+      if("lastBuildDate" %in% names(head_doc)){
+        df$last_updated = unlist(head_doc$lastBuildDate)
+      }
+
+      if("last_updated" %in% colnames(df)){
+        df <- df %>%
+          mutate(last_updated = parse_date_time(last_updated,
+                                                orders = formats),
+                 item_date = parse_date_time(item_date, orders = formats))
+      } else{
+        df <- df %>%
+          mutate(item_date = parse_date_time(item_date, orders = formats))
+      }
+    }
+    return(df)
+    } else{
+
+      ## ATOM:
+      entries <- document[grep("entry", names(document))]
+
+      df <- data_frame(item_title = unlist(map(entries, "title")),
+                       item_date = unlist(map(entries, "updated")),
+                       item_link = unlist(map(entries, "id")),
+                       head_title = unlist(document$title))
+
+      if(length(grep("link", names(document))) > 1){
+
+        x_link <- document[grep("link", names(document))]
+        x_link <- attr(x_link[[2]], "href")
+        df$head_link <- x_link
+
+        } else{
+
+          df$head_link <- unlist(document$link)
+
+          }
+
+      df$last_update <- unlist(document$updated)
+
+
+      # dates
+      xx <- try(unlist(map(entries, "updated")), silent = F)
+      if(class(xx) == "try-error"){
+        df$item_date <- NA
+      } else {
+        df$item_date <- xx
+      }
+
+      df <- df %>%
+        mutate(item_date = parse_date_time(item_date, orders = formats))
+
+      return(df)
+  })
+}
