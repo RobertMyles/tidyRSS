@@ -7,12 +7,43 @@
 tidyfeed(feed)
 }
 \arguments{
-\item{feed}{(\code{character}). The url for the feed.}
+\item{feed}{(\code{character}). The url for the feed that you want to parse.}
+}
+\value{
+A tidy data frame that contains the following elements, assuming
+they exist in the feed itself:
+
+- item_title: The title of each feed post.
+
+- item_date: The date of publciation. Returns \code{NA} if this
+does not exist.
+
+- item_link: The original url of the item.
+
+- creator: The author of the item, if this exists in the feed.
+
+- categries: The categories used for indexing the item, separated
+ by a semi-colon, if this exists in the feed.
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function
 produces a tidy data frame, easy to use for further manipulation and
 analysis.
+}
+\examples{
+# RSS feed:
+
+tech <- tidyfeed("http://feeds.feedburner.com/techcrunch")
+
+# Atom feed:
+r_j <- tidyfeed("http://journal.r-project.org/rss.atom")
+
+# raw xml feed:
+cisc <- tidyfeed("http://tools.cisco.com/security/center/eventResponses_20.xml")
+## (not a feed)
+ny <- tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
+
+
 }
 \references{
 \url{https://en.wikipedia.org/wiki/RSS}

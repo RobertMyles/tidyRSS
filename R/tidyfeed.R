@@ -1,8 +1,9 @@
-#' @import dplyr
-#' @importFrom httr "GET"
-#' @importFrom purrr "map"
+#' @importFrom dplyr data_frame
+#' @importFrom magrittr '%>%'
+#' @importFrom httr GET
+#' @importFrom purrr map
 #' @import xml2
-#' @importFrom lubridate "parse_date_time"
+#' @importFrom lubridate parse_date_time
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
 #' @references \url{https://en.wikipedia.org/wiki/RSS}
 #' @title Extract a tidy data frame from RSS and Atom feeds
@@ -28,18 +29,17 @@
 #' @examples
 #' # RSS feed:
 #'
-#' tidyfeed("http://feeds.feedburner.com/techcrunch")
+#' tech <- tidyfeed("http://feeds.feedburner.com/techcrunch")
 #'
 #' # Atom feed:
-#' tidyfeed("http://journal.r-project.org/rss.atom")
+#' r_j <- tidyfeed("http://journal.r-project.org/rss.atom")
 #'
 #' # raw xml feed:
-#' tidyfeed("http://tools.cisco.com/security/center/eventResponses_20.xml")
-#' }
-#' \dontrun{
-#' tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
+#' cisc <- tidyfeed("http://tools.cisco.com/security/center/eventResponses_20.xml")
 #' ## (not a feed)
-#' }
+#' ny <- tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
+#'
+#'
 #' @export
 tidyfeed <- function(feed){
 
@@ -51,8 +51,8 @@ tidyfeed <- function(feed){
 
   document <- try(
     GET(feed) %>%
-    read_xml() %>%
-    as_list(),
+    xml2::read_xml() %>%
+    xml2::as_list(),
     silent = FALSE)
 
   if(class(document) == "try-error"){
