@@ -33,7 +33,8 @@ As tidyRSS is based on the idea of tidy data, it forms part of the [tidyverse](h
 ```{r, eval = F}
 library(tidyRSS)
 
-rss <- tidyfeed("http://feeds.feedburner.com/WalkingRandomly") %>% 
-  head()
+rss <- tidyfeed("http://feeds.feedburner.com/WalkingRandomly") 
+
+head(rss)
 ```
 
