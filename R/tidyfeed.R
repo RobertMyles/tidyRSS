@@ -1,5 +1,5 @@
-#' @importFrom dplyr data_frame
-#' @importFrom magrittr '%>%'
+#' @import dplyr
+#' @importFrom magrittr "%>%"
 #' @importFrom httr GET
 #' @importFrom purrr map
 #' @import xml2
@@ -83,16 +83,16 @@ tidyfeed <- function(feed){
         at[[i]] <- attributes(items[i]$li)$resource
       }
       at <- unlist(at)
-      df <- data_frame(item_url = at,
-                       head_title = unlist(head_doc$title),
-                       head_link = unlist(head_doc$link),
-                       last_updated = unlist(head_doc$date))
+      df <- dplyr::data_frame(item_url = at,
+                              head_title = unlist(head_doc$title),
+                              head_link = unlist(head_doc$link),
+                              last_updated = unlist(head_doc$date))
 
       df$last_updated <- parse_date_time(df$last_updated,
                                          orders = formats)
     } else{
-      df <- data_frame(item_title = unlist(map(item_doc,
-                                               "title")))
+      df <- dplyr::data_frame(item_title = unlist(map(item_doc,
+                                                      "title")))
 
       # date
       if("pubDate" %in% names(item_doc[[1]])){
@@ -154,10 +154,10 @@ tidyfeed <- function(feed){
         ## ATOM:
         entries <- document[grep("entry", names(document))]
 
-        df <- data_frame(item_title = unlist(map(entries, "title")),
-                         item_date = unlist(map(entries, "updated")),
-                         item_link = unlist(map(entries, "id")),
-                         head_title = unlist(document$title))
+        df <- dplyr::data_frame(item_title = unlist(map(entries, "title")),
+                                item_date = unlist(map(entries, "updated")),
+                                item_link = unlist(map(entries, "id")),
+                                head_title = unlist(document$title))
 
         if(length(grep("link", names(document))) > 1){
 
