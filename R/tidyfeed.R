@@ -93,7 +93,7 @@ tidyfeed <- function(feed){
                                                "title")))
 
       # date
-      if(grepl("pubDate", names(item_doc[[1]]))){
+      if("pubDate" %in% names(item_doc[[1]])){
         df$item_date <- unlist(map(item_doc, "pubDate"))
         df$item_date <- parse_date_time(df$item_date, orders = formats)
       } else{

@@ -22,13 +22,18 @@ Included in the package is a simple dataset, a list of feed urls, which you can 
 
 ## Installation
 
-At the moment, the package is only available from GitHub and will be submitted to CRAN shortly. It can be installed using the devtools package.
+The package can be installed from GitHub with the devtools package, or directly from CRAN.
 
 ```{r, eval = F}
 
-devtools::install_github("https://github.com/RobertMyles/tidyrss")
+install.packages("tidyRSS")
+
+devtools::install_github("robertmyles/tidyrss")
 
 ```
 
-## To do:
-- full vignette coming soon. 
+
+## Issues 
+
+RSS feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/RobertMyles/tidyrss/issues). Pull requests and general feedback are welcome.  
+
