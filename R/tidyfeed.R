@@ -1,9 +1,9 @@
 #' @import dplyr
 #' @importFrom magrittr "%>%"
 #' @importFrom RCurl getURL
+#' @import utils
 #' @import httr
 #' @import XML
-#' @importFrom R.utils withTimeout
 #' @importFrom purrr map
 #' @importFrom xml2 read_xml
 #' @importFrom xml2 as_list
@@ -121,13 +121,11 @@ tidyfeed <- function(feed){
         }
 
         # links
-        if(grepl("origLink", item_doc$item[[1]])){
-          df$item_link <- unlist(map(item_doc, "origLink"))
-        } else if("origLink" %in% names(item_doc$item)){
+        if("origLink" %in% names(item_doc$item)){
           df$item_link <- unlist(map(item_doc, "origLink"))
         } else if(!is.null(item_doc$item$link)){
           df$item_link <- unlist(map(item_doc, "link"))
-        } else {
+        } else{
           df$item_link <- "None provided"
         }
 
@@ -143,10 +141,26 @@ tidyfeed <- function(feed){
 
         # creator:
         if("creator" %in% names(item_doc$item)){
-          df$creator <- unlist(map(item_doc, "creator"))
+          cre <- vector("list", length(item_doc))
+          for(i in 1:length(item_doc)){
+            if("creator" %in% names(item_doc[[i]])){
+              cre[[i]] <- item_doc[[i]][grep("creator",
+                                             names(item_doc[[i]]))]
+              attr(cre[[i]], "names") <- NULL
+              cre <- map(cre, unlist)
+              cre[[i]] <- paste(cre[[i]], sep="", collapse="; ")
+              cre[i] <- unlist(cre[i])
+              for(i in 1:length(cre)){
+                if(is.null(cre[[i]])){
+                  cre[[i]] <- NA
+                }
+                }
+              }
+          }
+          df$creator <- unlist(cre)
         } else if("author" %in% names(item_doc$item)){
-          df$creator <- unlist(map(item_doc, "author"))
-        }
+            df$creator <- unlist(map(item_doc, "author"))
+            }
 
         # get categories:
         if("category" %in% names(item_doc$item)){
@@ -155,7 +169,8 @@ tidyfeed <- function(feed){
             cats <- vector("list", length(item_doc))
             for(i in 1:length(item_doc)){
               if("category" %in% names(item_doc[[i]])){
-                cats[[i]] <- item_doc[[i]][grep("category", names(item_doc[[i]]))]
+                cats[[i]] <- item_doc[[i]][grep("category",
+                                                names(item_doc[[i]]))]
                 attr(cats[[i]], "names") <- NULL
                 cats <- map(cats, unlist)
                 cats[[i]] <- paste(cats[[i]], sep="", collapse="; ")
