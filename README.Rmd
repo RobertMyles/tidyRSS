@@ -19,7 +19,7 @@ tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.o
 
 It is easy to use as it only has one function, `tidyfeed()`, which takes one argument, the url of the feed. Running this function will return a tidy data frame of the information contained in the feed. If the url is not a feed, it will return an error message.
 
-Included in the package is a simple dataset, a list of feed urls, which you can use to experiment with (they were taken from [here](https://raw.githubusercontent.com/DataWookie/feedeR/master/tests/testthat/test-feeds.txt)).
+Included in the package is a simple dataset, a list of feed urls, which you can use to experiment with (they were taken from [here](https://raw.githubusercontent.com/DataWookie/feedeR/master/tests/testthat/test-feeds.txt)). Most of these work fine with `tidyfeed()`. One or two return an error (mainly because the feed has moved url or something like that), and one (http://newsrss.bbc.co.uk/rss/newsonline_world_edition/front_page/rss.xml) returns NULL for most fields, although it is a valid field. So bug reports (and suggestions for fixing them) are very welcome.  
 
 ## Installation
 
@@ -42,7 +42,7 @@ devtools::install_github("robertmyles/tidyrss")
 
 ## Usage 
 
-RSS feeds can be parsed with `tidyfeed()`, and some examples are included in the "feeds" dataset. Some of these feeds deliberately give an error (they are not actually feeds). Here is an example of using the package:   
+RSS feeds can be parsed with `tidyfeed()`, and some examples are included in the "feeds" dataset. Here is an example of using the package:   
 
 ```{r}
 library(tidyRSS)
@@ -50,13 +50,14 @@ library(tidyRSS)
 data("feeds")
 
 # select a random feed:
-url <- sample(feeds$feeds, 1)
+url <- feeds$feeds[[1]]
 
 tidyfeed(url)
 
 ```
 
-More information is contained in the vignette: `vignette("tidyrss", package = "tidyRSS")`.  
+More information is contained in the vignette: `vignette("tidyrss", package = "tidyRSS")`. For common feed types, tidyRSS should be fast. For some feeds, there can be a slight delay because `tidyfeed()` is testing different ways of parsing the feed.
+
 
 ## Issues 
 

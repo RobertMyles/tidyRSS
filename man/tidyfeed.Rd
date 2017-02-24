@@ -20,6 +20,10 @@ does not exist.
 
  item_link: The original url of the item.
 
+ summary: a brief summary of the item, if it exists..
+
+ subtitle: the subtitle of the item, if it exists.
+
  creator: The author of the item, if this exists in the feed.
 
  categories: The categories used for indexing the item, separated
