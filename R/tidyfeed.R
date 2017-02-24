@@ -65,8 +65,11 @@ tidyfeed <- function(feed){
       as_list(),
       silent = F)
 
-  if(class(document1) == "try-error"){
+  if(class(document1) != "try-error"){
+    document <- document1
+  }
 
+  if(class(document1) == "try-error"){
 
     document <- try(
       httr::GET(feed) %>%
@@ -74,14 +77,13 @@ tidyfeed <- function(feed){
       as_list(),
       silent = F)
   }
+
   options(show.error.messages = TRUE)
+
   if(class(document1) == "try-error" & class(document) == 'try-error'){
     return(message("\nThis page does not appear to be a suitable feed.\nHave you checked that you entered the url correctly?"))
   }
 
-  if(class(document1) != "try-error"){
-    document <- document1
-  }
 
   # date formats, taken from R package feedeR by A. Collier;
   # https://github.com/DataWookie/feedeR/blob/master/R/read.R;
