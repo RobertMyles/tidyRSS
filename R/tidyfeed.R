@@ -1,8 +1,10 @@
 #' @import dplyr
 #' @importFrom magrittr "%>%"
 #' @importFrom RCurl getURL
+#' @import httr
 #' @importFrom purrr map
-#' @import xml2
+#' @importFrom xml2 read_xml
+#' @importFrom xml2 as_list
 #' @importFrom lubridate parse_date_time
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
 #' @references \url{https://en.wikipedia.org/wiki/RSS}
@@ -14,17 +16,23 @@
 #' @return A tidy data frame that contains the following elements, assuming
 #' they exist in the feed itself:
 #'
-#' - item_title: The title of each feed post.
+#'  item_title: The title of each feed post.
 #'
-#' - item_date: The date of publciation. Returns \code{NA} if this
+#'  item_date: The date of publciation. Returns \code{NA} if this
 #' does not exist.
 #'
-#' - item_link: The original url of the item.
+#'  item_link: The original url of the item.
 #'
-#' - creator: The author of the item, if this exists in the feed.
+#'  creator: The author of the item, if this exists in the feed.
 #'
-#' - categries: The categories used for indexing the item, separated
+#'  categories: The categories used for indexing the item, separated
 #'  by a semi-colon, if this exists in the feed.
+#'
+#'  head_title: title of the url from the header of the feed
+#'
+#'  head_link: url for header
+#'
+#'  last_updated: date (POSIXct format) last updated.
 #'
 #' @examples
 #' # RSS feed:
@@ -49,14 +57,30 @@ tidyfeed <- function(feed){
     feed <-paste0("http://", feed)
   }
 
-  document <- try(
-    getURL(feed) %>%
-    xml2::read_xml() %>%
-    xml2::as_list(),
-    silent = F)
+  options(show.error.messages= FALSE)
 
-  if(class(document) == "try-error"){
+  document1 <- try(
+      getURL(feed) %>%
+      read_xml() %>%
+      as_list(),
+      silent = F)
+
+  if(class(document1) == "try-error"){
+
+
+    document <- try(
+      httr::GET(feed) %>%
+      read_xml() %>%
+      as_list(),
+      silent = F)
+  }
+  options(show.error.messages = TRUE)
+  if(class(document1) == "try-error" & class(document) == 'try-error'){
     return(message("\nThis page does not appear to be a suitable feed.\nHave you checked that you entered the url correctly?"))
+  }
+
+  if(class(document1) != "try-error"){
+    document <- document1
   }
 
   # date formats, taken from R package feedeR by A. Collier;
