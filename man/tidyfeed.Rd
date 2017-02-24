@@ -13,17 +13,23 @@ tidyfeed(feed)
 A tidy data frame that contains the following elements, assuming
 they exist in the feed itself:
 
-- item_title: The title of each feed post.
+ item_title: The title of each feed post.
 
-- item_date: The date of publciation. Returns \code{NA} if this
+ item_date: The date of publciation. Returns \code{NA} if this
 does not exist.
 
-- item_link: The original url of the item.
+ item_link: The original url of the item.
 
-- creator: The author of the item, if this exists in the feed.
+ creator: The author of the item, if this exists in the feed.
 
-- categries: The categories used for indexing the item, separated
+ categories: The categories used for indexing the item, separated
  by a semi-colon, if this exists in the feed.
+
+ head_title: title of the url from the header of the feed
+
+ head_link: url for header
+
+ last_updated: date (POSIXct format) last updated.
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function

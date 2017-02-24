@@ -2,8 +2,10 @@
 
 export(tidyfeed)
 import(dplyr)
-import(xml2)
+import(httr)
 importFrom(RCurl,getURL)
 importFrom(lubridate,parse_date_time)
 importFrom(magrittr,"%>%")
 importFrom(purrr,map)
+importFrom(xml2,as_list)
+importFrom(xml2,read_xml)
