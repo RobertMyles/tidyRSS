@@ -35,7 +35,7 @@ library(tidyRSS)
 
 data("feeds")
 
-# select a random feed:
+# select a feed:
 url <- feeds$feeds[[1]]
 
 tidyfeed(url)
