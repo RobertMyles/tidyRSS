@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Travis-CI Build Status](https://travis-ci.org/RobertMyles/tidyrss.svg?branch=master)](https://travis-ci.org/RobertMyles/tidyrss)
+[![Travis-CI Build Status](https://travis-ci.org/RobertMyles/tidyRSS.svg?branch=master)](https://travis-ci.org/RobertMyles/tidyRSS)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/tidyRSS)](http://cran.r-project.org/package=tidyRSS)
 
 tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS).
