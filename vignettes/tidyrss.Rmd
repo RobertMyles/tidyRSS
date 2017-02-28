@@ -46,7 +46,6 @@ Since the data are already in a tidy format, it's straightforward to use it with
 library(tidytext)
 library(dplyr)
 library(ggplot2)
-library(lubridate)
 
 data("stop_words")
   
