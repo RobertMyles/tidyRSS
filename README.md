@@ -18,7 +18,7 @@ It can be installed directly from CRAN with:
 install.packages("tidyRSS")
 ```
 
-The development version can be installed from GitHub with the devtools package.
+The development version can be installed from GitHub with the devtools package. I'm currently overhauling the entire package, so it's best to avoid the dev version until I get it working well.
 
 ``` r
 
@@ -39,29 +39,29 @@ data("feeds")
 url <- feeds$feeds[[1]]
 
 tidyfeed(url)
-#> # A tibble: 20 × 6
-#>                                                               item_title
-#>                                                                    <chr>
-#> 1  Kevin Durant’s Injury Is Exactly Why The Warriors Needed Kevin Durant
-#> 2                                Russell Westbrook Can’t Stop Going Left
-#> 3                                                The Earth In A Suitcase
-#> 4                                   When Did Sports Become So Political?
-#> 5                         Significant Digits For Wednesday, Mar. 1, 2017
-#> 6                         Trump’s Speech Was Quiet — And Quietly Radical
-#> 7                    What Went Down At Trump’s First Address To Congress
-#> 8                        Firing Claudio Ranieri Won’t Fix Leicester City
-#> 9                      We’re Looking For A Part-Time Quantitative Editor
-#> 10       How Frank Vogel Is Making Terrence Ross Feel At Home In Orlando
-#> 11           How A Weakened Mexican Economy Could Threaten U.S. Security
-#> 12                         Significant Digits For Tuesday, Feb. 28, 2017
-#> 13      How Trump’s Start-Of-Term Strategy Differs From Past Presidents’
-#> 14                  Politics Podcast: Where Do The Parties Go From Here?
-#> 15                       Why You Shouldn’t Always Trust The Inside Scoop
-#> 16                        Will Buyout Season Help The Cavs And Warriors?
-#> 17               Kemba Walker Doesn’t Care How Close You’re Guarding Him
-#> 18               All We Really Need To Get To Mars Is A Boatload Of Cash
-#> 19                       Oscars Night Was Predictable Until The Very End
-#> 20                          Significant Digits For Monday, Feb. 27, 2017
+#> # A tibble: 20 x 6
+#>                                                                     item_title
+#>                                                                          <chr>
+#>  1                 Are Democrats Or Republicans Winning The Race For Congress?
+#>  2 Hereâs The Best Tool We Have For Understanding How The Midterms Are Shapi
+#>  3                            Steph Curry Finally Looks Like Steph Curry Again
+#>  4                                 Significant Digits For Monday, June 5, 2017
+#>  5         Democrats Are Overperforming In Special Elections Almost Everywhere
+#>  6                                                  Are The U.K. Polls Skewed?
+#>  7                      The Players Who Will Decide The Champions League Final
+#>  8 Andrew Miller Doesnât Have Any Saves, And Heâs The Best Reliever In Bas
+#>  9                   Three Reasons âWonder Womanâ Has Already Made History
+#> 10                   Donât Worry About The Job Market Yet, But Pay Attention
+#> 11                                     Was Trumpâs Paris Exit Good Politics?
+#> 12                        This Is How Scary The Warriors Are With Kevin Durant
+#> 13                                  How Much Should You Bid For That Painting?
+#> 14                                 Significant Digits For Friday, June 2, 2017
+#> 15               TrumpBeat: If You Donât Like The Officiating, Fire The Refs
+#> 16        How Food Tastes To Me Is Totally Different From How It Tastes To You
+#> 17                       We Gave You A Spelling Quiz, And It Didnât Go Great
+#> 18                                 The Diamondbacks Are Turning Back The Clock
+#> 19              The Paris Agreement Would Have Been Less Partisan 30 Years Ago
+#> 20                             The Warriors Arenât A Small-Ball Team Anymore
 #> # ... with 5 more variables: item_date <dttm>, item_link <chr>,
 #> #   creator <chr>, head_title <chr>, head_link <chr>
 ```

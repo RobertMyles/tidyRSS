@@ -34,7 +34,7 @@ install.packages("tidyRSS")
 ```
 
 
-The development version can be installed from GitHub with the devtools package. 
+The development version can be installed from GitHub with the devtools package. I'm currently overhauling the entire package, so it's best to avoid the dev version until I get it working well. 
 
 ```{r, eval = F}
 

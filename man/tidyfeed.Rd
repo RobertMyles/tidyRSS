@@ -4,36 +4,15 @@
 \alias{tidyfeed}
 \title{Extract a tidy data frame from RSS and Atom feeds}
 \usage{
-tidyfeed(feed)
+tidyfeed(feed, result = c("all", "feed", "items"))
 }
 \arguments{
 \item{feed}{(\code{character}). The url for the feed that you want to parse.}
-}
-\value{
-A tidy data frame that contains the following elements, assuming
-they exist in the feed itself:
 
- item_title: The title of each feed post.
-
- item_date: The date of publciation. Returns \code{NA} if this
-does not exist.
-
- item_link: The original url of the item.
-
- summary: a brief summary of the item, if it exists..
-
- subtitle: the subtitle of the item, if it exists.
-
- creator: The author of the item, if this exists in the feed.
-
- categories: The categories used for indexing the item, separated
- by a semi-colon, if this exists in the feed.
-
- head_title: title of the url from the header of the feed
-
- head_link: url for header
-
- last_updated: date (POSIXct format) last updated.
+\item{result}{(\code{character}), one of:
+- "all": both the feed information (title, url, etc.) and the item information (title, creator, etc.) are returned.
+- "feed": Only the information from the feed is returned, not the individual feed items.
+- "items": opposite of the above.}
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function
