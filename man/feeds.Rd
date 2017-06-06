@@ -4,7 +4,7 @@
 \name{feeds}
 \alias{feeds}
 \title{List of RSS feeds.}
-\format{A data frame with 77 rows and 1 variable}
+\format{A data frame with 76 rows and 1 variable}
 \usage{
 feeds
 }

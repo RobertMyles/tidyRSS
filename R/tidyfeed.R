@@ -34,7 +34,8 @@
 #' @export
 
 tidyfeed <- function(feed, result = c("all", "feed", "items")){
-
+  invisible({
+  suppressWarnings({
   if(!grepl("http://", feed)){
     feed <- strsplit(feed, "://")[[1]][2]
     feed <-paste0("http://", feed)
@@ -47,12 +48,10 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
                "d b Y H:M:S z", "a b d H:M:S z Y",
                "a b dH:M:S Y")
 
-  # data("feeds")
-  # feed <- sample(feeds$feeds, 1); tidyfeed(feed)
-
   choice <- match.arg(result, choice = c("all", "feed", "items"))
 
   doc <- httr::GET(feed) %>% xml2::read_xml()
+
 
   if(grepl("http://www.w3.org/2005/Atom", xml2::xml_attr(doc, "xmlns"))){
 
@@ -62,61 +61,70 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
 
     res <- tibble::tibble(
       feed_title = xml2::xml_text(xml2::xml_find_all(doc, ns = ns, "atom:title")),
-      feed_link = xml2::xml_text(xml2::xml_find_all(doc, ns = ns, "atom:id")),
-      feed_author = xml2::xml_text(xml2::xml_find_all(doc, ns = ns, "atom:author")),
-      feed_last_updated = xml2::xml_text(xml2::xml_find_all(doc, ns = ns, "atom:updated")),
-      item_title = xml2::xml_text(xml2::xml_find_all(entries, ns = ns, "atom:title")),
-      item_date_updated = xml2::xml_text(xml2::xml_find_all(entries, ns = ns,
+      feed_link = xml2::xml_text(xml2::xml_find_first(doc, ns = ns, "atom:id")),
+      feed_author = xml2::xml_text(xml2::xml_find_first(doc, ns = ns, "atom:author")),
+      feed_last_updated = xml2::xml_text(xml2::xml_find_first(doc, ns = ns, "atom:updated")),
+      item_title = xml2::xml_text(xml2::xml_find_first(entries, ns = ns, "atom:title")),
+      item_date_updated = xml2::xml_text(xml2::xml_find_first(entries, ns = ns,
                                                             "atom:updated")) %>%
         lubridate::parse_date_time(orders = formats),
-      item_link = xml2::xml_text(xml2::xml_find_all(entries, ns = ns,
+      item_link = xml2::xml_text(xml2::xml_find_first(entries, ns = ns,
                                                     "atom:id")),
-      item_content = xml2::xml_text(xml2::xml_find_all(entries, ns = ns, "atom:content"))
+      item_content = xml2::xml_text(xml2::xml_find_first(entries, ns = ns, "atom:content"))
     )
+
+    if(!grepl("http", res$feed_link)){
+      res$feed_link <- xml2::xml_text(xml2::xml_find_first(entries, ns = ns, "atom:origLink"))
+      if(!grepl("http", res$feed_link)){
+        res$feed_link <- xml2::xml_text(xml2::xml_find_first(entries, ns = ns, "atom:link"))
+      }
+    }
+
+    return(res)
 
   } else{
 
-    # checks & errors
     channel <- xml2::xml_find_all(doc, "channel")
-    # if(length(channel) == 0){
-    #   channel <- xml2::xml_children(doc)
-    # }
-    site <- xml2::xml_find_all(channel, "item")
 
+    if(length(channel) == 0){
+      ns <- xml2::xml_ns_rename(xml2::xml_ns(doc), d1 = "rss")
+      channel <- xml2::xml_find_all(doc, "rss:channel", ns = ns)
+      site <- xml2::xml_find_all(doc, "rss:item", ns = ns)
 
-    if(choice == "all"){
       res <- tibble::tibble(
-        feed_title = xml2::xml_text(xml2::xml_find_all(channel, "title")),
-        feed_link = xml2::xml_text(xml2::xml_find_all(channel, "link")),
-        feed_description = xml2::xml_text(xml2::xml_find_all(channel, "description")),
-        feed_last_updated = xml2::xml_text(xml2::xml_find_all(channel,
-                                                               "lastBuildDate")) %>%
+        feed_title = xml2::xml_text(xml2::xml_find_all(channel, "rss:title", ns = ns)),
+        feed_link = xml2::xml_text(xml2::xml_find_all(channel, "rss:link", ns = ns)),
+        feed_description = xml2::xml_text(xml2::xml_find_first(channel, "rss:description", ns = ns)),
+        feed_last_updated = xml2::xml_text(xml2::xml_find_first(channel,
+                                                                "rss:lastBuildDate", ns = ns)) %>%
           lubridate::parse_date_time(orders = formats),
-        feed_language = xml2::xml_text(xml2::xml_find_all(channel, "language")),
-        feed_update_period = xml2::xml_text(xml2::xml_find_all(channel, "sy:updatePeriod")),
-        item_title = xml2::xml_text(xml2::xml_find_all(site, "title")),
-        item_creator = xml2::xml_text(xml2::xml_find_all(site, "dc:creator")),
-        item_date_published = xml2::xml_text(xml2::xml_find_all(site, "pubDate")) %>%
+        feed_language = xml2::xml_text(xml2::xml_find_first(channel, "rss:language", ns = ns)),
+        feed_update_period = xml2::xml_text(xml2::xml_find_first(channel, "rss:updatePeriod", ns = ns)), #sy:
+        item_title = xml2::xml_text(xml2::xml_find_all(site, "rss:title", ns = ns)),
+        item_creator = xml2::xml_text(xml2::xml_find_first(site, "rss:creator", ns = ns)),
+        item_date_published = xml2::xml_text(xml2::xml_find_first(site, "rss:pubDate", ns = ns)) %>%
           lubridate::parse_date_time(orders = formats),
-        item_category1 = xml2::xml_text(xml2::xml_find_first(site, "category[1]")),
-        item_category2 = xml2::xml_text(xml2::xml_find_first(site, "category[2]")),
-        item_category3 = xml2::xml_text(xml2::xml_find_first(site, "category[3]")),
-        item_category4 = xml2::xml_text(xml2::xml_find_first(site, "category[4]")),
-        item_category5 = xml2::xml_text(xml2::xml_find_first(site, "category[5]")),
-        item_link = xml2::xml_text(xml2::xml_find_all(site, "link"))
+        item_date =  xml2::xml_text(xml2::xml_find_first(site, "rss:date", ns = ns)) %>%
+         lubridate::parse_date_time(orders = formats),
+        item_subject = xml2::xml_text(xml2::xml_find_first(site, ns = ns, "rss:subject")),
+        item_category1 = xml2::xml_text(xml2::xml_find_first(site, "rss:category[1]", ns = ns)),
+        item_category2 = xml2::xml_text(xml2::xml_find_first(site, "rss:category[2]", ns = ns)),
+        item_category3 = xml2::xml_text(xml2::xml_find_first(site, "rss:category[3]", ns = ns)),
+        item_category4 = xml2::xml_text(xml2::xml_find_first(site, "rss:category[4]", ns = ns)),
+        item_category5 = xml2::xml_text(xml2::xml_find_first(site, "rss:category[5]", ns = ns)),
+        item_link = xml2::xml_text(xml2::xml_find_all(site, "rss:link", ns = ns)),
+        item_description = xml2::xml_text(xml2::xml_find_first(site, "rss:description", ns = ns))
       )
 
       res <- Filter(function(x) !all(is.na(x)), res)
 
-      return(res)
-
-    } else if(choice == "feed"){
-      res <- res %>%
+     if(choice == "feed"){
+       res <- res %>%
         dplyr::select(feed_title, feed_link, feed_description, feed_last_updated)
 
       return(res)
 
-    } else{
+    } else if(choice == "items"){
       res <- res %>%
         dplyr::select(item_title, item_creator, item_date_published,
                       item_category1, item_category2, item_category3,
@@ -124,6 +132,63 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
 
       return(res)
 
+    } else{
+      return(res)
+      }
+    } else{
+
+      site <- xml2::xml_find_all(channel, "item")
+
+
+      if(choice == "all"){
+
+        res <- tibble::tibble(
+          feed_title = xml2::xml_text(xml2::xml_find_first(channel, "id")),
+          feed_link = xml2::xml_text(xml2::xml_find_first(channel, "link")),
+          feed_description = xml2::xml_text(xml2::xml_find_first(channel, "description")),
+          feed_last_updated = xml2::xml_text(xml2::xml_find_first(channel,
+                                                                  "lastBuildDate")) %>%
+            lubridate::parse_date_time(orders = formats),
+          feed_language = xml2::xml_text(xml2::xml_find_first(channel, "language")),
+          feed_update_period = xml2::xml_text(xml2::xml_find_first(channel, "updatePeriod")),
+          item_title = xml2::xml_text(xml2::xml_find_all(site, "title")),
+          item_creator = xml2::xml_text(xml2::xml_find_first(site, "dc:creator")),
+          item_date_published = xml2::xml_text(xml2::xml_find_first(site, "pubDate")) %>%
+            lubridate::parse_date_time(orders = formats),
+          item_category1 = xml2::xml_text(xml2::xml_find_first(site, "category[1]")),
+          item_category2 = xml2::xml_text(xml2::xml_find_first(site, "category[2]")),
+          item_category3 = xml2::xml_text(xml2::xml_find_first(site, "category[3]")),
+          item_category4 = xml2::xml_text(xml2::xml_find_first(site, "category[4]")),
+          item_category5 = xml2::xml_text(xml2::xml_find_first(site, "category[5]")),
+          item_link = xml2::xml_text(xml2::xml_find_all(site, "link"))
+        )
+
+        res$feed_update_period[is.na(res$feed_update_period)] <- xml2::xml_text(
+            xml2::xml_find_first(channel, "sy:updatePeriod"))
+        res$feed_title[is.na(res$feed_title)] <- xml2::xml_text(
+          xml2::xml_find_first(channel, "title"))
+
+        res <- Filter(function(x) !all(is.na(x)), res)
+
+        return(res)
+
+      } else if(choice == "feed"){
+        res <- res %>%
+          dplyr::select(feed_title, feed_link, feed_description, feed_last_updated)
+
+        return(res)
+
+      } else{
+        res <- res %>%
+          dplyr::select(item_title, item_creator, item_date_published,
+                        item_category1, item_category2, item_category3,
+                        item_category4, item_category5, item_link)
+
+        return(res)
+
+      }
     }
   }
+  })
+  })
 }

@@ -14,3 +14,4 @@ test_that("tidyfeed returns a data_frame", {
     expect_is(tidyfeed(feed), "tbl_df", info = print(feed))
   }
 })
+
