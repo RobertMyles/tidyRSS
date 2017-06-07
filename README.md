@@ -39,21 +39,35 @@ data("feeds")
 rss <- sample(feeds$feeds, 1)
 
 tidyfeed(rss)
-#> # A tibble: 50 x 5
-#>                  feed_title                    feed_link
-#>                       <chr>                        <chr>
-#>  1 Instructables: exploring http://www.instructables.com
-#>  2 Instructables: exploring http://www.instructables.com
-#>  3 Instructables: exploring http://www.instructables.com
-#>  4 Instructables: exploring http://www.instructables.com
-#>  5 Instructables: exploring http://www.instructables.com
-#>  6 Instructables: exploring http://www.instructables.com
-#>  7 Instructables: exploring http://www.instructables.com
-#>  8 Instructables: exploring http://www.instructables.com
-#>  9 Instructables: exploring http://www.instructables.com
-#> 10 Instructables: exploring http://www.instructables.com
-#> # ... with 40 more rows, and 3 more variables: item_title <chr>,
-#> #   item_date_published <dttm>, item_link <chr>
+#> # A tibble: 20 x 15
+#>      feed_title               feed_link
+#>           <chr>                   <chr>
+#>  1 Ars Technica https://arstechnica.com
+#>  2 Ars Technica https://arstechnica.com
+#>  3 Ars Technica https://arstechnica.com
+#>  4 Ars Technica https://arstechnica.com
+#>  5 Ars Technica https://arstechnica.com
+#>  6 Ars Technica https://arstechnica.com
+#>  7 Ars Technica https://arstechnica.com
+#>  8 Ars Technica https://arstechnica.com
+#>  9 Ars Technica https://arstechnica.com
+#> 10 Ars Technica https://arstechnica.com
+#> 11 Ars Technica https://arstechnica.com
+#> 12 Ars Technica https://arstechnica.com
+#> 13 Ars Technica https://arstechnica.com
+#> 14 Ars Technica https://arstechnica.com
+#> 15 Ars Technica https://arstechnica.com
+#> 16 Ars Technica https://arstechnica.com
+#> 17 Ars Technica https://arstechnica.com
+#> 18 Ars Technica https://arstechnica.com
+#> 19 Ars Technica https://arstechnica.com
+#> 20 Ars Technica https://arstechnica.com
+#> # ... with 13 more variables: feed_description <chr>,
+#> #   feed_last_updated <dttm>, feed_language <chr>,
+#> #   feed_update_period <chr>, item_title <chr>, item_creator <chr>,
+#> #   item_date_published <dttm>, item_category1 <chr>,
+#> #   item_category2 <chr>, item_category3 <chr>, item_category4 <chr>,
+#> #   item_category5 <chr>, item_link <chr>
 ```
 
 More information is contained in the vignette: `vignette("tidyrss", package = "tidyRSS")`.
@@ -61,7 +75,7 @@ More information is contained in the vignette: `vignette("tidyrss", package = "t
 Issues
 ------
 
-RSS feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/robertmyles/tidyrss/issues). Please include the url of the feed that you are trying. Pull requests and general feedback are welcome. Many feeds are malformed. What this means is that, for a well-formed feed, you'll get back a tidy data frame with information on the feed and the individual items (like blog posts, for example), including content. For malformed feeds, it will be less than this, as `tidyfeed()` deletes `NA` columns, where the information wasn't in the feed in the first place.
+RSS & atom XML feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/robertmyles/tidyrss/issues). Please include the url of the feed that you are trying. Pull requests and general feedback are welcome. Many feeds are malformed. What this means is that, for a well-formed feed, you'll get back a tidy data frame with information on the feed and the individual items (like blog posts, for example), including content. For malformed feeds, it will be less than this, as `tidyfeed()` deletes `NA` columns, where the information wasn't in the feed in the first place.
 
 Related
 -------
