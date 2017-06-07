@@ -6,6 +6,7 @@
 #' @importFrom xml2 xml_text
 #' @importFrom xml2 xml_find_all
 #' @importFrom xml2 xml_find_first
+#' @importFrom dplyr select
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
 #' @references \url{https://en.wikipedia.org/wiki/RSS}
 #' @title Extract a tidy data frame from RSS and Atom feeds
@@ -27,9 +28,11 @@
 #'
 #' # raw xml feed:
 #' cisc <- tidyfeed("http://tools.cisco.com/security/center/eventResponses_20.xml")
-#' ## (not a feed)
-#' ny <- tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
 #'
+#' ## (not a feed)
+#' \dontrun{
+#' ny <- tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
+#'}
 #'
 #' @export
 
@@ -48,7 +51,7 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
                "d b Y H:M:S z", "a b d H:M:S z Y",
                "a b dH:M:S Y")
 
-  choice <- match.arg(result, choice = c("all", "feed", "items"))
+  choice <- match.arg(result, choices = c("all", "feed", "items"))
 
   doc <- httr::GET(feed) %>% xml2::read_xml()
 
@@ -99,7 +102,7 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
                                                                 "rss:lastBuildDate", ns = ns)) %>%
           lubridate::parse_date_time(orders = formats),
         feed_language = xml2::xml_text(xml2::xml_find_first(channel, "rss:language", ns = ns)),
-        feed_update_period = xml2::xml_text(xml2::xml_find_first(channel, "rss:updatePeriod", ns = ns)), #sy:
+        feed_update_period = xml2::xml_text(xml2::xml_find_first(channel, "rss:updatePeriod", ns = ns)),
         item_title = xml2::xml_text(xml2::xml_find_all(site, "rss:title", ns = ns)),
         item_creator = xml2::xml_text(xml2::xml_find_first(site, "rss:creator", ns = ns)),
         item_date_published = xml2::xml_text(xml2::xml_find_first(site, "rss:pubDate", ns = ns)) %>%
@@ -151,7 +154,7 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
             lubridate::parse_date_time(orders = formats),
           feed_language = xml2::xml_text(xml2::xml_find_first(channel, "language")),
           feed_update_period = xml2::xml_text(xml2::xml_find_first(channel, "updatePeriod")),
-          item_title = xml2::xml_text(xml2::xml_find_all(site, "title")),
+          item_title = xml2::xml_text(xml2::xml_find_first(site, "title")),
           item_creator = xml2::xml_text(xml2::xml_find_first(site, "dc:creator")),
           item_date_published = xml2::xml_text(xml2::xml_find_first(site, "pubDate")) %>%
             lubridate::parse_date_time(orders = formats),
@@ -160,13 +163,17 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
           item_category3 = xml2::xml_text(xml2::xml_find_first(site, "category[3]")),
           item_category4 = xml2::xml_text(xml2::xml_find_first(site, "category[4]")),
           item_category5 = xml2::xml_text(xml2::xml_find_first(site, "category[5]")),
-          item_link = xml2::xml_text(xml2::xml_find_all(site, "link"))
+          item_link = xml2::xml_text(xml2::xml_find_first(site, "link"))
         )
 
-        res$feed_update_period[is.na(res$feed_update_period)] <- xml2::xml_text(
+        suppressWarnings(
+          res$feed_update_period[is.na(res$feed_update_period)] <- xml2::xml_text(
             xml2::xml_find_first(channel, "sy:updatePeriod"))
+        )
+        suppressWarnings(
         res$feed_title[is.na(res$feed_title)] <- xml2::xml_text(
           xml2::xml_find_first(channel, "title"))
+        )
 
         res <- Filter(function(x) !all(is.na(x)), res)
 

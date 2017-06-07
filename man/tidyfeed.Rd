@@ -29,9 +29,11 @@ r_j <- tidyfeed("http://journal.r-project.org/rss.atom")
 
 # raw xml feed:
 cisc <- tidyfeed("http://tools.cisco.com/security/center/eventResponses_20.xml")
-## (not a feed)
-ny <- tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
 
+## (not a feed)
+\dontrun{
+ny <- tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
+}
 
 }
 \references{

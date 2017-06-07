@@ -4,9 +4,9 @@
 
 tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS).
 
-It is easy to use as it only has one function, `tidyfeed()`, which takes one argument, the url of the feed. Running this function will return a tidy data frame of the information contained in the feed. If the url is not a feed, it will return an error message.
+It is easy to use as it only has one function, `tidyfeed()`, which takes one argument, the url of the feed. Running this function will return a tidy data frame of the information contained in the feed. If the url is not an rss or atom feed, it will return an error message.
 
-Included in the package is a simple dataset, a list of feed urls, which you can use to experiment with (they were taken from [here](https://raw.githubusercontent.com/DataWookie/feedeR/master/tests/testthat/test-feeds.txt)). One (<http://newsrss.bbc.co.uk/rss/newsonline_world_edition/front_page/rss.xml>) returns NULL for most fields, although it is a valid field (and so throws an actual error). So bug reports (and suggestions for fixing them) are very welcome.
+Included in the package is a simple dataset, a list of feed urls, which you can use to experiment with. You can access this with `data("feeds")`.
 
 Installation
 ------------
@@ -18,7 +18,7 @@ It can be installed directly from CRAN with:
 install.packages("tidyRSS")
 ```
 
-The development version can be installed from GitHub with the devtools package. I'm currently overhauling the entire package, so it's best to avoid the dev version until I get it working well.
+The development version can be installed from GitHub with the devtools package.
 
 ``` r
 
@@ -36,44 +36,38 @@ library(tidyRSS)
 data("feeds")
 
 # select a feed:
-url <- feeds$feeds[[1]]
+rss <- sample(feeds$feeds, 1)
 
-tidyfeed(url)
-#> # A tibble: 20 x 6
-#>                                                                     item_title
+tidyfeed(rss)
+#> # A tibble: 10 x 4
+#>                                                                       item_url
 #>                                                                          <chr>
-#>  1                 Are Democrats Or Republicans Winning The Race For Congress?
-#>  2 Hereâs The Best Tool We Have For Understanding How The Midterms Are Shapi
-#>  3                            Steph Curry Finally Looks Like Steph Curry Again
-#>  4                                 Significant Digits For Monday, June 5, 2017
-#>  5         Democrats Are Overperforming In Special Elections Almost Everywhere
-#>  6                                                  Are The U.K. Polls Skewed?
-#>  7                      The Players Who Will Decide The Champions League Final
-#>  8 Andrew Miller Doesnât Have Any Saves, And Heâs The Best Reliever In Bas
-#>  9                   Three Reasons âWonder Womanâ Has Already Made History
-#> 10                   Donât Worry About The Job Market Yet, But Pay Attention
-#> 11                                     Was Trumpâs Paris Exit Good Politics?
-#> 12                        This Is How Scary The Warriors Are With Kevin Durant
-#> 13                                  How Much Should You Bid For That Painting?
-#> 14                                 Significant Digits For Friday, June 2, 2017
-#> 15               TrumpBeat: If You Donât Like The Officiating, Fire The Refs
-#> 16        How Food Tastes To Me Is Totally Different From How It Tastes To You
-#> 17                       We Gave You A Spelling Quiz, And It Didnât Go Great
-#> 18                                 The Diamondbacks Are Turning Back The Clock
-#> 19              The Paris Agreement Would Have Been Less Partisan 30 Years Ago
-#> 20                             The Warriors Arenât A Small-Ball Team Anymore
-#> # ... with 5 more variables: item_date <dttm>, item_link <chr>,
-#> #   creator <chr>, head_title <chr>, head_link <chr>
+#>  1           http://datamining.typepad.com/data_mining/2016/03/ais-not-ai.html
+#>  2 http://datamining.typepad.com/data_mining/2015/10/agile-web-mining-at-bing.
+#>  3 http://datamining.typepad.com/data_mining/2015/05/the-economist-gets-in-on-
+#>  4 http://datamining.typepad.com/data_mining/2015/05/ai-artificial-birds-and-a
+#>  5 http://datamining.typepad.com/data_mining/2015/05/how-to-understand-compute
+#>  6 http://datamining.typepad.com/data_mining/2015/05/how-the-tech-media-keeps-
+#>  7 http://datamining.typepad.com/data_mining/2015/05/how-hollywood-keeps-artif
+#>  8 http://datamining.typepad.com/data_mining/2015/05/artificial-intelligence-a
+#>  9    http://datamining.typepad.com/data_mining/2015/01/stamp-of-approval.html
+#> 10 http://datamining.typepad.com/data_mining/2014/09/the-longform-manifesto.ht
+#> # ... with 3 more variables: head_title <chr>, head_link <chr>,
+#> #   last_updated <dttm>
 ```
 
-More information is contained in the vignette: `vignette("tidyrss", package = "tidyRSS")`. For common feed types, tidyRSS should be fast. For some feeds, there can be a slight delay because `tidyfeed()` is testing different ways of parsing the feed.
+More information is contained in the vignette: `vignette("tidyrss", package = "tidyRSS")`.
 
 Issues
 ------
 
-RSS feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/robertmyles/tidyrss/issues). Please include the url of the feed that you are trying. Pull requests and general feedback are welcome.
+RSS feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/robertmyles/tidyrss/issues). Please include the url of the feed that you are trying. Pull requests and general feedback are welcome. Many feeds are malformed. What this means is that, for a well-formed feed, you'll get back a tidy data frame with information on the feed and the individual items (like blog posts, for example), including content. For malformed feeds, it will be less than this, as `tidyfeed()` deletes `NA` columns, where the information wasn't in the feed in the first place.
 
 Related
 -------
 
 The package is a 'tidy' version of two other related fantastic little packages, [rss](https://github.com/noahhl/r-does-rss) and [feedeR](https://github.com/DataWookie/feedeR), both of which return lists. In comparison to feedeR, tidyRSS returns more information from the RSS feed (if it exists), and development on rss seems to have stopped some time ago. Both packages were influences for tidyRSS.
+
+### Version 1.2.0
+
+I've completely re-written the main function in this package, streamlining it by reducing the number of dependencies. The use of lists has been left behind for dealing with xml directly, which I think makes the package quicker and much more robust (not to mention much lighter in terms of code). For this little leap, I have the many question-answerers on Stack Overflow and the estimable [Guilherme Jardim Duarte](https://github.com/duarteguilherme) to thank, not to mention [hrbrmaster](https://github.com/hrbrmstr), who first alerted me to the bloatedness of this little package.

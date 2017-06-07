@@ -11,7 +11,7 @@ test_that("tidyfeed returns a data_frame", {
 
   for(i in 1:nrow(feeds)){
     feed <- feeds$feeds[[i]]
-    expect_is(tidyfeed(feed), "tbl_df", info = print(feed))
+    expect_is(tidyfeed(feed), "tbl_df", info = paste(i, feed))
   }
 })
 

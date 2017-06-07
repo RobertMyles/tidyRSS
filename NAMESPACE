@@ -2,6 +2,7 @@
 
 export("%>%")
 export(tidyfeed)
+importFrom(dplyr,select)
 importFrom(httr,GET)
 importFrom(lubridate,parse_date_time)
 importFrom(magrittr,"%>%")
