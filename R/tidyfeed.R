@@ -19,20 +19,9 @@
 #'   - "feed": Only the information from the feed is returned, not the individual feed items.
 #'   - "items": opposite of the above.
 #' @examples
-#' # RSS feed:
-#'
-#' tech <- tidyfeed("http://feeds.feedburner.com/techcrunch")
-#'
+
 #' # Atom feed:
 #' r_j <- tidyfeed("http://journal.r-project.org/rss.atom")
-#'
-#' # raw xml feed:
-#' cisc <- tidyfeed("http://tools.cisco.com/security/center/eventResponses_20.xml")
-#'
-#' ## (not a feed)
-#' \dontrun{
-#' ny <- tidyfeed("http://www.nytimes.com/index.html?partner=rssnyt")
-#'}
 #'
 #' @export
 

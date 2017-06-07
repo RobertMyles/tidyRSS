@@ -39,21 +39,21 @@ data("feeds")
 rss <- sample(feeds$feeds, 1)
 
 tidyfeed(rss)
-#> # A tibble: 10 x 4
-#>                                                                       item_url
-#>                                                                          <chr>
-#>  1           http://datamining.typepad.com/data_mining/2016/03/ais-not-ai.html
-#>  2 http://datamining.typepad.com/data_mining/2015/10/agile-web-mining-at-bing.
-#>  3 http://datamining.typepad.com/data_mining/2015/05/the-economist-gets-in-on-
-#>  4 http://datamining.typepad.com/data_mining/2015/05/ai-artificial-birds-and-a
-#>  5 http://datamining.typepad.com/data_mining/2015/05/how-to-understand-compute
-#>  6 http://datamining.typepad.com/data_mining/2015/05/how-the-tech-media-keeps-
-#>  7 http://datamining.typepad.com/data_mining/2015/05/how-hollywood-keeps-artif
-#>  8 http://datamining.typepad.com/data_mining/2015/05/artificial-intelligence-a
-#>  9    http://datamining.typepad.com/data_mining/2015/01/stamp-of-approval.html
-#> 10 http://datamining.typepad.com/data_mining/2014/09/the-longform-manifesto.ht
-#> # ... with 3 more variables: head_title <chr>, head_link <chr>,
-#> #   last_updated <dttm>
+#> # A tibble: 50 x 5
+#>                  feed_title                    feed_link
+#>                       <chr>                        <chr>
+#>  1 Instructables: exploring http://www.instructables.com
+#>  2 Instructables: exploring http://www.instructables.com
+#>  3 Instructables: exploring http://www.instructables.com
+#>  4 Instructables: exploring http://www.instructables.com
+#>  5 Instructables: exploring http://www.instructables.com
+#>  6 Instructables: exploring http://www.instructables.com
+#>  7 Instructables: exploring http://www.instructables.com
+#>  8 Instructables: exploring http://www.instructables.com
+#>  9 Instructables: exploring http://www.instructables.com
+#> 10 Instructables: exploring http://www.instructables.com
+#> # ... with 40 more rows, and 3 more variables: item_title <chr>,
+#> #   item_date_published <dttm>, item_link <chr>
 ```
 
 More information is contained in the vignette: `vignette("tidyrss", package = "tidyRSS")`.
