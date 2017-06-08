@@ -18,16 +18,16 @@
 #'   - "all": both the feed information (title, url, etc.) and the item information (title, creator, etc.) are returned.
 #'   - "feed": Only the information from the feed is returned, not the individual feed items.
 #'   - "items": opposite of the above.
-#' @examples
-
+#' @example
+#' \dontrun{
 #' # Atom feed:
 #' r_j <- tidyfeed("http://journal.r-project.org/rss.atom")
-#'
+#' }
 #' @export
-
 tidyfeed <- function(feed, result = c("all", "feed", "items")){
   invisible({
   suppressWarnings({
+  stopifnot(identical(length(feed), 1L)) # exit if more than 1 feed provided
   if(!grepl("http://", feed)){
     feed <- strsplit(feed, "://")[[1]][2]
     feed <-paste0("http://", feed)
@@ -65,9 +65,9 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
       item_content = xml2::xml_text(xml2::xml_find_first(entries, ns = ns, "atom:content"))
     )
 
-    if(!grepl("http", res$feed_link)){
+    if(!grepl("http", unique(res$feed_link))){
       res$feed_link <- xml2::xml_text(xml2::xml_find_first(entries, ns = ns, "atom:origLink"))
-      if(!grepl("http", res$feed_link)){
+      if(!grepl("http", unique(res$feed_link))){
         res$feed_link <- xml2::xml_text(xml2::xml_find_first(entries, ns = ns, "atom:link"))
       }
     }
@@ -78,7 +78,7 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
 
     channel <- xml2::xml_find_all(doc, "channel")
 
-    if(length(channel) == 0){
+    if(identical(length(channel), 0L)){
       ns <- xml2::xml_ns_rename(xml2::xml_ns(doc), d1 = "rss")
       channel <- xml2::xml_find_all(doc, "rss:channel", ns = ns)
       site <- xml2::xml_find_all(doc, "rss:item", ns = ns)
