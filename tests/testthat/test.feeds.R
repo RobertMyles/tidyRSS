@@ -1,4 +1,4 @@
-
+context("simple tests")
 
 test_that("tidyfeed returns an error when it should", {
  expect_error(tidyfeed("hello"))
