@@ -19,11 +19,6 @@ tidyfeed(feed, result = c("all", "feed", "items"))
 produces a tidy data frame, easy to use for further manipulation and
 analysis.
 }
-\examples{
-# Atom feed:
-r_j <- tidyfeed("http://journal.r-project.org/rss.atom")
-
-}
 \references{
 \url{https://en.wikipedia.org/wiki/RSS}
 }

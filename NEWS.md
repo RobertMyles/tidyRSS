@@ -1,3 +1,10 @@
+tidyRSS v1.2.1 (Release date: 16/6/2017)
+============
+
+Changes:
+Minor changes to parsing Atom feeds.
+
+
 tidyRSS v1.2.0 (Release date: 6/6/2017)
 ============
 

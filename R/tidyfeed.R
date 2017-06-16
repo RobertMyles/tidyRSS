@@ -33,7 +33,7 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
     feed <-paste0("http://", feed)
   }
 
-  msg <- "\nThis page does not appear to be a suitable feed.\nHave you checked that you entered the url correctly?\nIf you are certain that this is a valid rss feed, please file an issue at: https://github.com/RobertMyles/tidyRSS/issues"
+  msg <- "This page does not appear to be a suitable feed. Have you checked that you entered the url correctly?\nIf you are certain that this is a valid rss feed, please file an issue at: https://github.com/RobertMyles/tidyRSS/issues. Please note that the feed may also be undergoing maintenance."
 
   formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
                "Y-m-d H:M:S z", "d b Y H:M:S",
@@ -42,14 +42,19 @@ tidyfeed <- function(feed, result = c("all", "feed", "items")){
 
   choice <- match.arg(result, choices = c("all", "feed", "items"))
 
-  doc <- httr::GET(feed) %>% xml2::read_xml()
+  doc <- try(httr::GET(feed) %>% xml2::read_xml(), silent = TRUE)
+
+  if(class(doc) == 'try-error'){
+    stop(msg)
+  }
 
 
   if(grepl("http://www.w3.org/2005/Atom", xml2::xml_attr(doc, "xmlns"))){
 
     ns <- xml2::xml_ns_rename(xml2::xml_ns(doc), d1 = "atom")
 
-    entries <- xml2::xml_find_all(doc, "atom:entry[position()>1]", ns = ns)
+    #entries <- xml2::xml_find_all(doc, "atom:entry[position()>1]", ns = ns)
+    entries <- xml2::xml_find_all(doc, "atom:entry", ns = ns)
 
     res <- tibble::tibble(
       feed_title = xml2::xml_text(xml2::xml_find_all(doc, ns = ns, "atom:title")),
