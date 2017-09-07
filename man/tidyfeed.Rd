@@ -2,22 +2,27 @@
 % Please edit documentation in R/tidyfeed.R
 \name{tidyfeed}
 \alias{tidyfeed}
-\title{Extract a tidy data frame from RSS and Atom feeds}
+\title{Extract a tidy data frame from RSS and Atom and JSON feeds}
 \usage{
-tidyfeed(feed, result = c("all", "feed", "items"))
+tidyfeed(feed)
 }
 \arguments{
 \item{feed}{(\code{character}). The url for the feed that you want to parse.}
-
-\item{result}{(\code{character}), one of:
-- "all": both the feed information (title, url, etc.) and the item information (title, creator, etc.) are returned.
-- "feed": Only the information from the feed is returned, not the individual feed items.
-- "items": opposite of the above.}
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function
 produces a tidy data frame, easy to use for further manipulation and
 analysis.
+}
+\examples{
+\dontrun{
+# Atom feed:
+tidyfeed("http://journal.r-project.org/rss.atom")
+# rss/xml:
+tidyfeed("http://fivethirtyeight.com/all/feed")
+# jsonfeed:
+tidyfeed("https://daringfireball.net/feeds/json")
+}
 }
 \references{
 \url{https://en.wikipedia.org/wiki/RSS}

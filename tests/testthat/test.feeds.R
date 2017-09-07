@@ -5,7 +5,6 @@ test_that("tidyfeed returns an error when it should", {
 })
 
 
-
 test_that("tidyfeed returns a data_frame", {
   data("feeds")
   rss <- sample(feeds$feeds, 1)

@@ -1,3 +1,9 @@
+tidyRSS v1.2.2 (Release date: 7/9/2017)
+============
+
+Changes: 
+Added preliminary support for jsonfeeds; minor changes to parsing other feeds; minor change to data included with the package. 
+
 tidyRSS v1.2.1 (Release date: 16/6/2017)
 ============
 

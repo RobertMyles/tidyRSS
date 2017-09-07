@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
 
-tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS).
+tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS). As of version 1.2.2, it provides preliminary support for jsonfeeds.
 
 It is easy to use as it only has one function, `tidyfeed()`, which takes one argument, the url of the feed. Running this function will return a tidy data frame of the information contained in the feed. If the url is not an rss or atom feed, it will return an error message.
 
@@ -44,7 +44,6 @@ devtools::install_github("robertmyles/tidyrss")
 
 
 
-
 ## Usage 
 
 RSS feeds can be parsed with `tidyfeed()`, and some examples are included in the "feeds" dataset. Here is an example of using the package:   
@@ -66,13 +65,8 @@ More information is contained in the vignette: `vignette("tidyrss", package = "t
 
 ## Issues 
 
-RSS & atom XML feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/robertmyles/tidyrss/issues). Please include the url of the feed that you are trying. Pull requests and general feedback are welcome. Many feeds are malformed. What this means is that, for a well-formed feed, you'll get back a tidy data frame with information on the feed and the individual items (like blog posts, for example), including content. For malformed feeds, it will be less than this, as `tidyfeed()` deletes `NA` columns, where the information wasn't in the feed in the first place.    
+RSS & Atom XML feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/robertmyles/tidyrss/issues). Please include the url of the feed that you are trying. Pull requests and general feedback are welcome. Many feeds are malformed. What this means is that, for a well-formed feed, you'll get back a tidy data frame with information on the feed and the individual items (like blog posts, for example), including content. For malformed feeds, it will be less than this, as `tidyfeed()` deletes `NA` columns, where the information wasn't in the feed in the first place. If you find problems with jsonfeeds, please let me know, since I'm still experimenting with this format.  
 
 ## Related  
 
 The package is a 'tidy' version of two other related fantastic little packages, [rss](https://github.com/noahhl/r-does-rss) and [feedeR](https://github.com/DataWookie/feedeR), both of which return lists. In comparison to feedeR, tidyRSS returns more information from the RSS feed (if it exists), and development on rss seems to have stopped some time ago. Both packages were influences for tidyRSS.  
-
-
-### Version 1.2.0  
-
-I've completely re-written the main function in this package, streamlining it by reducing the number of dependencies. The use of lists has been left behind for dealing with xml directly, which I think makes the package quicker and much more robust (not to mention much lighter in terms of code). For this little leap, I have the many question-answerers on Stack Overflow and the estimable [Guilherme Jardim Duarte](https://github.com/duarteguilherme) to thank, not to mention [hrbrmaster](https://github.com/hrbrmstr), who first alerted me to the bloatedness of this little package.  
