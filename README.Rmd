@@ -48,7 +48,7 @@ devtools::install_github("robertmyles/tidyrss")
 
 RSS feeds can be parsed with `tidyfeed()`, and some examples are included in the "feeds" dataset. Here is an example of using the package:   
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(tidyRSS)
 
 data("feeds")
