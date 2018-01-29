@@ -1,3 +1,9 @@
+tidyRSS v1.2.3 (Release date: 28/01/2018)
+============
+
+Changes: 
+Changed tests to avoid failures due to problems outside the package (faulty connections, site maintenance, feeds being taken down).
+
 tidyRSS v1.2.2 (Release date: 7/9/2017)
 ============
 
