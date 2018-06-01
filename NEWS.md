@@ -1,3 +1,9 @@
+tidyRSS v1.2.4 (Release date: 01/06/2018)
+============
+
+Changes: 
+Added support for geo RSS feeds.
+
 tidyRSS v1.2.3 (Release date: 28/01/2018)
 ============
 

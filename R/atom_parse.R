@@ -30,5 +30,7 @@ atom_parse <- function(doc){
     }
   }
 
+  res <- Filter(function(x) !all(is.na(x)), res)
+
   return(res)
 }

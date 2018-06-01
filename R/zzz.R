@@ -6,7 +6,7 @@
                              "feed_link", "feed_title", "item_category1", "item_category2",
                              "item_category3", "item_category4", "item_category5", "item_creator",
                              "item_date_published", "item_link", "item_title", "feed_update_period",
-                             "date_modified", "date_published"))
+                             "date_modified", "date_published", "temp"))
   invisible()
 }
 
