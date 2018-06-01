@@ -70,3 +70,6 @@ RSS & Atom XML feeds can be finicky things, if you find one that doesn't work wi
 ## Related  
 
 The package is a 'tidy' version of two other related fantastic little packages, [rss](https://github.com/noahhl/r-does-rss) and [feedeR](https://github.com/DataWookie/feedeR), both of which return lists. In comparison to feedeR, tidyRSS returns more information from the RSS feed (if it exists), and development on rss seems to have stopped some time ago. Both packages were influences for tidyRSS.  
+
+# Other 
+For a cool Shiny app that uses geoRSS, see [here](https://geospatialtraining.shinyapps.io/wildfireapp/).

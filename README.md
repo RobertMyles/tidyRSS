@@ -57,16 +57,16 @@ tidyfeed(rss)
 #> # A tibble: 10 x 15
 #>    feed_title feed_link feed_description feed_last_updated   feed_language
 #>    <chr>      <chr>     <chr>            <dttm>              <chr>        
-#>  1 All About… http://w… ""               2018-06-01 15:28:08 en-US        
-#>  2 All About… http://w… ""               2018-06-01 15:28:08 en-US        
-#>  3 All About… http://w… ""               2018-06-01 15:28:08 en-US        
-#>  4 All About… http://w… ""               2018-06-01 15:28:08 en-US        
-#>  5 All About… http://w… ""               2018-06-01 15:28:08 en-US        
-#>  6 All About… http://w… ""               2018-06-01 15:28:08 en-US        
-#>  7 All About… http://w… ""               2018-06-01 15:28:08 en-US        
-#>  8 All About… http://w… ""               2018-06-01 15:28:08 en-US        
-#>  9 All About… http://w… ""               2018-06-01 15:28:08 en-US        
-#> 10 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#>  1 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
+#>  2 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
+#>  3 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
+#>  4 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
+#>  5 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
+#>  6 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
+#>  7 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
+#>  8 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
+#>  9 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
+#> 10 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
 #> # ... with 10 more variables: feed_update_period <chr>, item_title <chr>,
 #> #   item_creator <chr>, item_date_published <dttm>, item_category1 <chr>,
 #> #   item_category2 <chr>, item_category3 <chr>, item_category4 <chr>,
@@ -97,3 +97,8 @@ packages, [rss](https://github.com/noahhl/r-does-rss) and
 lists. In comparison to feedeR, tidyRSS returns more information from
 the RSS feed (if it exists), and development on rss seems to have
 stopped some time ago. Both packages were influences for tidyRSS.
+
+# Other
+
+For a cool Shiny app that uses geoRSS, see
+[here](https://geospatialtraining.shinyapps.io/wildfireapp/).
