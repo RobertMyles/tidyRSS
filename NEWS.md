@@ -1,3 +1,9 @@
+tidyRSS v1.2.5 (Release date: 02/06/2018)
+============
+
+Changes: 
+Minor fix -- `sf` wasn't working the way I had envisioned.
+
 tidyRSS v1.2.4 (Release date: 01/06/2018)
 ============
 
