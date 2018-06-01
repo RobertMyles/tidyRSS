@@ -21,7 +21,6 @@ Imports: xml2 (>= 1.1.1),
     testthat (>= 1.0.2),
     jsonlite (>= 1.5),
     purrr (>= 0.2.4),
-    sf (>= 0.6.1),
     stringr (>= 1.3.0)
 Suggests: knitr,
     rmarkdown

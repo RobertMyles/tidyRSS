@@ -4,15 +4,10 @@
 \alias{tidyfeed}
 \title{Extract a tidy data frame from RSS and Atom and JSON feeds}
 \usage{
-tidyfeed(feed, sf = TRUE)
+tidyfeed(feed)
 }
 \arguments{
 \item{feed}{(\code{character}). The url for the feed that you want to parse.}
-
-\item{sf}{(\code{logical}). By default, \code{tidyfeed()} returns a simple
-features dataframe from georss feeds. This behaviour can be changed by setting
-\code{sf = FALSE}, which will return a dataframe that includes a column for
-latitude and a column for longitude.}
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function

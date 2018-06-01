@@ -1,7 +1,6 @@
 #' @importFrom magrittr "%>%"
 #' @importFrom tibble tibble
 #' @importFrom httr GET
-#' @importFrom sf st_as_sf
 #' @importFrom lubridate parse_date_time
 #' @importFrom xml2 read_xml
 #' @importFrom xml2 as_list
@@ -20,10 +19,6 @@
 #' produces a tidy data frame, easy to use for further manipulation and
 #' analysis.
 #' @param feed (\code{character}). The url for the feed that you want to parse.
-#' @param sf (\code{logical}). By default, \code{tidyfeed()} returns a simple
-#' features dataframe from georss feeds. This behaviour can be changed by setting
-#' \code{sf = FALSE}, which will return a dataframe that includes a column for
-#' latitude and a column for longitude.
 #' @examples
 #' \dontrun{
 #' # Atom feed:
@@ -36,7 +31,7 @@
 #' tidyfeed("http://www.geonames.org/recent-changes.xml")
 #' }
 #' @export
-tidyfeed <- function(feed, sf = TRUE){
+tidyfeed <- function(feed){
   invisible({
   suppressWarnings({
   stopifnot(identical(length(feed), 1L)) # exit if more than 1 feed provided
@@ -66,11 +61,6 @@ tidyfeed <- function(feed, sf = TRUE){
   } else if(grepl("http://www.georss.org/georss", xml2::xml_attr(doc, "xmlns:georss"))){
 
     result <- geo_parse(doc)
-
-    if(sf == TRUE){
-      result <- sf::st_as_sf(x = result, coords = c("item_long", "item_lat"),
-                             crs = "+proj=longlat +datum=WGS84")
-    }
 
     return(result)
 
