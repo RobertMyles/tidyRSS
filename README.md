@@ -12,9 +12,11 @@ feeds](https://en.wikipedia.org/wiki/RSS), including Atom feeds, JSON
 feeds and georss feeds.
 
 It is easy to use as it only has one function, `tidyfeed()`, which takes
-one argument, the url of the feed. Running this function will return a
-tidy data frame of the information contained in the feed. If the url is
-not an rss or atom feed, it will return an error message.
+two arguments, the url of the feed and a logical flag for whether you
+want a geoRSS feed returned as a simple features dataframe or not.
+Running this function will return a tidy data frame of the information
+contained in the feed. If the url is not an rss or atom feed, it will
+return an error message.
 
 Included in the package is a simple dataset, a list of feed urls, which
 you can use to experiment with. You can access this with
@@ -55,16 +57,16 @@ tidyfeed(rss)
 #> # A tibble: 10 x 15
 #>    feed_title feed_link feed_description feed_last_updated   feed_language
 #>    <chr>      <chr>     <chr>            <dttm>              <chr>        
-#>  1 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
-#>  2 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
-#>  3 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
-#>  4 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
-#>  5 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
-#>  6 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
-#>  7 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
-#>  8 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
-#>  9 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
-#> 10 R User Gr… https://… material of tal… 2014-04-15 02:38:34 en-US        
+#>  1 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#>  2 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#>  3 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#>  4 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#>  5 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#>  6 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#>  7 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#>  8 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#>  9 All About… http://w… ""               2018-06-01 15:28:08 en-US        
+#> 10 All About… http://w… ""               2018-06-01 15:28:08 en-US        
 #> # ... with 10 more variables: feed_update_period <chr>, item_title <chr>,
 #> #   item_creator <chr>, item_date_published <dttm>, item_category1 <chr>,
 #> #   item_category2 <chr>, item_category3 <chr>, item_category4 <chr>,
