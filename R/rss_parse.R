@@ -8,13 +8,13 @@ rss_parse <- function(doc){
 
   if(identical(length(channel), 0L)){
     if(any(names(xml2::xml_ns(doc)) == "d1")){
-      ns      <- xml2::xml_ns_rename(xml2::xml_ns(doc), d1 = "rss")
-    }else{
-      ns      <- xml2::xml_ns(doc)
+      ns <- xml2::xml_ns_rename(xml2::xml_ns(doc), d1 = "rss")
+    } else{
+      ns <- xml2::xml_ns(doc)
     }
 
     channel <- xml2::xml_find_all(doc, "rss:channel", ns = ns)
-    site    <- xml2::xml_find_all(doc, "rss:item", ns = ns)
+    site <- xml2::xml_find_all(doc, "rss:item", ns = ns)
 
     res <- suppressWarnings({tibble::tibble(
       feed_title = xml2::xml_text(xml2::xml_find_all(channel, "rss:title", ns = ns)),
