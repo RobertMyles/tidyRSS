@@ -4,3 +4,4 @@
 .Ruserdata
 inst/doc
 cran-comments.md
+*.Rproj
