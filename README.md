@@ -1,8 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![Travis-CI Build
-Status](https://travis-ci.org/RobertMyles/tidyRSS.svg?branch=master)](https://travis-ci.org/RobertMyles/tidyRSS)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/tidyRSS)](https://cran.r-project.org/package=tidyRSS)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/grand-total/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
@@ -54,23 +52,20 @@ data("feeds")
 rss <- sample(feeds$feeds, 1)
 
 tidyfeed(rss)
-#> # A tibble: 10 x 15
-#>    feed_title feed_link feed_description feed_last_updated   feed_language
-#>    <chr>      <chr>     <chr>            <dttm>              <chr>        
-#>  1 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#>  2 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#>  3 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#>  4 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#>  5 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#>  6 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#>  7 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#>  8 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#>  9 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#> 10 Ethos3 – … https://… The best place … 2018-06-01 14:00:26 en-US        
-#> # ... with 10 more variables: feed_update_period <chr>, item_title <chr>,
-#> #   item_creator <chr>, item_date_published <dttm>, item_category1 <chr>,
-#> #   item_category2 <chr>, item_category3 <chr>, item_category4 <chr>,
-#> #   item_category5 <chr>, item_link <chr>
+#> # A tibble: 50 x 5
+#>    feed_title  feed_link   item_title    item_date_published item_link    
+#>    <chr>       <chr>       <chr>         <dttm>              <chr>        
+#>  1 Instructab… http://www… All  You Nee… 2018-07-04 10:03:03 http://www.i…
+#>  2 Instructab… http://www… Automatic Ra… 2018-07-04 09:35:14 http://www.i…
+#>  3 Instructab… http://www… DIY survival… 2018-07-04 09:27:17 http://www.i…
+#>  4 Instructab… http://www… Recycled and… 2018-07-04 08:29:32 http://www.i…
+#>  5 Instructab… http://www… ESP8266 Temp… 2018-07-04 08:23:55 http://www.i…
+#>  6 Instructab… http://www… How to Cool … 2018-07-04 06:58:42 http://www.i…
+#>  7 Instructab… http://www… DIY Laundry … 2018-07-04 06:38:56 http://www.i…
+#>  8 Instructab… http://www… DIY Li-ion C… 2018-07-04 05:54:44 http://www.i…
+#>  9 Instructab… http://www… Aluminum Cas… 2018-07-04 04:55:02 http://www.i…
+#> 10 Instructab… http://www… Receipt hold… 2018-07-04 04:44:50 http://www.i…
+#> # ... with 40 more rows
 ```
 
 More information is contained in the vignette: `vignette("tidyrss",
@@ -91,14 +86,14 @@ feed in the first place.
 
 ## Related
 
-The package is a ‘tidy’ version of two other related fantastic little
-packages, [rss](https://github.com/noahhl/r-does-rss) and
+The package is a ‘tidy’ version of two other related packages,
+[rss](https://github.com/noahhl/r-does-rss) and
 [feedeR](https://github.com/DataWookie/feedeR), both of which return
 lists. In comparison to feedeR, tidyRSS returns more information from
 the RSS feed (if it exists), and development on rss seems to have
-stopped some time ago. Both packages were influences for tidyRSS.
+stopped some time ago.
 
 # Other
 
-For a cool Shiny app that uses geoRSS, see
-[here](https://geospatialtraining.shinyapps.io/wildfireapp/).
+For an example Shiny app that uses geoRSS, see
+[here](https://github.com/RobertMyles/shinyGeoRSS).

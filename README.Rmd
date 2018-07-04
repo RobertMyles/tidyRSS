@@ -12,7 +12,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Travis-CI Build Status](https://travis-ci.org/RobertMyles/tidyRSS.svg?branch=master)](https://travis-ci.org/RobertMyles/tidyRSS)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/tidyRSS)](https://cran.r-project.org/package=tidyRSS)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
@@ -69,7 +68,7 @@ RSS & Atom XML feeds can be finicky things, if you find one that doesn't work wi
 
 ## Related  
 
-The package is a 'tidy' version of two other related fantastic little packages, [rss](https://github.com/noahhl/r-does-rss) and [feedeR](https://github.com/DataWookie/feedeR), both of which return lists. In comparison to feedeR, tidyRSS returns more information from the RSS feed (if it exists), and development on rss seems to have stopped some time ago. Both packages were influences for tidyRSS.  
+The package is a 'tidy' version of two other related packages, [rss](https://github.com/noahhl/r-does-rss) and [feedeR](https://github.com/DataWookie/feedeR), both of which return lists. In comparison to feedeR, tidyRSS returns more information from the RSS feed (if it exists), and development on rss seems to have stopped some time ago.  
 
 # Other 
-For a cool Shiny app that uses geoRSS, see [here](https://geospatialtraining.shinyapps.io/wildfireapp/).
+For an example Shiny app that uses geoRSS, see [here](https://github.com/RobertMyles/shinyGeoRSS).
