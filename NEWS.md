@@ -1,3 +1,8 @@
+tidyRSS v1.2.5 (Release date: 05/08/2018)
+============
+Changes:
+Removed tests. The tests were based on checking a bunch of RSS feed URLs. Since feeds undergo maintenance, or are taken down etc., the tests were failing randomly.  
+
 tidyRSS v1.2.4 (Release date: 01/06/2018)
 ============
 
