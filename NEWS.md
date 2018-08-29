@@ -1,3 +1,8 @@
+tidyRSS v1.2.6 (Release date: 29/08/2018)
+============
+Changes:
+Fixed an error with feeds parsing as geoRSS when they didn't have the necessary lat/lon columns.
+
 tidyRSS v1.2.5 (Release date: 05/08/2018)
 ============
 Changes:

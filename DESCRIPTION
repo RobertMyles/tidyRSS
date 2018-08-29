@@ -1,7 +1,7 @@
 Package: tidyRSS
 Type: Package
 Title: Tidy RSS for R
-Version: 1.2.5
+Version: 1.2.6
 Author: Robert Myles McDonnell
 Maintainer: Robert Myles McDonnell <robertmylesmcdonnell@gmail.com>
 Description:
@@ -25,5 +25,5 @@ Imports: xml2 (>= 1.1.1),
     stringr (>= 1.3.0)
 Suggests: knitr,
     rmarkdown
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 VignetteBuilder: knitr
