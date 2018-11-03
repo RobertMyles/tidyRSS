@@ -1,3 +1,8 @@
+tidyRSS v1.2.7 (Release date: 03/11/2018)
+============
+Changes:
+Small fix to add item descriptions for RSS feeds.
+
 tidyRSS v1.2.6 (Release date: 29/08/2018)
 ============
 Changes:

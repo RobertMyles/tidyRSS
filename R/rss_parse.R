@@ -60,6 +60,7 @@ rss_parse <- function(doc){
       item_creator = xml2::xml_text(xml2::xml_find_first(site, "dc:creator")),
       item_date_published = xml2::xml_text(xml2::xml_find_first(site, "pubDate")) %>%
         lubridate::parse_date_time(orders = formats),
+      item_description = xml2::xml_text(xml2::xml_find_first(site, "description")),
       item_category1 = xml2::xml_text(xml2::xml_find_first(site, "category[1]")),
       item_category2 = xml2::xml_text(xml2::xml_find_first(site, "category[2]")),
       item_category3 = xml2::xml_text(xml2::xml_find_first(site, "category[3]")),
