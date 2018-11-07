@@ -21,6 +21,7 @@
 #' analysis.
 #' @param feed (\code{character}). The url for the feed that you want to parse.
 #' @param sf . If TRUE, returns sf dataframe.
+#' @inheritParams httr::GET config
 #' @examples
 #' \dontrun{
 #' # Atom feed:
@@ -33,14 +34,14 @@
 #' tidyfeed("http://www.geonames.org/recent-changes.xml")
 #' }
 #' @export
-tidyfeed <- function(feed, sf = TRUE){
+tidyfeed <- function(feed, sf = TRUE, config = list()){
   invisible({
   suppressWarnings({
   stopifnot(identical(length(feed), 1L)) # exit if more than 1 feed provided
 
   msg <- "Error in feed parse; please check URL.\nIf you're certain that this is a valid rss feed, please file an issue at https://github.com/RobertMyles/tidyRSS/issues. Please note that the feed may also be undergoing maintenance."
 
-  doc <- try(httr::GET(feed), silent = TRUE)
+  doc <- try(httr::GET(feed, config), silent = TRUE)
 
   if(grepl("json", doc$headers$`content-type`)){
     result <- json_parse(feed)
