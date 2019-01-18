@@ -4,12 +4,17 @@
 \alias{tidyfeed}
 \title{Extract a tidy data frame from RSS and Atom and JSON feeds}
 \usage{
-tidyfeed(feed, sf = TRUE)
+tidyfeed(feed, sf = TRUE, config = list())
 }
 \arguments{
 \item{feed}{(\code{character}). The url for the feed that you want to parse.}
 
 \item{sf}{. If TRUE, returns sf dataframe.}
+
+\item{config}{Additional configuration settings such as http
+authentication (\code{\link[=authenticate]{authenticate()}}), additional headers
+(\code{\link[=add_headers]{add_headers()}}), cookies (\code{\link[=set_cookies]{set_cookies()}}) etc.
+See \code{\link[=config]{config()}} for full details and list of helpers.}
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function

@@ -19,9 +19,9 @@
 #' @description \code{tidyfeed()} downloads and parses rss feeds. The function
 #' produces a tidy data frame, easy to use for further manipulation and
 #' analysis.
+#' @inheritParams httr::GET
 #' @param feed (\code{character}). The url for the feed that you want to parse.
 #' @param sf . If TRUE, returns sf dataframe.
-#' @inheritParams httr::GET config
 #' @examples
 #' \dontrun{
 #' # Atom feed:
