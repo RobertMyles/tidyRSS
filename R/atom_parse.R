@@ -11,15 +11,16 @@ atom_parse <- function(doc){
 
   res <- tibble::tibble(
     feed_title = xml2::xml_text(xml2::xml_find_all(doc, ns = ns, "atom:title")),
-    feed_link = xml2::xml_text(xml2::xml_find_first(doc, ns = ns, "atom:id")),
+    feed_link = xml2::xml_attr(xml2::xml_find_first(doc, ns = ns, "atom:link"),
+                               attr = "href"),
     feed_author = xml2::xml_text(xml2::xml_find_first(doc, ns = ns, "atom:author")),
     feed_last_updated = xml2::xml_text(xml2::xml_find_first(doc, ns = ns, "atom:updated")),
     item_title = xml2::xml_text(xml2::xml_find_first(entries, ns = ns, "atom:title")),
     item_date_updated = xml2::xml_text(xml2::xml_find_first(entries, ns = ns,
                                                             "atom:updated")) %>%
       lubridate::parse_date_time(orders = formats),
-    item_link = xml2::xml_text(xml2::xml_find_first(entries, ns = ns,
-                                                    "atom:id")),
+    item_link = xml2::xml_attr(xml2::xml_find_first(entries, ns = ns,
+                                                     "atom:link"), attr = "href"),
     item_content = xml2::xml_text(xml2::xml_find_first(entries, ns = ns, "atom:content"))
   )
 

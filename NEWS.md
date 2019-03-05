@@ -1,3 +1,8 @@
+tidyRSS v1.2.8 (Release date: 05/03/2019)
+============
+Changes:
+Fix to add proper href links in Atom feeds.
+
 tidyRSS v1.2.7 (Release date: 03/11/2018)
 ============
 Changes:
