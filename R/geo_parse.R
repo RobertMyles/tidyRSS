@@ -26,6 +26,10 @@ geo_parse <- function(doc){
   items <- d %>% xml2::xml_find_all("channel") %>% xml2::xml_find_all("item") %>%
     xml2::as_list()
 
+  if(length(items) < 1) {
+    items <- d %>% xml_contents() %>% as_list()
+  }
+
   item <- dplyr::tibble(
     temp = "geo",
     item_title = purrr::map(items, "title", .default = NA_character_) %>% unlist(),
@@ -39,14 +43,22 @@ geo_parse <- function(doc){
       unlist() %>% as.numeric()
   )
 
-  if(is.na(item$item_long)){
+  if(is.na(unique(item$item_date_updated))){
+    date_check <- grepl("date", names(items[[1]]))
+    if(any(date_check == TRUE)){
+      item$item_date_updated <- purrr::map(items, "date", .default = NA_character_) %>%
+        unlist() %>% lubridate::parse_date_time(orders = formats)
+    }
+  }
+
+  if(is.na(unique(item$item_long))){
     geo <- purrr::map(items, "point", .default = NA_character_) %>% unlist()
     long <- stringr::str_extract(geo, "\\s[0-9\\.-]*") %>% trimws() %>% as.numeric()
     lat <- stringr::str_extract(geo, "[0-9\\.-]*\\s") %>% trimws() %>% as.numeric()
     item$item_long <- long
     item$item_lat <- lat
 
-    if(is.na(item$item_long)){
+    if(is.na(unique(item$item_long))){
       geo <- purrr::map(items, "georss:point", .default = NA_character_) %>% unlist()
       long <- stringr::str_extract(geo, "\\s[0-9\\.-]*") %>% trimws() %>% as.numeric()
       lat <- stringr::str_extract(geo, "[0-9\\.-]*\\s") %>% trimws() %>% as.numeric()
