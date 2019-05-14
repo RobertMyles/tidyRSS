@@ -1,3 +1,8 @@
+tidyRSS v1.2.9.1 (Release date: 14/05/2019)
+============
+Changes:
+Small bugfix for category columns.
+
 tidyRSS v1.2.9 (Release date: 08/05/2019)
 ============
 Changes:

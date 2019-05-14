@@ -57,8 +57,7 @@ rss_parse <- function(doc){
       feed_title = xml2::xml_text(xml2::xml_find_first(channel, "id")),
       feed_link = xml2::xml_text(xml2::xml_find_first(channel, "link")),
       feed_description = xml2::xml_text(xml2::xml_find_first(channel, "description")),
-      feed_last_updated = xml2::xml_text(xml2::xml_find_first(channel,
-                                                              "lastBuildDate")) %>%
+      feed_last_updated = xml2::xml_text(xml2::xml_find_first(channel, "lastBuildDate")) %>%
         lubridate::parse_date_time(orders = formats),
       feed_language = xml2::xml_text(xml2::xml_find_first(channel, "language")),
       feed_update_period = xml2::xml_text(xml2::xml_find_first(channel, "updatePeriod")),
