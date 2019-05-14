@@ -67,10 +67,16 @@ rss_parse <- function(doc){
       item_date_published = xml2::xml_text(xml2::xml_find_first(site, "pubDate")) %>%
         lubridate::parse_date_time(orders = formats),
       item_description = xml2::xml_text(xml2::xml_find_first(site, "description")),
-      item_categories = xml2::xml_find_all(site, "category/..") %>%
-        lapply(function(item) xml2::xml_text(xml2::xml_find_all(item, "category"))),
       item_link = xml2::xml_text(xml2::xml_find_first(site, "link"))
     )})
+
+    if(length(xml2::xml_find_all(site, "category")) > 0){
+      rss <- rss %>%
+        dplyr::mutate(
+          item_categories = xml2::xml_find_all(site, "category") %>%
+            lapply(function(item) xml2::xml_text(xml2::xml_find_all(item, "category")))
+      )
+    }
 
       suppressWarnings(
         res$feed_update_period[is.na(res$feed_update_period)] <- xml2::xml_text(
