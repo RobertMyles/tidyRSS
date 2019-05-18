@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 
 tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS), including Atom feeds, JSON feeds and georss feeds.
 
+**Note: some users may experience problems with v1.2.10 -- use the development version (1.2.11)**.  
+
 It is easy to use as it only has one function, `tidyfeed()`, which takes two arguments, the url of the feed and a logical flag for whether you want a geoRSS feed returned as a simple features dataframe or not. Running this function will return a tidy data frame of the information contained in the feed. If the url is not an rss or atom feed, it will return an error message.
 
 Included in the package is a simple dataset, a list of feed urls, which you can use to experiment with. You can access this with `data("feeds")`.   
@@ -48,8 +50,8 @@ devtools::install_github("robertmyles/tidyrss")
 RSS feeds can be parsed with `tidyfeed()`, and some examples are included in the "feeds" dataset. Here is an example of using the package:   
 
 ```{r, message=FALSE, warning=FALSE}
-library(tidyRSS)
-
+#library(tidyRSS)
+devtools::load_all()
 data("feeds")
 
 # select a feed:

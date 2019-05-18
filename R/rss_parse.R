@@ -70,11 +70,9 @@ rss_parse <- function(doc){
     )})
 
     if(length(xml2::xml_find_all(site, "category")) > 0){
-      rss <- rss %>%
-        dplyr::mutate(
-          item_categories = xml2::xml_find_all(site, "category") %>%
-            lapply(function(item) xml2::xml_text(xml2::xml_find_all(item, "category")))
-      )
+      res <- res %>%
+        dplyr::mutate(item_categories = purrr::map(site, xml2::xml_find_all, "category") %>%
+                        map(xml2::xml_text))
     }
 
       suppressWarnings(

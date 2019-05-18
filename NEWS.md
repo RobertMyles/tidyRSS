@@ -1,3 +1,10 @@
+tidyRSS v1.2.11 (Release date: 18/05/2019)
+============
+Changes:
+Bug (typo) introduced in v1.2.10, which produced 'Error in eval(lhs, parent, parent) : object 'rss' not found'.
+Now fixed. Feeds that are no longer available have been removed from the dataset included. Better handling of list-columns for rss category columns.
+
+
 tidyRSS v1.2.10 (Release date: 14/05/2019)
 ============
 Changes:

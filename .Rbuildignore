@@ -8,3 +8,4 @@
 ^docs$
 ^pkgdown$
 ^CRAN-RELEASE$
+^test$

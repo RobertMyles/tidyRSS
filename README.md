@@ -9,6 +9,9 @@ tidyRSS is a package for extracting data from [RSS
 feeds](https://en.wikipedia.org/wiki/RSS), including Atom feeds, JSON
 feeds and georss feeds.
 
+**Note: some users may experience problems with v1.2.10 – use the
+development version (1.2.11)**.
+
 It is easy to use as it only has one function, `tidyfeed()`, which takes
 two arguments, the url of the feed and a logical flag for whether you
 want a geoRSS feed returned as a simple features dataframe or not.
@@ -44,28 +47,40 @@ included in the “feeds” dataset. Here is an example of using the
 package:
 
 ``` r
-library(tidyRSS)
-
+#library(tidyRSS)
+devtools::load_all()
 data("feeds")
 
 # select a feed:
 rss <- sample(feeds$feeds, 1)
 
 tidyfeed(rss)
-#> # A tibble: 50 x 5
-#>    feed_title  feed_link   item_title    item_date_published item_link    
-#>    <chr>       <chr>       <chr>         <dttm>              <chr>        
-#>  1 Instructab… http://www… All  You Nee… 2018-07-04 10:03:03 http://www.i…
-#>  2 Instructab… http://www… Automatic Ra… 2018-07-04 09:35:14 http://www.i…
-#>  3 Instructab… http://www… DIY survival… 2018-07-04 09:27:17 http://www.i…
-#>  4 Instructab… http://www… Recycled and… 2018-07-04 08:29:32 http://www.i…
-#>  5 Instructab… http://www… ESP8266 Temp… 2018-07-04 08:23:55 http://www.i…
-#>  6 Instructab… http://www… How to Cool … 2018-07-04 06:58:42 http://www.i…
-#>  7 Instructab… http://www… DIY Laundry … 2018-07-04 06:38:56 http://www.i…
-#>  8 Instructab… http://www… DIY Li-ion C… 2018-07-04 05:54:44 http://www.i…
-#>  9 Instructab… http://www… Aluminum Cas… 2018-07-04 04:55:02 http://www.i…
-#> 10 Instructab… http://www… Receipt hold… 2018-07-04 04:44:50 http://www.i…
-#> # ... with 40 more rows
+#> # A tibble: 20 x 12
+#>    feed_title feed_link feed_description feed_last_updated   feed_language
+#>    <chr>      <chr>     <chr>            <dttm>              <chr>        
+#>  1 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#>  2 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#>  3 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#>  4 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#>  5 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#>  6 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#>  7 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#>  8 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#>  9 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 10 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 11 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 12 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 13 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 14 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 15 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 16 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 17 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 18 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 19 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> 20 FiveThirt… https://… Nate Silver’s F… 2019-05-15 23:22:44 en-US        
+#> # … with 7 more variables: feed_update_period <chr>, item_title <chr>,
+#> #   item_creator <chr>, item_date_published <dttm>,
+#> #   item_description <chr>, item_link <chr>, item_categories <list>
 ```
 
 More information is contained in the vignette: `vignette("tidyrss",

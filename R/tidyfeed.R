@@ -58,7 +58,6 @@ tidyfeed <- function(feed, sf = TRUE, config = list()){
   if(grepl("http://www.w3.org/2005/Atom", xml2::xml_attr(doc, "xmlns"))){
 
     result <- atom_parse(doc)
-
     return(result)
 
   } else if(grepl("http://www.georss.org/georss", xml2::xml_attr(doc, "xmlns:georss"))){
@@ -67,6 +66,7 @@ tidyfeed <- function(feed, sf = TRUE, config = list()){
     if(!exists('result$item_long')) {
       result <- rss_parse(doc)
       return(result)
+
     } else{
       if(sf == TRUE){
         result <- sf::st_as_sf(x = result,
