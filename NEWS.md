@@ -1,4 +1,4 @@
-tidyRSS v1.2.11 (Release date: 18/05/2019)
+tidyRSS v1.2.11 (Release date: 22/05/2019)
 ============
 Changes:
 Bug (typo) introduced in v1.2.10, which produced 'Error in eval(lhs, parent, parent) : object 'rss' not found'.
