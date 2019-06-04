@@ -11,7 +11,7 @@ feeds and georss feeds.
 
 It is easy to use as it only has one function, `tidyfeed()`, which takes
 two arguments, the url of the feed and a logical flag for whether you
-want a geoRSS feed returned as a simple features dataframe or not.
+want a geoRSS feed returned as a simple features dataframe or not (there's a third, which is simply a config list passed off to `httr::GET()`.
 Running this function will return a tidy data frame of the information
 contained in the feed. If the url is not an rss or atom feed, it will
 return an error message.
