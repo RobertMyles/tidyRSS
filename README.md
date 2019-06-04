@@ -7,10 +7,7 @@
 
 tidyRSS is a package for extracting data from [RSS
 feeds](https://en.wikipedia.org/wiki/RSS), including Atom feeds, JSON
-feeds and georss feeds.
-
-**Note: some users may experience problems with v1.2.10 – use the
-development version (1.2.11)**.
+feeds and georss feeds.  
 
 It is easy to use as it only has one function, `tidyfeed()`, which takes
 two arguments, the url of the feed and a logical flag for whether you
