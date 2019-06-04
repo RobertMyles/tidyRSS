@@ -22,6 +22,7 @@
 #' @inheritParams httr::GET
 #' @param feed (\code{character}). The url for the feed that you want to parse.
 #' @param sf . If TRUE, returns sf dataframe.
+#' @param config . Passed off to httr::GET().
 #' @examples
 #' \dontrun{
 #' # Atom feed:
