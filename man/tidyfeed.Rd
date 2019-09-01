@@ -11,10 +11,7 @@ tidyfeed(feed, sf = TRUE, config = list())
 
 \item{sf}{. If TRUE, returns sf dataframe.}
 
-\item{config}{Additional configuration settings such as http
-authentication (\code{\link[=authenticate]{authenticate()}}), additional headers
-(\code{\link[=add_headers]{add_headers()}}), cookies (\code{\link[=set_cookies]{set_cookies()}}) etc.
-See \code{\link[=config]{config()}} for full details and list of helpers.}
+\item{config}{. Passed off to httr::GET().}
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function

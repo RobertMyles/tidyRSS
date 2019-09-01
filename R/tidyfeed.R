@@ -1,6 +1,7 @@
 #' @importFrom magrittr "%>%"
 #' @importFrom tibble tibble
 #' @importFrom httr GET
+#' @importFrom httr user_agent
 #' @importFrom lubridate parse_date_time
 #' @importFrom xml2 read_xml
 #' @importFrom xml2 as_list
@@ -8,11 +9,18 @@
 #' @importFrom xml2 xml_text
 #' @importFrom xml2 xml_find_all
 #' @importFrom xml2 xml_find_first
+#' @importFrom xml2 xml_ns
+#' @importFrom xml2 xml_ns_rename
+#' @importFrom xml2 xml_attr
 #' @importFrom dplyr select
 #' @importFrom dplyr full_join
+#' @importFrom dplyr mutate_if
+#' @importFrom dplyr mutate
 #' @importFrom sf st_as_sf
 #' @importFrom stringr str_extract
 #' @importFrom purrr map
+#' @importFrom purrr map_chr
+#' @importFrom purrr safely
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
 #' @references \url{https://en.wikipedia.org/wiki/RSS}
 #' @title Extract a tidy data frame from RSS and Atom and JSON feeds
@@ -41,8 +49,12 @@ tidyfeed <- function(feed, sf = TRUE, config = list()){
   stopifnot(identical(length(feed), 1L)) # exit if more than 1 feed provided
 
   msg <- "Error in feed parse; please check URL.\nIf you're certain that this is a valid rss feed, please file an issue at https://github.com/RobertMyles/tidyRSS/issues. Please note that the feed may also be undergoing maintenance."
-
-  doc <- try(httr::GET(feed, config), silent = TRUE)
+  # set user agent
+  if (length(config) == 0 | length(config$`user-agent`) == 0) {
+    ua <- httr::user_agent("http://github.com/robertmyles/tidyRSS")
+  }
+  
+  doc <- try(httr::GET(feed, ua, config), silent = TRUE)
 
   if(grepl("json", doc$headers$`content-type`)){
     result <- json_parse(feed)
