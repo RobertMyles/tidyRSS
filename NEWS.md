@@ -1,3 +1,8 @@
+tidyRSS v1.2.12 (Release date: 01/09/2019)
+============
+Changes:
+Pass default user-agent to httr::GET. This solves 403 errors from certain RSS feeds.
+
 tidyRSS v1.2.11 (Release date: 22/05/2019)
 ============
 Changes:
