@@ -1,11 +1,3 @@
-#' @importFrom jsonlite fromJSON
-#' @importFrom purrr flatten
-#' @importFrom dplyr full_join
-formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
-             "Y-m-d H:M:S z", "d b Y H:M:S",
-             "d b Y H:M:S z", "a b d H:M:S z Y",
-             "a b dH:M:S Y")
-
 json_parse <- function(feed){
 
   res <- fromJSON(feed)

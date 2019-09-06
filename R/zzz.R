@@ -20,4 +20,12 @@
 #' @usage lhs \%>\% rhs
 NULL
 
+# time formats
+formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
+             "Y-m-d H:M:S z", "d b Y H:M:S",
+             "d b Y H:M:S z", "a b d H:M:S z Y",
+             "a b dH:M:S Y")
+
+# remove all NA columns
+no_na <- function(x) all(!is.na(x))
 

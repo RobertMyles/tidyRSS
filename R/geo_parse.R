@@ -1,9 +1,3 @@
-formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
-             "Y-m-d H:M:S z", "d b Y H:M:S",
-             "d b Y H:M:S z", "a b d H:M:S z Y",
-             "a b dH:M:S Y")
-
-
 geo_parse <- function(doc){
   d <- doc
   d <- xml_contents(d) %>% as_list()
@@ -78,7 +72,5 @@ geo_parse <- function(doc){
 
   suppressMessages(result <- full_join(meta, item))
   result <- result %>% select(-temp)
-  result <- Filter(function(x) !all(is.na(x)), result)
-
   return(result)
 }

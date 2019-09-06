@@ -1,8 +1,3 @@
-formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
-             "Y-m-d H:M:S z", "d b Y H:M:S",
-             "d b Y H:M:S z", "a b d H:M:S z Y",
-             "a b dH:M:S Y")
-
 rss_parse <- function(doc){
   channel <- xml_find_all(doc, "channel")
 
@@ -17,7 +12,7 @@ rss_parse <- function(doc){
     site <- xml_find_all(doc, "rss:item", ns = ns)
 
     categories <- function(item){
-      xx <- xml_text(xml_find_all(item, "rss:category", ns = ns))
+      xx <- xml_find_all(item, "rss:category", ns = ns) %>% xml_text()
       if(length(xx) < 1){
         return(FALSE)
       } else {
@@ -26,118 +21,124 @@ rss_parse <- function(doc){
     }
 
     res <- suppressWarnings({tibble(
-      feed_title = xml_text(
-        safe_run(safe_xml_find_all(channel, "rss:title", ns = ns))
-        ),
-      feed_link = xml_text(
-        safe_run(safe_xml_find_all(channel, "rss:link", ns = ns))
-        ),
-      feed_description = xml_text(
-        safe_run(safe_xml_find_first(channel, "rss:description", ns = ns))
-        ),
-      feed_last_updated = xml_text(
-        safe_run(safe_xml_find_first(channel, "rss:lastBuildDate", ns = ns))
-        ) %>%
+      feed_title = safe_xml_find_all(channel, "rss:title", ns = ns) %>%
+        safe_run() %>%
+        xml_text(),
+      feed_link = safe_xml_find_all(channel, "rss:link", ns = ns) %>%
+        safe_run() %>%
+        xml_text(),
+      feed_description = safe_xml_find_first(channel,
+                                             "rss:description", ns = ns) %>%
+        safe_run() %>%
+        xml_text(),
+      feed_last_updated = safe_xml_find_first(channel,
+                                              "rss:lastBuildDate", ns = ns) %>%
+        safe_run() %>%
+        xml_text() %>%
         parse_date_time(orders = formats),
-      feed_language = xml_text(
-        safe_run(safe_xml_find_first(channel, "rss:language", ns = ns))
-        ),
-      feed_update_period = xml_text(
-        safe_run(safe_xml_find_first(channel, "rss:updatePeriod", ns = ns))
-        ),
-      item_title = xml_text(
-        safe_run(safe_xml_find_all(site, "rss:title", ns = ns))
-        ),
-      item_creator = xml_text(
-        safe_run(safe_xml_find_first(site, "rss:creator", ns = ns))
-        ),
-      item_date_published = xml_text(
-        safe_run(safe_xml_find_first(site, "rss:pubDate", ns = ns))
-        ) %>%
+      feed_language = safe_xml_find_first(channel, "rss:language", ns = ns) %>%
+        safe_run() %>%
+        xml_text(),
+      feed_update_period = safe_xml_find_first(channel,
+                                               "rss:updatePeriod", ns = ns) %>%
+        safe_run() %>%
+        xml_text(),
+      item_title = safe_xml_find_all(site, "rss:title", ns = ns) %>%
+        safe_run() %>%
+        xml_text(),
+      item_creator = safe_xml_find_first(site, "rss:creator", ns = ns) %>%
+        safe_run() %>%
+        xml_text(),
+      item_date_published = safe_xml_find_first(site, "rss:pubDate", ns = ns) %>%
+        safe_run() %>%
+        xml_text() %>%
         parse_date_time(orders = formats),
-      item_date = xml_text(
-        safe_run(safe_xml_find_first(site, "rss:date", ns = ns))
-        ) %>%
+      item_date = safe_xml_find_first(site, "rss:date", ns = ns) %>%
+        safe_run() %>%
+        xml_text() %>%
         parse_date_time(orders = formats),
-      item_subject = xml_text(
-        safe_run(safe_xml_find_first(site, ns = ns, "rss:subject"))
-        ),
-      item_link = xml_text(
-        safe_run(safe_xml_find_all(site, "rss:link", ns = ns))
-        ),
-      item_description = xml_text(
-        safe_run(safe_xml_find_first(site, "rss:description", ns = ns))
-        )
+      item_subject = safe_xml_find_first(site, ns = ns, "rss:subject") %>%
+        safe_run() %>%
+        xml_text(),
+      item_link = safe_xml_find_all(site, "rss:link", ns = ns) %>%
+        safe_run() %>%
+        xml_text(),
+      item_description = safe_xml_find_first(site,
+                                             "rss:description", ns = ns) %>%
+        safe_run() %>%
+        xml_text()
     )})
 
     if(categories(site) == TRUE) {
-      res$item_categories <- safe_run(
-        safe_xml_find_all(site, "rss:category/..", ns = ns)
-      )
+      res$item_categories <- safe_xml_find_all(
+        site, "rss:category/..",
+        ns = ns
+        ) %>%
+        safe_run()
     }
-
-    res <- Filter(function(x) !all(is.na(x)), res)
-
   } else{
 
     site <- xml_find_all(channel, "item")
 
-    res <- suppressWarnings({tibble(
-      feed_title = xml_text(
-        safe_run(safe_xml_find_first(channel, "id"))
-        ),
-      feed_link = xml_text(
-        safe_run(safe_xml_find_first(channel, "link"))
-        ),
-      feed_description = xml_text(
-        safe_run(safe_xml_find_first(channel, "description"))
-        ),
-      feed_last_updated = xml_text(
-        safe_run(safe_xml_find_first(channel, "lastBuildDate"))
-        ) %>%
+    res <- suppressWarnings({
+      tibble(
+      feed_title = safe_xml_find_first(channel, "id") %>%
+        safe_run() %>%
+        xml_text(),
+      feed_link = safe_xml_find_first(channel, "link") %>%
+        safe_run() %>%
+        xml_text(),
+      feed_description = safe_xml_find_first(channel, "description") %>%
+        safe_run() %>%
+        xml_text(),
+      feed_last_updated = safe_xml_find_first(channel, "lastBuildDate") %>%
+        safe_run() %>%
+        xml_text() %>%
         parse_date_time(orders = formats),
-      feed_language = xml_text(
-        safe_run(safe_xml_find_first(channel, "language"))
-        ),
-      feed_update_period = xml_text(
-        safe_run(safe_xml_find_first(channel, "updatePeriod"))
-        ),
-      item_title = xml_text(
-        safe_run(safe_xml_find_first(site, "title"))
-        ),
-      item_creator = xml_text(
-        safe_run(safe_xml_find_first(site, "dc:creator"))
-        ),
-      item_date_published = xml_text(
-        safe_run(safe_xml_find_first(site, "pubDate"))
-        ) %>%
+      feed_language = safe_xml_find_first(channel, "language") %>%
+        safe_run() %>%
+        xml_text(),
+      feed_update_period = safe_xml_find_first(channel, "updatePeriod") %>%
+        safe_run() %>%
+        xml_text(),
+      item_title = safe_xml_find_first(site, "title") %>%
+        safe_run() %>%
+        xml_text(),
+      item_creator = safe_xml_find_first(site, "dc:creator") %>%
+        safe_run() %>%
+        xml_text(),
+      item_date_published = safe_xml_find_first(site, "pubDate") %>%
+        safe_run() %>%
+        xml_text() %>%
         parse_date_time(orders = formats),
-      item_description = xml_text(
-        safe_run(safe_xml_find_first(site, "description"))
-        ),
-      item_link = xml_text(
-        safe_run(safe_xml_find_first(site, "link"))
-      )
+      item_description = safe_xml_find_first(site, "description") %>%
+        safe_run() %>%
+        xml_text(),
+      item_link = safe_xml_find_first(site, "link") %>%
+        safe_run() %>%
+        xml_text()
     )})
 
     if(length(xml_find_all(site, "category")) > 0){
       res <- res %>%
-        mutate(item_categories = map(site, xml_find_all, "category") %>%
-                        map(xml_text))
+        mutate(
+          item_categories = map(site, xml_find_all, "category") %>%
+            map(xml_text))
     }
 
       suppressWarnings(
-        res$feed_update_period[is.na(res$feed_update_period)] <- xml_text(
-          safe_run(safe_xml_find_first(channel, "sy:updatePeriod")))
+        res$feed_update_period[is.na(res$feed_update_period)] <- safe_xml_find_first(
+          channel, "sy:updatePeriod"
+          ) %>%
+          safe_run() %>%
+          xml_text()
       )
       suppressWarnings(
-        res$feed_title[is.na(res$feed_title)] <- xml_text(
-          safe_run(safe_xml_find_first(channel, "title"))
-          )
+        res$feed_title[is.na(res$feed_title)] <- safe_xml_find_first(
+          channel, "title") %>%
+          safe_run() %>%
+          xml_text()
       )
-      
-      res <- Filter(function(x) !all(is.na(x)), res)
-
       return(res)
     }
 }

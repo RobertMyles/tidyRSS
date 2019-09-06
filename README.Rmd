@@ -16,11 +16,9 @@ knitr::opts_chunk$set(
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
 
-tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS), including Atom feeds, JSON feeds and georss feeds.
+tidyRSS is a package for extracting data from [RSS feeds](https://en.wikipedia.org/wiki/RSS), including Atom feeds, JSON feeds and geo-rss feeds.
 
-**Note: some users may experience problems with v1.2.10 -- use the development version (1.2.11)**.  
-
-It is easy to use as it only has one function, `tidyfeed()`, which takes two arguments, the url of the feed and a logical flag for whether you want a geoRSS feed returned as a simple features dataframe or not. Running this function will return a tidy data frame of the information contained in the feed. If the url is not an rss or atom feed, it will return an error message.
+It is easy to use as it only has one function, `tidyfeed()`, which takes three arguments, the url of the feed, a logical flag for whether you want a geoRSS feed returned as a simple features dataframe or not, and a config list that is passed off to `httr::GET()`. Running this function will return a tidy data frame of the information contained in the feed. If the url is not an rss, json or atom feed, it will return an error message.
 
 Included in the package is a simple dataset, a list of feed urls, which you can use to experiment with. You can access this with `data("feeds")`.   
 
@@ -29,18 +27,14 @@ Included in the package is a simple dataset, a list of feed urls, which you can 
 It can be installed directly from CRAN with: 
 
 ```{r, eval=FALSE}
-
 install.packages("tidyRSS")
-
 ```
 
 
-The development version can be installed from GitHub with the devtools package. 
+The development version can be installed from GitHub with the remotes package. 
 
 ```{r, eval = F}
-
-devtools::install_github("robertmyles/tidyrss")
-
+remotes::install_github("robertmyles/tidyrss")
 ```
 
 
@@ -50,15 +44,13 @@ devtools::install_github("robertmyles/tidyrss")
 RSS feeds can be parsed with `tidyfeed()`, and some examples are included in the "feeds" dataset. Here is an example of using the package:   
 
 ```{r, message=FALSE, warning=FALSE}
-#library(tidyRSS)
-devtools::load_all()
+library(tidyRSS)
 data("feeds")
 
 # select a feed:
 rss <- sample(feeds$feeds, 1)
 
 tidyfeed(rss)
-
 ```
 
 More information is contained in the vignette: `vignette("tidyrss", package = "tidyRSS")`. 
@@ -66,11 +58,19 @@ More information is contained in the vignette: `vignette("tidyrss", package = "t
 
 ## Issues 
 
-RSS & Atom XML feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/robertmyles/tidyrss/issues). Please include the url of the feed that you are trying. Pull requests and general feedback are welcome. Many feeds are malformed. What this means is that, for a well-formed feed, you'll get back a tidy data frame with information on the feed and the individual items (like blog posts, for example), including content. For malformed feeds, it will be less than this, as `tidyfeed()` deletes `NA` columns, where the information wasn't in the feed in the first place.  
+RSS & Atom XML feeds can be finicky things, if you find one that doesn't work with `tidyfeed()`, [let me know](https://github.com/robertmyles/tidyrss/issues). Please include the url of the feed that you are trying. Pull requests and general feedback are welcome.  
+Many feeds are malformed. What this means is that, for a well-formed feed, you'll get back a tidy data frame with information on the feed and the individual items (like blog posts, for example), including content. For malformed feeds, it will be less than this, as `tidyfeed()` deletes `NA` columns, where the information wasn't in the feed in the first place. You might often find that most information comes back, but that some columns are not 'clean' -- this happens particularly with older feeds and the 'description' or 'content' fields. These will require that you do a bit of further string cleaning after using tidyRSS. Here's an example of what I'm talkin 'bout:
+```{r}
+tidyfeed("http://feeds.feedburner.com/SalaryTrendsAndReportsDiscussions-Analyticbridge?format=xml")$item_content[[1]]
+```
+
+Best of luck cleaning that up. 
+
+Including geo-rss feeds in this package has been a bit of ongoing issue for me, as it brings a whole host of new dependencies into the package that I know some users didn't want. I may extract it out into a 'sfRSS' package in the future.  
 
 ## Related  
 
 The package is a 'tidy' version of two other related packages, [rss](https://github.com/noahhl/r-does-rss) and [feedeR](https://github.com/DataWookie/feedeR), both of which return lists. In comparison to feedeR, tidyRSS returns more information from the RSS feed (if it exists), and development on rss seems to have stopped some time ago.  
 
 # Other 
-For an example Shiny app that uses geoRSS, see [here](https://github.com/RobertMyles/shinyGeoRSS).
+For an example Shiny app that uses geo-rss, see [here](https://github.com/RobertMyles/shinyGeoRSS).

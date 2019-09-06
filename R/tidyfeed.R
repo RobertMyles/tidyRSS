@@ -16,12 +16,15 @@
 #' @importFrom dplyr full_join
 #' @importFrom dplyr mutate_if
 #' @importFrom dplyr mutate
+#' @importFrom dplyr select_if
 #' @importFrom sf st_as_sf
 #' @importFrom stringr str_extract
 #' @importFrom stringr str_trim
 #' @importFrom purrr map
 #' @importFrom purrr map_chr
 #' @importFrom purrr safely
+#' @importFrom purrr flatten
+#' @importFrom jsonlite fromJSON
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
 #' @references \url{https://en.wikipedia.org/wiki/RSS}
 #' @title Extract a tidy data frame from RSS and Atom and JSON feeds
@@ -59,7 +62,6 @@ tidyfeed <- function(feed, sf = TRUE, config = list()){
 
   if(grepl("json", doc$headers$`content-type`)){
     result <- json_parse(feed)
-    return(result)
   } else{
     doc <- doc %>% read_xml()
   }
@@ -69,30 +71,23 @@ tidyfeed <- function(feed, sf = TRUE, config = list()){
   }
 
   if(grepl("http://www.w3.org/2005/Atom", xml_attr(doc, "xmlns"))){
-
     result <- atom_parse(doc)
-    return(result)
-
   } else if(grepl("http://www.georss.org/georss", xml_attr(doc, "xmlns:georss"))){
-
     result <- geo_parse(doc)
     if(!exists('result$item_long')) {
       result <- rss_parse(doc)
-      return(result)
-
     } else{
       if(sf == TRUE){
         result <- st_as_sf(x = result,
                            coords = c("item_long", "item_lat"),
                            crs = "+proj=longlat +datum=WGS84")
       }
-      return(result)
     }
   } else{
     result <- rss_parse(doc)
-
-    return(result)
     }
   })
   })
+  result <- result %>% select_if(no_na)
+  return(result)
 }
