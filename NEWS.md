@@ -18,7 +18,7 @@ Small bugfix for category columns.
 tidyRSS v1.2.9 (Release date: 08/05/2019)
 ============
 Changes:
-Added funcionality to process dc:date tags in v1 RSS feeds and better handling of item category columns, see https://github.com/luke-a/tidyRSS/commit/c677022996fa971b49ef1a858ae21ca720b56c8e .
+Added functionality to process dc:date tags in v1 RSS feeds and better handling of item category columns, see https://github.com/luke-a/tidyRSS/commit/c677022996fa971b49ef1a858ae21ca720b56c8e .
 
 tidyRSS v1.2.8 (Release date: 05/03/2019)
 ============

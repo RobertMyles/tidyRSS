@@ -18,7 +18,7 @@ geo_parse <- function(doc){
     feed_author = map(d, "author", .default = NA_character_) %>% unlist(),
     feed_description = map(d, "description", .default = NA_character_) %>% unlist(),
     feed_last_updated = map(d, "pubDate", .default = NA_character_) %>% unlist() %>%
-      lubridate::parse_date_time(orders = formats),
+      parse_date_time(orders = formats),
     feed_language = map(d, "language", .default = NA_character_) %>% unlist()
   )
 
@@ -37,7 +37,8 @@ geo_parse <- function(doc){
     item_title = map(items, "title", .default = NA_character_) %>% unlist(),
     item_date_updated = map(items, "pubDate", .default = NA_character_) %>%
       unlist() %>% parse_date_time(orders = formats),
-    item_content = map(items, "description", .default = NA_character_) %>% unlist(),
+    item_content = map(items, "description", .default = NA_character_) %>%
+      unlist() %>% str_trim(),
     item_link = map(items, "link", .default = NA_character_) %>% unlist(),
     item_long = map(items, "long", .default = NA_character_) %>%
       unlist() %>% as.numeric(),

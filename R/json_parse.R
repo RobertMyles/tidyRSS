@@ -8,13 +8,13 @@ formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
 
 json_parse <- function(feed){
 
-  res <- jsonlite::fromJSON(feed)
+  res <- fromJSON(feed)
 
   items <- res$items
-  items$author <- unlist(purrr::flatten(items$author))
+  items$author <- unlist(flatten(items$author))
   items$feed_title = res$title
 
-  results <- tibble::tibble(
+  results <- tibble(
     version = res$version,
     feed_title = res$title,
     home_page_url = res$home_page_url,
@@ -24,14 +24,12 @@ json_parse <- function(feed){
     favicon = res$favicon
   )
 
-  results <- suppressMessages(dplyr::full_join(results, items))
+  results <- suppressMessages(full_join(results, items))
 
   results <- results %>%
-    dplyr::mutate(
-      date_published = lubridate::parse_date_time(
-        date_published, orders = formats),
-      date_modified = lubridate::parse_date_time(
-        date_modified, orders = formats)
+    mutate(
+      date_published = parse_date_time(date_published, orders = formats),
+      date_modified = parse_date_time(date_modified, orders = formats)
       )
 
   return(results)

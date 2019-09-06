@@ -18,6 +18,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom sf st_as_sf
 #' @importFrom stringr str_extract
+#' @importFrom stringr str_trim
 #' @importFrom purrr map
 #' @importFrom purrr map_chr
 #' @importFrom purrr safely
@@ -51,29 +52,28 @@ tidyfeed <- function(feed, sf = TRUE, config = list()){
   msg <- "Error in feed parse; please check URL.\nIf you're certain that this is a valid rss feed, please file an issue at https://github.com/RobertMyles/tidyRSS/issues. Please note that the feed may also be undergoing maintenance."
   # set user agent
   if (length(config) == 0 | length(config$`user-agent`) == 0) {
-    ua <- httr::user_agent("http://github.com/robertmyles/tidyRSS")
+    ua <- user_agent("http://github.com/robertmyles/tidyRSS")
   }
-  
-  doc <- try(httr::GET(feed, ua, config), silent = TRUE)
+
+  doc <- try(GET(feed, ua, config), silent = TRUE)
 
   if(grepl("json", doc$headers$`content-type`)){
     result <- json_parse(feed)
     return(result)
   } else{
-    doc <- doc %>% xml2::read_xml()
+    doc <- doc %>% read_xml()
   }
 
   if(unique(grepl('try-error', class(doc)))){
     stop(msg)
   }
 
-
-  if(grepl("http://www.w3.org/2005/Atom", xml2::xml_attr(doc, "xmlns"))){
+  if(grepl("http://www.w3.org/2005/Atom", xml_attr(doc, "xmlns"))){
 
     result <- atom_parse(doc)
     return(result)
 
-  } else if(grepl("http://www.georss.org/georss", xml2::xml_attr(doc, "xmlns:georss"))){
+  } else if(grepl("http://www.georss.org/georss", xml_attr(doc, "xmlns:georss"))){
 
     result <- geo_parse(doc)
     if(!exists('result$item_long')) {
@@ -82,9 +82,9 @@ tidyfeed <- function(feed, sf = TRUE, config = list()){
 
     } else{
       if(sf == TRUE){
-        result <- sf::st_as_sf(x = result,
-                               coords = c("item_long", "item_lat"),
-                               crs = "+proj=longlat +datum=WGS84")
+        result <- st_as_sf(x = result,
+                           coords = c("item_long", "item_lat"),
+                           crs = "+proj=longlat +datum=WGS84")
       }
       return(result)
     }
