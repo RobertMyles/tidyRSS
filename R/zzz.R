@@ -28,4 +28,6 @@ formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
 
 # remove all NA columns
 no_na <- function(x) all(!is.na(x))
+# remove nchar < 1 columns
+no_empty_char <- function(x) all(!nchar(x) < 1)
 

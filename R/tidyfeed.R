@@ -88,6 +88,8 @@ tidyfeed <- function(feed, sf = TRUE, config = list()){
     }
   })
   })
-  result <- result %>% select_if(no_na)
+  result <- result %>%
+    select_if(no_na) %>%
+    select_if(no_empty_char)
   return(result)
 }
