@@ -30,4 +30,12 @@ formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
 no_na <- function(x) all(!is.na(x))
 # remove nchar < 1 columns
 no_empty_char <- function(x) all(!nchar(x) < 1)
-
+# return if exists
+return_exists <- function(x) {
+  if (!is.null(x)) {
+    out <- x
+  } else {
+    out <- NA
+  }
+  out
+}

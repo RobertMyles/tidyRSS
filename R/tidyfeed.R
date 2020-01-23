@@ -59,9 +59,12 @@ tidyfeed <- function(feed, sf = TRUE, config = list()){
   }
 
   doc <- try(GET(feed, ua, config), silent = TRUE)
-
+  # TODO: check status_code here
   if(grepl("json", doc$headers$`content-type`)){
-    result <- json_parse(feed)
+    result <- json_parse(feed) %>%
+      select_if(no_na) %>%
+      select_if(no_empty_char)
+    return(result)
   } else{
     doc <- doc %>% read_xml()
   }
