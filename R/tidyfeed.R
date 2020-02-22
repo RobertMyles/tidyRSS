@@ -36,6 +36,7 @@ tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE) {
   # feed <- "http://www.geonames.org/recent-changes.xml"
   # feed <- "http://journal.r-project.org/rss.atom"
   # feed <- "https://daringfireball.net/feeds/json"
+  # feed <- "http://fivethirtyeight.com/all/feed"
   # checks
   if (!identical(length(feed), 1L)) stop("Please supply only one feed at a time.")
   if (!is.logical(list)) stop("`list` may be FALSE or TRUE only.")
@@ -58,11 +59,11 @@ tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE) {
   } else if (typ == "json") {
     parsed <- json_parse(response)
   } else {
-    # TODO
+    # TODO error
     stop("")
   }
 
-  if (isTRUE())
+
 
   return(parsed)
 }
@@ -70,6 +71,7 @@ tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE) {
 # do generic parsing here:
 # - dates, tags, as list, remove NA cols
 # I think 'list' will have to be done inside the parsers
+# tags too, because of diffs in json/xml
 
 
 

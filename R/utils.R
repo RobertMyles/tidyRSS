@@ -16,12 +16,14 @@ set_user <- function(config) {
 
 # check if JSON or XML
 # simply reads 'content-type' of response to check type.
+# if contains both atom & rss, prefers rss
 type_check <- function(response) {
   content_type <- response$headers$`content-type`
   typ <- case_when(
-    grepl(x = content_type, pattern = "application/atom") ~ "atom",
-    grepl(x = content_type, pattern = "application/xml") ~ "rss",
-    grepl(x = content_type, pattern = "application/json") ~ "json",
+    grepl(x = content_type, pattern = "atom") ~ "atom",
+    grepl(x = content_type, pattern = "xml") ~ "rss",
+    grepl(x = content_type, pattern = "rss") ~ "rss",
+    grepl(x = content_type, pattern = "json") ~ "json",
     TRUE ~ "unknown"
   )
   return(typ)
@@ -29,7 +31,7 @@ type_check <- function(response) {
 
 # geocheck - warning about geo feeds
 geocheck <- function(x) {
-  gcheck <- grepl("http://www.georss.org/georss", xml_attr(doc, "xmlns:georss"))
+  gcheck <- grepl("http://www.georss.org/georss", xml_attr(x, "xmlns:georss"))
   if (isTRUE(geocheck)) {
     message("Parsing feeds with geographic information (geoRSS, geoJSON etc.) is
 deprecated in tidyRSS as of version 2.0.0. The geo-fields in this feed will be ignored.

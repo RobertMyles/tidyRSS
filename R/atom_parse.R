@@ -1,6 +1,6 @@
 atom_parse <- function(response, list) {
   res <- read_xml(response)
-  geocheck(doc)
+  geocheck(res)
 
   # metadata: id, title, updated necessary
   metadata <- tibble(
@@ -14,7 +14,8 @@ atom_parse <- function(response, list) {
   meta_optional <- tibble(
     feed_author = safe_run(res, "first", "//*[name()='author']"),
     feed_link = ifelse(!is.null(link), link, def),
-    feed_category = list(safe_run(res, "first", "//*[name()='category']")),
+    feed_category = list(category = safe_run(res, "first", "//*[name()='category']")),
+    feed_generator = safe_run(res, "first", "//*[name()='generator']"),
     feed_icon = safe_run(res, "first", "//*[name()='icon']"),
     feed_rights = safe_run(res, "first", "//*[name()='rights']")
   )
