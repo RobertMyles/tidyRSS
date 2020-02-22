@@ -8,7 +8,7 @@
 #' @importFrom sf st_as_sf
 #' @importFrom stringr str_extract str_trim
 #' @importFrom purrr map map_chr safely flatten compact
-#' @importFrom jsonlite fromJSON
+#' @importFrom jsonlite parse_json
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
 #' @references \url{https://en.wikipedia.org/wiki/RSS}
 #' @title Extract a tidy data frame from RSS and Atom and JSON feeds
@@ -35,6 +35,7 @@ tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE) {
   # feed <- "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson"
   # feed <- "http://www.geonames.org/recent-changes.xml"
   # feed <- "http://journal.r-project.org/rss.atom"
+  # feed <- "https://daringfireball.net/feeds/json"
   # checks
   if (!identical(length(feed), 1L)) stop("Please supply only one feed at a time.")
   if (!is.logical(list)) stop("`list` may be FALSE or TRUE only.")
@@ -66,8 +67,14 @@ tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE) {
   return(parsed)
 }
 
-#   # do generic parsing here:
-#   # - dates, tags, as list, remove NA cols
+# do generic parsing here:
+# - dates, tags, as list, remove NA cols
+# I think 'list' will have to be done inside the parsers
+
+
+
+
+
 #
 #
 #
