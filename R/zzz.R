@@ -10,32 +10,3 @@
   invisible()
 }
 
-#' Pipe operator
-#'
-#' @name %>%
-#' @rdname pipe
-#' @keywords internal
-#' @export
-#' @importFrom magrittr %>%
-#' @usage lhs \%>\% rhs
-NULL
-
-# time formats
-formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
-             "Y-m-d H:M:S z", "d b Y H:M:S",
-             "d b Y H:M:S z", "a b d H:M:S z Y",
-             "a b dH:M:S Y")
-
-# remove all NA columns
-no_na <- function(x) all(!is.na(x))
-# remove nchar < 1 columns
-no_empty_char <- function(x) all(!nchar(x) < 1)
-# return if exists
-return_exists <- function(x) {
-  if (!is.null(x)) {
-    out <- x
-  } else {
-    out <- NA
-  }
-  out
-}

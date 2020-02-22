@@ -1,3 +1,13 @@
+rss_parse <- function(response) {
+  res <- response %>% read_xml()
+
+
+
+
+}
+
+
+
 rss_parse <- function(doc){
   channel <- xml_find_all(doc, "channel")
 

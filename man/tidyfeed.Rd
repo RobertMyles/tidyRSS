@@ -4,14 +4,14 @@
 \alias{tidyfeed}
 \title{Extract a tidy data frame from RSS and Atom and JSON feeds}
 \usage{
-tidyfeed(feed, sf = TRUE, config = list())
+tidyfeed(feed, config = list(), clean_tags = TRUE, list = FALSE)
 }
 \arguments{
 \item{feed}{(\code{character}). The url for the feed that you want to parse.}
 
-\item{sf}{. If TRUE, returns sf dataframe.}
-
 \item{config}{. Passed off to httr::GET().}
+
+\item{sf}{. If TRUE, returns sf dataframe.}
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function
