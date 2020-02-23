@@ -1,5 +1,5 @@
 # error message
-msg <- "Error in feed parse; please check URL.\n
+error_msg <- "Error in feed parse; please check URL.\n
   If you're certain that this is a valid rss feed,
   please file an issue at https://github.com/RobertMyles/tidyRSS/issues.
   Please note that the feed may also be undergoing maintenance."
@@ -61,8 +61,10 @@ NULL
 
 # remove all NA columns
 no_na <- function(x) all(!is.na(x))
+
 # remove nchar < 1 columns
 no_empty_char <- function(x) all(!nchar(x) < 1)
+
 # return if exists
 return_exists <- function(x) {
   if (!is.null(x)) {
@@ -72,3 +74,26 @@ return_exists <- function(x) {
   }
   out
 }
+
+# delist list-columns of one element
+delist <- function(x) {
+  if (length(x) == 1) {
+    x <- unlist(x)
+  }
+}
+# parse dates
+date_parser <- function(df, kol) {
+  column <- enquo(kol) %>% as_name()
+  if (has_name(df, column)) {
+    df <- df %>% mutate({{ kol }} := anytime({{ kol }}))
+  }
+  df
+}
+
+# clean HTML tags
+# from https://stackoverflow.com/a/17227415/4296028
+# removal != parsing!
+cleanFun <- function(htmlString) {
+  return(gsub("<.*?>", "", htmlString))
+}
+

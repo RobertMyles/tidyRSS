@@ -1,10 +1,9 @@
-json_parse <- function(response, list) {
+json_parse <- function(response, list, type) {
   # spec here: https://jsonfeed.org/version/1
   res <- parse_json(response)
   items <- res$items
 
   meta <- tibble(
-    version = res$version,
     feed_title = res$title,
     home_page_url = return_exists(res$home_page_url),
     feed_url = return_exists(res$feed_url),
@@ -49,6 +48,10 @@ json_parse <- function(response, list) {
     }
   }
   entries$item_author <- NA
+
+  # clean up
+  meta <- clean_up(meta, "json")
+  entries <- clean_up(entries, "json")
 
   if (isTRUE(list)) {
     out <- list(meta = meta, entries = entries)

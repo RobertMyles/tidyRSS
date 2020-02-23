@@ -1,4 +1,6 @@
 atom_parse <- function(response, list) {
+  # https://tools.ietf.org/html/rfc4287
+  # https://validator.w3.org/feed/docs/atom.html
   res <- read_xml(response)
   geocheck(res)
 
@@ -6,7 +8,7 @@ atom_parse <- function(response, list) {
   metadata <- tibble(
     feed_title = xml_find_first(res, "//*[name()='title']") %>% xml_text(),
     feed_url = xml_find_first(res, "//*[name()='id']") %>% xml_text(),
-    last_updated = xml_find_first(res, "//*[name()='updated']") %>% xml_text()
+    feed_last_updated = xml_find_first(res, "//*[name()='updated']") %>% xml_text()
   )
   # optional: author, link, category, contributor, generator, icon, logo,
   # rights, subtitle
@@ -60,6 +62,11 @@ atom_parse <- function(response, list) {
       map("label") %>%
       compact()
   }
+
+  # clean up
+  meta <- clean_up(meta, "atom")
+  entries <- clean_up(entries, "atom")
+
   if (isTRUE(list)) {
     out <- list(meta = meta, entries = entries)
     return(out)
