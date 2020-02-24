@@ -2,21 +2,26 @@
 % Please edit documentation in R/tidyfeed.R
 \name{tidyfeed}
 \alias{tidyfeed}
-\title{Extract a tidy data frame from RSS and Atom and JSON feeds}
+\title{Extract a tidy data frame from RSS, Atom and JSON feeds}
 \usage{
-tidyfeed(feed, sf = TRUE, config = list())
+tidyfeed(feed, config = list(), clean_tags = TRUE, list = FALSE)
 }
 \arguments{
-\item{feed}{(\code{character}). The url for the feed that you want to parse.}
+\item{feed}{\code{character}, the url for the feed that you want to parse,
+e.g. "http://journal.r-project.org/rss.atom".}
 
-\item{sf}{. If TRUE, returns sf dataframe.}
+\item{config}{Arguments passed off to \code{httr::GET()}.}
 
-\item{config}{. Passed off to httr::GET().}
+\item{clean_tags}{\code{logical}, default \code{TRUE}.
+Cleans columns of HTML tags.}
+
+\item{list}{\code{logical}, default \code{FALSE}.
+Return metadata and content as seperate dataframes in a named list.}
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function
-produces a tidy data frame, easy to use for further manipulation and
-analysis.
+produces either a tidy data frame or a named list, easy to use for further
+manipulation and analysis.
 }
 \examples{
 \dontrun{
@@ -26,12 +31,13 @@ tidyfeed("http://journal.r-project.org/rss.atom")
 tidyfeed("http://fivethirtyeight.com/all/feed")
 # jsonfeed:
 tidyfeed("https://daringfireball.net/feeds/json")
-# georss:
-tidyfeed("http://www.geonames.org/recent-changes.xml")
 }
 }
 \references{
 \url{https://en.wikipedia.org/wiki/RSS}
+}
+\seealso{
+\link[httr:GET]{GET()}
 }
 \author{
 Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}

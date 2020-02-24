@@ -1,33 +1,19 @@
-.onLoad <- function(libname = find.package("tidyRSS"), pkgname = "tidyRSS"){
-
+# nocov start
+.onLoad <- function(libname = find.package("tidyRSS"), pkgname = "tidyRSS") {
   # CRAN Note avoidance
-  if(getRversion() >= "2.15.1")
-    utils::globalVariables(c(".", "feed_description", "feed_last_updated",
-                             "feed_link", "feed_title", "item_category1", "item_category2",
-                             "item_category3", "item_category4", "item_category5", "item_creator",
-                             "item_date_published", "item_link", "item_title", "feed_update_period",
-                             "date_modified", "date_published", "temp"))
+  if (getRversion() >= "2.15.1") {
+    utils::globalVariables(c(
+      ".", "feed_description", "feed_last_updated",
+      "feed_link", "feed_title", "item_category1", "item_category2",
+      "item_category3", "item_category4", "item_category5", "item_creator",
+      "item_date_published", "item_link", "item_title", "feed_update_period",
+      "date_modified", "date_published", "temp",
+      ":=", "bind_cols", "case_when", "entry_published",
+      "feed_last_build_date",
+      "feed_pub_date", "item_content_html", "item_date_modified", "item_pub_date",
+      "xml_contents"
+    ))
+  }
   invisible()
 }
-
-#' Pipe operator
-#'
-#' @name %>%
-#' @rdname pipe
-#' @keywords internal
-#' @export
-#' @importFrom magrittr %>%
-#' @usage lhs \%>\% rhs
-NULL
-
-# time formats
-formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
-             "Y-m-d H:M:S z", "d b Y H:M:S",
-             "d b Y H:M:S z", "a b d H:M:S z Y",
-             "a b dH:M:S Y")
-
-# remove all NA columns
-no_na <- function(x) all(!is.na(x))
-# remove nchar < 1 columns
-no_empty_char <- function(x) all(!nchar(x) < 1)
-
+# nocov end

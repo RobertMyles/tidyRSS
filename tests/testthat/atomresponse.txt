@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+<title>The R Journal</title>
+<id>https://journal.r-project.org/rss.atom</id>
+<link href="https://journal.r-project.org/rss.atom" rel="self" />
+<link href="https://journal.r-project.org" />
+
+<author><name>The R Journal</name></author>
+<updated>2020-01-19T22:36:03-08:00</updated>
+
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-042/index.html</id>
+  <title>coxed: An R Package for Computing Duration-Based Quantities from the Cox Proportional Hazards Model</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-042/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Jonathan Kropko and Jeffrey J. Harden. coxed: An R Package for Computing Duration-Based Quantities from the Cox Proportional Hazards Model. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-043/index.html</id>
+  <title>The IDSpatialStats R Package: Quantifying Spatial Dependence of Infectious Disease Spread</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-043/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>John R. Giles, Henrik Salje and Justin Lessler. The IDSpatialStats R Package: Quantifying Spatial Dependence of Infectious Disease Spread. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-044/index.html</id>
+  <title>Fitting Tails by the Empirical Residual Coefficient of Variation: The ercv Package</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-044/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Joan del Castillo, Isabel Serra, Maria Padilla and David Moriña. Fitting Tails by the Empirical Residual Coefficient of Variation: The ercv Package. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-045/index.html</id>
+  <title>biclustermd: An R Package for Biclustering with Missing Values</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-045/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>John Reisner, Hieu Pham, Sigurdur Olafsson, Stephen Vardeman and Jing Li. biclustermd: An R Package for Biclustering with Missing Values. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-046/index.html</id>
+  <title>PPCI: an R Package for Cluster Identification using Projection Pursuit</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-046/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>David P. Hofmeyr and Nicos G. Pavlidis. PPCI: an R Package for Cluster Identification using Projection Pursuit. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-048/index.html</id>
+  <title>Associative Classification in R: arc, arulesCBA, and rCBA</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-048/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Michael Hahsler, Ian Johnson, Tomáš Kliegr and Jaroslav Kuchař. Associative Classification in R: arc, arulesCBA, and rCBA. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-049/index.html</id>
+  <title>mistr: A Computational Framework for Mixture and Composite Distributions</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-049/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Lukas Sablica and Kurt Hornik. mistr: A Computational Framework for Mixture and Composite Distributions. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-050/index.html</id>
+  <title>Comparing namedCapture with other R packages for regular expressions</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-050/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Toby Dylan Hocking. Comparing namedCapture with other R packages for regular expressions. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-051/index.html</id>
+  <title>Resampling-Based Analysis of Multivariate Data and Repeated Measures Designs with the R Package MANOVA.RM</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-051/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Sarah Friedrich, Frank Konietschke and Markus Pauly. Resampling-Based Analysis of Multivariate Data and Repeated Measures Designs with the R Package MANOVA.RM. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-052/index.html</id>
+  <title>lpirfs: An R package to estimate impulse response functions by local projections</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-052/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Philipp Adämmer. lpirfs: An R package to estimate impulse response functions by local projections. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-053/index.html</id>
+  <title>spGARCH: An R-Package for Spatial and Spatiotemporal ARCH and GARCH models</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-053/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Philipp Otto. spGARCH: An R-Package for Spatial and Spatiotemporal ARCH and GARCH models. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-054/index.html</id>
+  <title>The R Package trafo for Transforming Linear Regression Models</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-054/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Lily Medina, Ann-Kristin Kreutzmann, Natalia Rojas-Perilla and Piedad Castro. The R Package trafo for Transforming Linear Regression Models. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-055/index.html</id>
+  <title>BondValuation: An R Package for Fixed Coupon Bond Analysis</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-055/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Wadim Djatschenko. BondValuation: An R Package for Fixed Coupon Bond Analysis. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-056/index.html</id>
+  <title>Indoor Positioning and Fingerprinting: The R Package ipft</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-056/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Emilio Sansano, Raúl Montoliu, Óscar Belmonte and Joaquín Torres-Sospedra. Indoor Positioning and Fingerprinting: The R Package ipft. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+<entry>
+
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-057/index.html</id>
+  <title>HCmodelSets: An R Package for Specifying Sets of Well-fitting Models in High Dimensions</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-057/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Henrique Hoeltgebaum and Heather Battey. HCmodelSets: An R Package for Specifying Sets of Well-fitting Models in High Dimensions. <i>The R Journal</i>. Accepted, may change after copy-editing.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<entry>
+<id>https://journal.r-project.org/archive/2019-1/RJ-2019-1.pdf</id>
+<title>Volume 11/1, June 2019</title>
+<link href="https://journal.r-project.org/archive/2019-1/RJ-2019-1.pdf" />
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p><i>The R Journal</i>, 11(1), June 2019.</p>
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019-1/editorial.pdf</id>
+  <title>Editorial</title>
+  <link href="https://journal.r-project.org/archive/2019-1/editorial.pdf" />
+  
+  
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Norm Matloff. Editorial. <i>The R Journal</i>, 11(1):4-5, June 2019.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+  
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-001/index.html</id>
+  <title>atable: Create Tables for Clinical Trial Reports</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-001/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Armin Ströbel. atable: Create Tables for Clinical Trial Reports. <i>The R Journal</i>, 11(1):137-148, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-002/index.html</id>
+  <title>Connecting R with D3 for dynamic graphics, to explore multivariate data with tours</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-002/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Michael Kipp, Ursula Laa and Dianne Cook. Connecting R with D3 for dynamic graphics, to explore multivariate data with tours. <i>The R Journal</i>, 11(1):245-249, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-008/index.html</id>
+  <title>Optimization Routines for Enforcing One-to-One Matches in Record Linkage Problems</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-008/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Diego Moretti, Luca Valentino and Tiziana Tuoto. Optimization Routines for Enforcing One-to-One Matches in Record Linkage Problems. <i>The R Journal</i>, 11(1):185-197, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-009/index.html</id>
+  <title>mixedsde: A Package to Fit Mixed Stochastic Differential Equations</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-009/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Charlotte Dion, Simone Hermann and Adeline Samson. mixedsde: A Package to Fit Mixed Stochastic Differential Equations. <i>The R Journal</i>, 11(1):44-66, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-010/index.html</id>
+  <title>Indoor Positioning and Fingerprinting: The R Package ipft</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-010/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Emilio Sansano, Raúl Montoliu, Óscar Belmonte and Joaquín Torres-Sospedra. Indoor Positioning and Fingerprinting: The R Package ipft. <i>The R Journal</i>, 11(1):67-90, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-011/index.html</id>
+  <title>RobustGaSP: Robust Gaussian Stochastic Process Emulation in R</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-011/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Mengyang Gu, Jesus Palomo and James O. Berger. RobustGaSP: Robust Gaussian Stochastic Process Emulation in R. <i>The R Journal</i>, 11(1):112-136, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-012/index.html</id>
+  <title>Whats for dynr: A Package for Linear and Nonlinear Dynamic Modeling in R</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-012/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Lu Ou, Michael D. Hunter and Sy-Miin Chow. Whats for dynr: A Package for Linear and Nonlinear Dynamic Modeling in R. <i>The R Journal</i>, 11(1):91-111, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-016/index.html</id>
+  <title>Identifying and Testing Recursive vs. Interdependent Links in Simultaneous Equation Models via the SIRE Package</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-016/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Gianmarco Vacca and Maria Grazia Zoia. Identifying and Testing Recursive vs. Interdependent Links in Simultaneous Equation Models via the SIRE Package. <i>The R Journal</i>, 11(1):149-169, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-017/index.html</id>
+  <title>fclust: An R Package for Fuzzy Clustering</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-017/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Maria Brigida Ferraro, Paolo Giordani and Alessio Serafini. fclust: An R Package for Fuzzy Clustering. <i>The R Journal</i>, 11(1):198-210, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-018/index.html</id>
+  <title>Matching with Clustered Data: the CMatching Package in R</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-018/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Massimo Cannas and Bruno Arpino. Matching with Clustered Data: the CMatching Package in R. <i>The R Journal</i>, 11(1):7-21, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-019/index.html</id>
+  <title>MDFS: MultiDimensional Feature Selection in R</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-019/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Radosław Piliszek, Krzysztof Mnich, Szymon Migacz, Paweł Tabaszewski, Andrzej Sułecki, Aneta            Polewko-Klim and Witold Rudnicki. MDFS: MultiDimensional Feature Selection in R. <i>The R Journal</i>, 11(1):198-210, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-020/index.html</id>
+  <title>Nowcasting: An R Package for Predicting Economic Variables Using Dynamic Factor Models</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-020/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Serge de Valk, Daiane de Mattos and Pedro Ferreira. Nowcasting: An R Package for Predicting Economic Variables Using Dynamic Factor Models. <i>The R Journal</i>, 11(1):230-244, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-022/index.html</id>
+  <title>SimCorrMix: Simulation of Correlated Data with Multiple Variable Types Including Continuous and Count Mixture Distributions</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-022/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Allison Fialkowski and Hemant Tiwari. SimCorrMix: Simulation of Correlated Data with Multiple Variable Types Including Continuous and Count Mixture Distributions. <i>The R Journal</i>, 11(1):250-286, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-023/index.html</id>
+  <title>Time-Series Clustering in R Using the dtwclust Package</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-023/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Alexis Sardá-Espinosa. Time-Series Clustering in R Using the dtwclust Package. <i>The R Journal</i>, 11(1):22-43, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-024/index.html</id>
+  <title>shadow: R Package for Geometric Shadow Calculations in an Urban Environment</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-024/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Michael Dorman, Evyatar Erell, Adi Vulkan and Itai Kloog. shadow: R Package for Geometric Shadow Calculations in an Urban Environment. <i>The R Journal</i>, 11(1):287-309, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-025/index.html</id>
+  <title>Integration of networks and pathways with StarBioTrek package</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-025/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Claudia Cava and Isabella Castiglioni. Integration of networks and pathways with StarBioTrek package. <i>The R Journal</i>, 11(1):310-322, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-026/index.html</id>
+  <title>ciuupi: An R package for Computing Confidence Intervals that Utilize Uncertain Prior Information</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-026/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Rheanna Mainzer and Paul Kabaila. ciuupi: An R package for Computing Confidence Intervals that Utilize Uncertain Prior Information. <i>The R Journal</i>, 11(1):323-336, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-029/index.html</id>
+  <title>ipwErrorY: An R Package for Estimation of Average Treatment Effect with Misclassified Binary Outcome</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-029/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Di Shu and Grace Y. Yi. ipwErrorY: An R Package for Estimation of Average Treatment Effect with Misclassified Binary Outcome. <i>The R Journal</i>, 11(1):337-351, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-030/index.html</id>
+  <title>optimParallel: An R Package Providing a Parallel Version of the L-BFGS-B Optimization Method</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-030/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Florian Gerber and Reinhard Furrer. optimParallel: An R Package Providing a Parallel Version of the L-BFGS-B Optimization Method. <i>The R Journal</i>, 11(1):352-358, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-031/index.html</id>
+  <title>swgee: An R Package for Analyzing Longitudinal Data with Response Missingness and Covariate Measurement Error</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-031/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Juan Xiong and Grace Y. Yi. swgee: An R Package for Analyzing Longitudinal Data with Response Missingness and Covariate Measurement Error. <i>The R Journal</i>, 11(1):416-426, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-035/index.html</id>
+  <title>BINCOR: An R package for Estimating the Correlation between Two Unevenly Spaced Time Series</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-035/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Josue M. Polanco-Martinez, Martin A. Medina-Elizalde, Maria Fernanda Sanchez Goni and Manfred            Mudelsee. BINCOR: An R package for Estimating the Correlation between Two Unevenly Spaced Time Series. <i>The R Journal</i>, 11(1):170-184, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-037/index.html</id>
+  <title>Fixed Point Acceleration in R</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-037/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Stuart Baumann and Margaryta Klymak. Fixed Point Acceleration in R. <i>The R Journal</i>, 11(1):359-375, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-038/index.html</id>
+  <title>SemiCompRisks: An R Package for the Analysis of Independent and Cluster-correlated Semi-competing Risks Data</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-038/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Danilo Alvares, Sebastien Haneuse, Catherine Lee and Kyu Ha Lee. SemiCompRisks: An R Package for the Analysis of Independent and Cluster-correlated Semi-competing Risks Data. <i>The R Journal</i>, 11(1):376-400, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-039/index.html</id>
+  <title>RSSampling: A Pioneering Package for Ranked Set Sampling </title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-039/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Busra Sevinc, Bekir Cetintav, Melek Esemen and Selma Gurler. RSSampling: A Pioneering Package for Ranked Set Sampling . <i>The R Journal</i>, 11(1):401-415, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019/RJ-2019-040/index.html</id>
+  <title>unival: An FA-based R Package For Assessing Essential Unidimensionality Using External Validity Information</title>
+  <link href="https://journal.r-project.org/archive/2019/RJ-2019-040/index.html" />
+  
+
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Pere J. Ferrando, Urbano Lorenzo-Seva and David Navarro-Gonzalez. unival: An FA-based R Package For Assessing Essential Unidimensionality Using External Validity Information. <i>The R Journal</i>, 11(1):427-436, June 2019.</p>
+  
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+  
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019-1/foundation.pdf</id>
+  <title>R Foundation News</title>
+  <link href="https://journal.r-project.org/archive/2019-1/foundation.pdf" />
+  
+  
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Torsten Hothorn. R Foundation News. <i>The R Journal</i>, 11(1):, June 2019.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019-1/cran.pdf</id>
+  <title>Changes on CRAN</title>
+  <link href="https://journal.r-project.org/archive/2019-1/cran.pdf" />
+  
+  
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>Kurt Hornik, Uwe Ligges, Achim Zeileis. Changes on CRAN. <i>The R Journal</i>, 11(1):438-441, June 2019.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+  
+<entry>
+  
+  <id>https://journal.r-project.org/archive/2019-1/ch.pdf</id>
+  <title>R News</title>
+  <link href="https://journal.r-project.org/archive/2019-1/ch.pdf" />
+  
+  
+  <content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+    <p>R Core Team. R News. <i>The R Journal</i>, 11(1):442-443, June 2019.</p>
+
+  </div></content>
+  <updated>2020-01-19T22:36:03-08:00</updated>
+</entry>
+
+
+
+
+
+</feed>

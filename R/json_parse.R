@@ -1,29 +1,64 @@
-json_parse <- function(feed){
-
-  res <- fromJSON(feed)
-
+json_parse <- function(response, list, type) {
+  # spec here: https://jsonfeed.org/version/1
+  res <- parse_json(response)
   items <- res$items
-  items$author <- unlist(flatten(items$author))
-  items$feed_title = res$title
 
-  results <- tibble(
-    version = res$version,
+  meta <- tibble(
     feed_title = res$title,
-    home_page_url = res$home_page_url,
-    feed_url = res$feed_url,
-    feed_author = res$author$name,
-    icon = res$icon,
-    favicon = res$favicon
+    home_page_url = return_exists(res$home_page_url),
+    feed_url = return_exists(res$feed_url),
+    description = return_exists(res$description),
+    feed_author = return_exists(res$author$name),
+    feed_author_url = return_exists(res$author$url),
+    icon = return_exists(res$icon),
+    favicon = return_exists(res$favicon),
+    expired = return_exists(res$expired)
   )
 
-  results <- suppressMessages(full_join(results, items))
+  entries <- tibble(
+    item_id = map_chr(items, "id", .default = def),
+    item_title = map_chr(items, "title", .default = def),
+    item_date_published = map_chr(items, "date_published", .default = def),
+    item_date_modified = map_chr(items, "date_modified", .default = def),
+    item_url = map_chr(items, "url", .default = def),
+    item_external_url = map_chr(items, "external_url", .default = def),
+    item_author = map(items, "author", .default = def),
+    item_content_html = map_chr(items, "content_html", .default = def),
+    item_content_text = map_chr(items, "content_text", .default = def),
+    item_summary = map_chr(items, "summary", .default = def),
+    item_image = map_chr(items, "image", .default = def),
+    item_banner_image = map_chr(items, "banner_image", .default = def),
+    item_tags = map_chr(items, "tags", .default = def),
+  )
 
-  results <- results %>%
-    mutate(
-      date_published = parse_date_time(date_published, orders = formats),
-      date_modified = parse_date_time(date_modified, orders = formats)
+  for (i in seq_len(nrow(entries))) {
+    if (!is.null(entries$item_author[i])) {
+      entries$item_author_name <- map_chr(
+        entries$item_author, "name",
+        .default = def
       )
+      entries$item_author_url <- map_chr(
+        entries$item_author, "url",
+        .default = def
+      )
+      entries$item_author_avatar <- map_chr(
+        entries$item_author, "avatar",
+        .default = def
+      )
+    }
+  }
+  entries$item_author <- NA
 
-  return(results)
+  # clean up
+  meta <- clean_up(meta, "json")
+  entries <- clean_up(entries, "json")
+
+  if (isTRUE(list)) {
+    out <- list(meta = meta, entries = entries)
+    return(out)
+  } else {
+    entries$feed_title <- meta$feed_title
+    out <- suppressMessages(full_join(meta, entries))
+    return(out)
+  }
 }
-

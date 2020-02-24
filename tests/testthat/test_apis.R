@@ -1,0 +1,16 @@
+with_mock_api({
+  test_that("Responses are returned", {
+    expect_is(GET("http://journal.r-project.org/rss.atom"), "response")
+    expect_is(GET("http://www.geonames.org/recent-changes.xml"), "response")
+    expect_is(GET("https://daringfireball.net/feeds/json"), "response")
+    expect_is(GET("http://fivethirtyeight.com/all/feed"), "response")
+    expect_is(GET("http://bactra.org//weblog/index.rss"), "response")
+    expect_is(GET("https://www.r-statistics.com/feed/"), "response")
+    expect_is(GET("http://flowingdata.com/feed/"), "response")
+    expect_is(GET("http://feeds.feedburner.com/SimplyStatistics?format=xml"), "response")
+    expect_is(GET("https://eagereyes.org/feed"), "response")
+    expect_is(GET("http://xkcd.com/rss.xml"), "response")
+    expect_is(GET("http://planet.ubuntu.com/rss20.xml"), "response")
+    expect_is(GET("https://rweekly.org/atom.xml"), "response")
+  })
+})

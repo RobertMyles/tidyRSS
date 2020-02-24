@@ -1,3 +1,10 @@
+tidyRSS v2.0.0 (Release date: 24/02/2020)
+============
+Changes:
+Removed simple features parsing funcionality to a sister package, tidygeoRSS. 
+More robust testing strategy, streamlined code and less dependencies.
+Removed dataset of rss feeds as I thought it unnecessary.
+
 tidyRSS v1.2.12 (Release date: 01/09/2019)
 ============
 Changes:
