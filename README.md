@@ -94,3 +94,18 @@ For the schemas used to develop the parsers in this package, see:
   - RSS: <https://validator.w3.org/feed/docs/rss2.html>  
   - Atom: <https://validator.w3.org/feed/docs/atom.html>  
   - JSON: <https://jsonfeed.org/version/1>
+
+I’ve implemented most of the items in the schemas above. The following
+are not yet implemented:
+
+**Atom meta info:**
+
+  - contributor, generator, logo, subtitle
+
+**Rss meta info:**
+
+  - cloud
+  - image
+  - textInput
+  - skipHours
+  - skipDays
