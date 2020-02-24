@@ -16,7 +16,7 @@ e.g. "http://journal.r-project.org/rss.atom".}
 Cleans columns of HTML tags.}
 
 \item{list}{\code{logical}, default \code{FALSE}.
-Return metadata and content as seperate dataframes in a named list.}
+Return metadata and content as separate dataframes in a named list.}
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function

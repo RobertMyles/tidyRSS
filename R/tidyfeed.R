@@ -21,7 +21,7 @@
 #' @param clean_tags \code{logical}, default \code{TRUE}.
 #' Cleans columns of HTML tags.
 #' @param list \code{logical}, default \code{FALSE}.
-#' Return metadata and content as seperate dataframes in a named list.
+#' Return metadata and content as separate dataframes in a named list.
 #' @seealso \link[httr:GET]{GET()}
 #' @examples
 #' \dontrun{
