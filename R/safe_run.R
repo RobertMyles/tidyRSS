@@ -1,3 +1,7 @@
+# safe versions of some xml2 functions.
+# accounts for empty nodes in a tibble by reading a
+# simple empty <span> element in the case of error.
+
 safe_xml_find_first <- safely(xml_find_first)
 safe_xml_find_all <- safely(xml_find_all)
 

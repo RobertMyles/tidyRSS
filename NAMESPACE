@@ -3,6 +3,7 @@
 export("%>%")
 export(tidyfeed)
 importFrom(anytime,anytime)
+importFrom(dplyr,bind_cols)
 importFrom(dplyr,full_join)
 importFrom(dplyr,mutate)
 importFrom(dplyr,mutate_if)

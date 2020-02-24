@@ -1,3 +1,4 @@
+# safe version of GET, reads status code before continuing.
 safe_get <- function(feed, user = NULL, config = list()) {
   safeget <- safely(GET)
   req <- safeget(feed, user, config)
