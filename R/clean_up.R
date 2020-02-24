@@ -24,7 +24,9 @@ clean_up <- function(df, type) {
     df <- date_parser(df, feed_pub_date)
     df <- date_parser(df, feed_last_build_date)
     df <- date_parser(df, item_pub_date)
-    # description can potentially have entity-encoded HTML
+    if (has_name(df, "item_description")) {
+      df$item_description <- cleanFun(df$item_description)
+    }
   } else if (type == "atom") {
     df <- date_parser(df, feed_last_updated)
     df <- date_parser(df, entry_published)
