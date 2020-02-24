@@ -28,7 +28,8 @@ four arguments:
 
 ## Installation
 
-It can be installed directly from CRAN with:
+It can be installed directly from [CRAN](https://cran.r-project.org/)
+with:
 
 ``` r
 install.packages("tidyRSS")
@@ -65,7 +66,15 @@ XML feeds can be finicky things, if you find one that doesn’t work with
 `tidyfeed()`, feel free to create an
 [issue](https://github.com/robertmyles/tidyrss/issues) with the url of
 the feed that you are trying. Pull Requests are welcome if you’d like to
-try and fix it yourself.
+try and fix it yourself. For older RSS feeds, some fields will almost
+never be ‘clean’, that is, they will contain things like newlines (`\n`)
+or extra quote marks. Cleaning these in a generic way is more or less
+impossible so I suggest you use
+[stringr](https://github.com/tidyverse/stringr),
+[strex](https://rorynolan.github.io/strex/) and/or tools from base R
+such as gsub to clean these. This will mainly affect the
+`item_description` column of a parsed RSS feed, and will not often
+affect Atom feeds (and should never be a problem with JSON).
 
 ## Related
 
