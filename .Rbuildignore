@@ -10,3 +10,6 @@
 ^CRAN-RELEASE$
 ^test$
 ^codecov\.yml$
+^\.github$
+^\.github/workflows/rcheck\.yaml$
+^\.github/workflows/buildsite\.yaml$
