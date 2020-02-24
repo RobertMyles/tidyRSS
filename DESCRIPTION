@@ -23,8 +23,10 @@ Imports: xml2 (>= 1.2.0),
     purrr (>= 0.3.0),
     anytime(>= 0.3.0),
     rlang (>= 0.4.0)
-Suggests: httptest,
+Suggests: 
+    httptest,
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 RoxygenNote: 7.0.2
 VignetteBuilder: knitr

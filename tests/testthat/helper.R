@@ -1,6 +1,7 @@
 library(httptest)
 library(httr)
 library(xml2)
+library(dplyr)
 
 # save responses to disk for parse tests
 # GET("http://journal.r-project.org/rss.atom", write_disk("tests/testthat/atomresponse.txt"))

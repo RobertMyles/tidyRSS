@@ -9,3 +9,4 @@
 ^pkgdown$
 ^CRAN-RELEASE$
 ^test$
+^codecov\.yml$
