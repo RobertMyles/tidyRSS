@@ -18,7 +18,6 @@ Imports: xml2 (>= 1.2.0),
     magrittr (>= 1.5),
     tibble (>= 1.4.0),
     dplyr (>= 0.8.0),
-    testthat (>= 2.0.0),
     jsonlite (>= 1.5),
     purrr (>= 0.3.0),
     anytime(>= 0.3.0),
@@ -27,5 +26,6 @@ Suggests:
     httptest,
     knitr,
     rmarkdown,
-    covr
+    covr,
+    testthat
 RoxygenNote: 7.0.2
