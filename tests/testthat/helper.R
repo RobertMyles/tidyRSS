@@ -5,7 +5,7 @@ library(dplyr)
 
 # save responses to disk for parse tests
 # GET("http://journal.r-project.org/rss.atom", write_disk("tests/testthat/atomresponse.txt"))
-# GET("http://bactra.org//weblog/index.rss", write_disk("tests/testthat/rssresponse.txt"))
+# GET("http://xkcd.com/rss.xml", write_disk("tests/testthat/rssresponse.txt"))
 # GET("https://daringfireball.net/feeds/json", write_disk("tests/testthat/jsonresponse.txt"))
 
 # from tests/testthat/
@@ -14,7 +14,6 @@ library(dplyr)
 #   GET("http://journal.r-project.org/rss.atom", simplify = TRUE)
 #   GET("https://daringfireball.net/feeds/json", simplify = TRUE)
 #   GET("http://fivethirtyeight.com/all/feed", simplify = TRUE)
-#   GET("http://bactra.org//weblog/index.rss", simplify = TRUE)
 #   GET("https://www.r-statistics.com/feed/", simplify = TRUE)
 #   GET("http://flowingdata.com/feed/", simplify = TRUE)
 #   GET("http://feeds.feedburner.com/SimplyStatistics?format=xml", simplify = TRUE)

@@ -59,7 +59,7 @@ test_that("data_parser works correctly", {
 # type check
 with_mock_api({
   expect_equal(
-    type_check(GET("http://bactra.org//weblog/index.rss")),
+    type_check(GET("http://xkcd.com/rss.xml")),
     "rss"
   )
 })

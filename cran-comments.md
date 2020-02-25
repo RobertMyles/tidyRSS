@@ -1,6 +1,7 @@
 # v2.0.0
 
 This version is a rewrite of the package, removing the functionality of parsing feeds into tibbles with geographic simple features columns into a sister package. I've adopted a more stringent testing strategy along with much more streamlined code.
+- **Resubmit:** reduced package file size. 
 
 ## Test environments
 * local OS X install, R 3.6.2
