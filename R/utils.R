@@ -80,6 +80,7 @@ delist <- function(x) {
   if (length(x) == 1) {
     x <- unlist(x)
   }
+  x
 }
 # parse dates
 date_parser <- function(df, kol) {
