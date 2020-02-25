@@ -63,3 +63,18 @@ with_mock_api({
     "rss"
   )
 })
+
+test_that("df is cleaned properly", {
+  df <- tibble(
+    one = c("a", "b", "c"),
+    two = list(a = "a", b = "b", c = "c"),
+    three = NA,
+    four = "",
+    five = list(c("", "", "")),
+    six = c(NA, "hey", NA)
+  )
+  df_cleaned <- df %>% select(one, two, five, six)
+  expect_equal(
+    names(df_cleaned),
+    names(clean_up(df, "rss")))
+})

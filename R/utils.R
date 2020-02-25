@@ -43,12 +43,6 @@ https://github.com/RobertMyles/tidygeoRSS")
 # default value for empty elements
 def <- NA_character_
 
-# time formats
-formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
-             "Y-m-d H:M:S z", "d b Y H:M:S",
-             "d b Y H:M:S z", "a b d H:M:S z Y",
-             "a b dH:M:S Y")
-
 #' Pipe operator
 #'
 #' @name %>%
@@ -59,12 +53,14 @@ formats <- c("a d b Y H:M:S z", "a, d b Y H:M z",
 #' @usage lhs \%>\% rhs
 NULL
 
-# remove all NA columns
-no_na <- function(x) all(!is.na(x))
-
-# remove nchar < 1 columns
-no_empty_char <- function(x) all(!nchar(x) < 1)
-
+# clean empty lists
+delist <- function(x) {
+  safe_compact <- safely(compact)
+  y <- safe_compact(x)
+  if (is.null(y$error)) z <- y$result else z <- NA
+  if (length(z) == 0) z <- NA_character_
+  z
+}
 # return if exists
 return_exists <- function(x) {
   if (!is.null(x)) {
@@ -75,13 +71,6 @@ return_exists <- function(x) {
   out
 }
 
-# delist list-columns of one element
-delist <- function(x) {
-  if (length(x) == 1) {
-    x <- unlist(x)
-  }
-  x
-}
 # parse dates
 date_parser <- function(df, kol) {
   column <- enquo(kol) %>% as_name()

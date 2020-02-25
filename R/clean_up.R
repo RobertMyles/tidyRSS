@@ -10,8 +10,10 @@ clean_up <- function(df, type) {
   df <- df %>% mutate_if(is.list, delist)
   # remove empty and NA cols
   df <- df %>%
-    select_if(no_na) %>%
-    select_if(no_empty_char)
+    map_df(~ {ifelse(is.character(.x) & nchar(.x) == 0, NA_character_, .x)}) %>%
+    keep(~ {
+      !all(is.na(.x))
+    })
   # parse dates & clean HTML
   if (type == "json") {
     df <- date_parser(df, item_date_published)

@@ -6,7 +6,7 @@
 #' @importFrom xml2 read_xml as_list xml_text xml_find_all xml_find_first
 #' @importFrom xml2 xml_attr
 #' @importFrom dplyr select full_join mutate_if mutate select_if bind_cols
-#' @importFrom purrr map map_chr safely flatten compact
+#' @importFrom purrr map map_chr safely flatten compact keep map_df
 #' @importFrom jsonlite parse_json
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
 #' @references \url{https://en.wikipedia.org/wiki/RSS}
