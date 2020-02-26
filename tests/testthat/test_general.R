@@ -23,11 +23,11 @@ test_that("Checks on feeds work correctly", {
 })
 # parsing
 test_that("Atom responses are parsed", {
-  result <- atom_parse("atomresponse.txt", list = FALSE)
+  result <- atom_parse("atomresponse.txt", list = FALSE, clean_tags = TRUE)
   expect_s3_class(result, "tbl_df")
 })
 test_that("RSS responses are parsed", {
-  result <- rss_parse("rssresponse.txt", list = FALSE)
+  result <- rss_parse("rssresponse.txt", list = FALSE, clean_tags = TRUE)
   expect_s3_class(result, "tbl_df")
 })
 # JSON doesn't work the same way
@@ -35,7 +35,7 @@ with_mock_api({
   test_that("JSON responses are parsed", {
     result <- json_parse(
       GET("https://daringfireball.net/feeds/json"),
-      list = FALSE
+      list = FALSE, clean_tags = TRUE
     )
     expect_s3_class(result, "tbl_df")
   })
@@ -76,5 +76,5 @@ test_that("df is cleaned properly", {
   df_cleaned <- df %>% select(one, two, five, six)
   expect_equal(
     names(df_cleaned),
-    names(clean_up(df, "rss")))
+    names(clean_up(df, "rss", clean_tags = TRUE)))
 })
