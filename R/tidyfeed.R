@@ -6,6 +6,7 @@
 #' @importFrom xml2 read_xml as_list xml_text xml_find_all xml_find_first
 #' @importFrom xml2 xml_attr
 #' @importFrom dplyr select full_join mutate_if mutate select_if bind_cols
+#' @importFrom dplyr case_when
 #' @importFrom purrr map map_chr safely flatten compact keep map_df
 #' @importFrom jsonlite parse_json
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
@@ -48,11 +49,11 @@ tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE) {
   typ <- type_check(response)
   # send to parsers
   if (typ == "rss") {
-    parsed <- rss_parse(response, list)
+    parsed <- rss_parse(response, list, clean_tags)
   } else if (typ == "atom") {
-    parsed <- atom_parse(response, list)
+    parsed <- atom_parse(response, list, clean_tags)
   } else if (typ == "json") {
-    parsed <- json_parse(response, list)
+    parsed <- json_parse(response, list, clean_tags)
   } else {
     stop(error_msg)
   }

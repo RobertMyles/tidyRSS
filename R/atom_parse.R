@@ -1,4 +1,4 @@
-atom_parse <- function(response, list) {
+atom_parse <- function(response, list, clean_tags) {
   # https://tools.ietf.org/html/rfc4287
   # https://validator.w3.org/feed/docs/atom.html
   res <- read_xml(response)
@@ -64,8 +64,8 @@ atom_parse <- function(response, list) {
   }
 
   # clean up
-  meta <- clean_up(meta, "atom")
-  entries <- clean_up(entries, "atom")
+  meta <- clean_up(meta, "atom", clean_tags)
+  entries <- clean_up(entries, "atom", clean_tags)
 
   if (isTRUE(list)) {
     out <- list(meta = meta, entries = entries)
