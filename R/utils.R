@@ -19,6 +19,7 @@ set_user <- function(config) {
 # if contains both atom & rss, prefers rss
 type_check <- function(response) {
   content_type <- response$headers$`content-type`
+  xmlns <- xml_attr(read_xml(response), "xmlns")
   typ <- case_when(
     grepl(x = content_type, pattern = "atom") ~ "atom",
     grepl(x = content_type, pattern = "xml") ~ "rss",
@@ -26,6 +27,8 @@ type_check <- function(response) {
     grepl(x = content_type, pattern = "json") ~ "json",
     TRUE ~ "unknown"
   )
+  # overwrite for cases like https://github.com/RobertMyles/tidyRSS/issues/38
+  if (grepl("Atom", xmlns)) typ <- "atom"
   return(typ)
 }
 
