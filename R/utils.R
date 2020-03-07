@@ -18,7 +18,9 @@ set_user <- function(config) {
 # simply reads 'content-type' of response to check type.
 # if contains both atom & rss, prefers rss
 type_check <- function(response) {
+  if (class(response) != "response") stop("`type_check` cannot evaluate this response.")
   content_type <- response$headers$`content-type`
+  xmlns <- xml_attr(read_xml(response), "xmlns")
   typ <- case_when(
     grepl(x = content_type, pattern = "atom") ~ "atom",
     grepl(x = content_type, pattern = "xml") ~ "rss",
@@ -26,13 +28,24 @@ type_check <- function(response) {
     grepl(x = content_type, pattern = "json") ~ "json",
     TRUE ~ "unknown"
   )
+  # overwrite for cases like https://github.com/RobertMyles/tidyRSS/issues/38
+  if (grepl("Atom", xmlns)) typ <- "atom"
   return(typ)
 }
 
 # geocheck - warning about geo feeds
 geocheck <- function(x) {
-  gcheck <- grepl("http://www.georss.org/georss", xml_attr(x, "xmlns:georss"))
-  if (isTRUE(geocheck)) {
+
+  point <- xml_find_all(x, "//*[name()='georss:point']") %>% length()
+  line <- xml_find_all(x, "//*[name()='georss:line']") %>% length()
+  polygon <- xml_find_all(x, "//*[name()='georss:polygon']") %>% length()
+  box <- xml_find_all(x, "//*[name()='georss:box']") %>% length()
+  f_type <- xml_find_all(x, "//*[name()='georss:featuretypetag']") %>% length()
+  r_tag <- xml_find_all(x, "//*[name()='georss:relationshiptag']") %>% length()
+  f_name <- xml_find_all(x, "//*[name()='georss:featurename']") %>% length()
+  geo_elements <- c(point, line, polygon, box, f_type, r_tag, f_name)
+
+  if (any(geo_elements > 1)) {
     message("Parsing feeds with geographic information (geoRSS, geoJSON etc.) is
 deprecated in tidyRSS as of version 2.0.0. The geo-fields in this feed will be ignored.
 If you would like to fetch this information, try the tidygeoRSS package:

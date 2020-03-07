@@ -1,4 +1,4 @@
-rss_parse <- function(response, list, clean_tags) {
+rss_parse <- function(response, list, clean_tags, parse_dates) {
   # spec here: https://validator.w3.org/feed/docs/rss2.html
   res <- response %>% read_xml()
   geocheck(res)
@@ -49,8 +49,8 @@ rss_parse <- function(response, list, clean_tags) {
   )
 
   # clean up
-  meta <- clean_up(meta, "rss", clean_tags)
-  entries <- clean_up(entries, "rss", clean_tags)
+  meta <- clean_up(meta, "rss", clean_tags, parse_dates)
+  entries <- clean_up(entries, "rss", clean_tags, parse_dates)
 
   if (isTRUE(list)) {
     out <- list(meta = meta, entries = entries)

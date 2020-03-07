@@ -13,6 +13,6 @@ safe_get <- function(feed, user = NULL, config = list()) {
   } else {
     message("GET request successful. Parsing...\n")
   }
-  result <- req$result
-  return(result)
+  result <- req$result #nocov
+  return(result) # nocov
 }
