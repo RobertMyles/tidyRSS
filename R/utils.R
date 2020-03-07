@@ -18,6 +18,7 @@ set_user <- function(config) {
 # simply reads 'content-type' of response to check type.
 # if contains both atom & rss, prefers rss
 type_check <- function(response) {
+  if (class(response) != "response") stop("`type_check` cannot evaluate this response.")
   content_type <- response$headers$`content-type`
   xmlns <- xml_attr(read_xml(response), "xmlns")
   typ <- case_when(
@@ -44,7 +45,7 @@ geocheck <- function(x) {
   f_name <- xml_find_all(x, "//*[name()='georss:featurename']") %>% length()
   geo_elements <- c(point, line, polygon, box, f_type, r_tag, f_name)
 
-  if (all(geo_elements < 1)) {
+  if (any(geo_elements > 1)) {
     message("Parsing feeds with geographic information (geoRSS, geoJSON etc.) is
 deprecated in tidyRSS as of version 2.0.0. The geo-fields in this feed will be ignored.
 If you would like to fetch this information, try the tidygeoRSS package:

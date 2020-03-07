@@ -23,6 +23,14 @@
 #' Cleans columns of HTML tags.
 #' @param list \code{logical}, default \code{FALSE}.
 #' Return metadata and content as separate dataframes in a named list.
+#' @param parse_dates \code{logical}, default \code{TRUE}.
+#' If \code{TRUE}, tidyRSS will attempt to parse columns that contain
+#' datetime values, although this may fail, see note.
+#' @note \code{tidyfeed()} attempts to parse columns that should contain
+#' dates. This can fail, as can be seen
+#' \href{https://github.com/RobertMyles/tidyRSS/issues/37}{here}. If you need
+#' lower-level control over the parsing of dates, it's better to leave
+#' \code{parse_dates} equal to \code{FALSE} and then parse these yourself.
 #' @seealso \link[httr:GET]{GET()}
 #' @examples
 #' \dontrun{
@@ -34,13 +42,17 @@
 #' tidyfeed("https://daringfireball.net/feeds/json")
 #' }
 #' @export
-tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE) {
+tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE,
+                     parse_dates = TRUE) {
   # checks
   if (!identical(length(feed), 1L)) stop("Please supply only one feed at a time.")
   if (!is.logical(list)) stop("`list` may be FALSE or TRUE only.")
   if (!is.logical(clean_tags)) stop("`clean_tags` may be FALSE or TRUE only.")
   if (!is.list(config)) stop("`config` should be a list only.")
+  if (!is.logical(parse_dates)) stop("`parse_dates` may be FALSE or TRUE only.")
 
+  # nocov start
+  # (functions are tested at lower level)
   # send user agent
   ua <- set_user(config)
   # try to get response
@@ -49,13 +61,14 @@ tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE) {
   typ <- type_check(response)
   # send to parsers
   if (typ == "rss") {
-    parsed <- rss_parse(response, list, clean_tags)
+    parsed <- rss_parse(response, list, clean_tags, parse_dates)
   } else if (typ == "atom") {
-    parsed <- atom_parse(response, list, clean_tags)
+    parsed <- atom_parse(response, list, clean_tags, parse_dates)
   } else if (typ == "json") {
-    parsed <- json_parse(response, list, clean_tags)
+    parsed <- json_parse(response, list, clean_tags, parse_dates)
   } else {
     stop(error_msg)
   }
   return(parsed)
+  # nocov end
 }

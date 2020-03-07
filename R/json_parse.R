@@ -1,4 +1,4 @@
-json_parse <- function(response, list, clean_tags) {
+json_parse <- function(response, list, clean_tags, parse_dates) {
   # spec here: https://jsonfeed.org/version/1
   res <- parse_json(response)
   items <- res$items
@@ -50,8 +50,8 @@ json_parse <- function(response, list, clean_tags) {
   entries$item_author <- NA
 
   # clean up
-  meta <- clean_up(meta, "json", clean_tags)
-  entries <- clean_up(entries, "json", clean_tags)
+  meta <- clean_up(meta, "json", clean_tags, parse_dates)
+  entries <- clean_up(entries, "json", clean_tags, parse_dates)
 
   if (isTRUE(list)) {
     out <- list(meta = meta, entries = entries)

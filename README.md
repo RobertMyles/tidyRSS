@@ -16,15 +16,23 @@ below, or jump directly to
 designed for that purpose.
 
 It is easy to use as it only has one function, `tidyfeed()`, which takes
-four arguments:
+five arguments:
 
   - the url of the feed;
   - a logical flag for whether you want the feed returned as a tibble or
     a list containing two tibbles;
   - a logical flag for whether you want HTML tags removed from columns
     in the dataframe;
-  - and a config list that is passed off to
-    [`httr::GET()`](https://httr.r-lib.org/reference/config.html).
+  - a config list that is passed off to
+    [`httr::GET()`](https://httr.r-lib.org/reference/config.html);
+  - and a `parse_dates` argument, a logical flag, which will attempt to
+    parse dates if `TRUE` (see below).
+
+If `parse_dates` is `TRUE`, `tidyfeed()` will attempt to parse dates
+using the [anytime](https://github.com/eddelbuettel/anytime) package.
+Note that this removes some lower-level control that you may wish to
+retain over how dates are parsed. See [this
+issue](https://github.com/RobertMyles/tidyRSS/issues/37) for an example.
 
 ## Installation
 

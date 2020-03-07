@@ -4,7 +4,13 @@
 \alias{tidyfeed}
 \title{Extract a tidy data frame from RSS, Atom and JSON feeds}
 \usage{
-tidyfeed(feed, config = list(), clean_tags = TRUE, list = FALSE)
+tidyfeed(
+  feed,
+  config = list(),
+  clean_tags = TRUE,
+  list = FALSE,
+  parse_dates = TRUE
+)
 }
 \arguments{
 \item{feed}{\code{character}, the url for the feed that you want to parse,
@@ -17,11 +23,22 @@ Cleans columns of HTML tags.}
 
 \item{list}{\code{logical}, default \code{FALSE}.
 Return metadata and content as separate dataframes in a named list.}
+
+\item{parse_dates}{\code{logical}, default \code{TRUE}.
+If \code{TRUE}, tidyRSS will attempt to parse columns that contain
+datetime values, although this may fail, see note.}
 }
 \description{
 \code{tidyfeed()} downloads and parses rss feeds. The function
 produces either a tidy data frame or a named list, easy to use for further
 manipulation and analysis.
+}
+\note{
+\code{tidyfeed()} attempts to parse columns that should contain
+dates. This can fail, as can be seen
+\href{https://github.com/RobertMyles/tidyRSS/issues/37}{here}. If you need
+lower-level control over the parsing of dates, it's better to leave
+\code{parse_dates} equal to \code{FALSE} and then parse these yourself.
 }
 \examples{
 \dontrun{

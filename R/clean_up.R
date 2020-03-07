@@ -5,7 +5,7 @@
 # - dates are parsed into datetime columns
 # - HTML tags are removed
 # - list-columns of length 1 are unlisted
-clean_up <- function(df, type, clean_tags) {
+clean_up <- function(df, type, clean_tags, parse_dates) {
   # unlist list-cols of length 1
   df <- df %>% mutate_if(is.list, delist)
   # remove empty and NA cols
@@ -16,8 +16,10 @@ clean_up <- function(df, type, clean_tags) {
     })
   # parse dates & clean HTML
   if (type == "json") {
-    df <- date_parser(df, item_date_published)
-    df <- date_parser(df, item_date_modified)
+    if (isTRUE(parse_dates)) {
+      df <- date_parser(df, item_date_published)
+      df <- date_parser(df, item_date_modified)
+    }
     if (isTRUE(clean_tags)) {
       if (has_name(df, "item_content_html")) {
         df <- df %>%
@@ -25,17 +27,21 @@ clean_up <- function(df, type, clean_tags) {
       }
     }
   } else if (type == "rss") {
-    df <- date_parser(df, feed_pub_date)
-    df <- date_parser(df, feed_last_build_date)
-    df <- date_parser(df, item_pub_date)
+    if (isTRUE(parse_dates)) {
+      df <- date_parser(df, feed_pub_date)
+      df <- date_parser(df, feed_last_build_date)
+      df <- date_parser(df, item_pub_date)
+    }
     if (isTRUE(clean_tags)) {
       if (has_name(df, "item_description")) {
         df$item_description <- cleanFun(df$item_description)
       }
     }
   } else if (type == "atom") {
-    df <- date_parser(df, feed_last_updated)
-    df <- date_parser(df, entry_published)
+    if (isTRUE(parse_dates)) {
+      df <- date_parser(df, feed_last_updated)
+      df <- date_parser(df, entry_published)
+    }
     if (isTRUE(clean_tags)) {
       if (has_name(df, "entry_summary")) {
         df$entry_summary <- cleanFun(df$entry_summary)

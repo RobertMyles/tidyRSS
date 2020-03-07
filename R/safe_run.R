@@ -15,8 +15,8 @@ safe_run <- function(response, type = c("first", "all"), ...) {
     ret <- result$result %>% xml_text()
     if (length(ret) == 0) ret <- def
   } else {
-    ret <- read_xml("<span></span>") %>%
-      xml_text()
+    ret <- read_xml("<span></span>") %>% #nocov
+      xml_text() #nocov
   }
   return(ret)
 }

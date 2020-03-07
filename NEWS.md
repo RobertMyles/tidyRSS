@@ -1,3 +1,11 @@
+tidyRSS v2.0.1 (Release date: 07/03/2020)
+============
+Changes:
+- More complete testing
+- Better checking of 'geo' RSS feeds
+- new `parse_dates` argument that allows users to skip parsing of dates.
+- bugfix for missing import of dplyr's case_when
+
 tidyRSS v2.0.0 (Release date: 24/02/2020)
 ============
 Changes:
