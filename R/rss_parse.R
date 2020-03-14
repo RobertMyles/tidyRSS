@@ -2,6 +2,7 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
   # spec here: https://validator.w3.org/feed/docs/rss2.html
   res <- response %>% read_xml()
   geocheck(res)
+
   channel <- xml_find_first(res, "//*[name()='channel']")
   # meta data. Necessary: title, link, description
   metadata <- tibble(
