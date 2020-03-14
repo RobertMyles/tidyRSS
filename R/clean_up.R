@@ -41,6 +41,9 @@ clean_up <- function(df, type, clean_tags, parse_dates) {
     if (isTRUE(parse_dates)) {
       df <- date_parser(df, feed_last_updated)
       df <- date_parser(df, entry_published)
+      if (has_name(df, "entry_last_updated")) {
+        df <- date_parser(df, entry_last_updated)
+      }
     }
     if (isTRUE(clean_tags)) {
       if (has_name(df, "entry_summary")) {
