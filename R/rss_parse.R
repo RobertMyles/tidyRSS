@@ -1,6 +1,6 @@
 rss_parse <- function(response, list, clean_tags, parse_dates) {
   # spec here: https://validator.w3.org/feed/docs/rss2.html
-  res <- response %>% read_xml()
+  res <- read_xml(response, options = "HUGE")
   geocheck(res)
 
   channel <- xml_find_first(res, "//*[name()='channel']")

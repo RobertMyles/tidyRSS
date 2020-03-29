@@ -1,7 +1,7 @@
 atom_parse <- function(response, list, clean_tags, parse_dates) {
   # https://tools.ietf.org/html/rfc4287
   # https://validator.w3.org/feed/docs/atom.html
-  res <- read_xml(response)
+  res <- read_xml(response, options = "HUGE")
   geocheck(res)
 
   # get default namespace
