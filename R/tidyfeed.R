@@ -4,11 +4,12 @@
 #' @importFrom httr GET user_agent
 #' @importFrom anytime anytime
 #' @importFrom xml2 read_xml as_list xml_text xml_find_all xml_find_first
-#' @importFrom xml2 xml_attr xml_contents
+#' @importFrom xml2 xml_attr xml_contents xml_ns
 #' @importFrom dplyr select full_join mutate_if mutate select_if bind_cols
 #' @importFrom dplyr case_when
 #' @importFrom purrr map map_chr safely flatten compact keep map_df
 #' @importFrom jsonlite parse_json
+#' @importFrom glue glue
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
 #' @references \url{https://en.wikipedia.org/wiki/RSS}
 #' @title Extract a tidy data frame from RSS, Atom and JSON feeds
@@ -50,6 +51,7 @@ tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE,
   if (!is.logical(clean_tags)) stop("`clean_tags` may be FALSE or TRUE only.")
   if (!is.list(config)) stop("`config` should be a list only.")
   if (!is.logical(parse_dates)) stop("`parse_dates` may be FALSE or TRUE only.")
+  feed <- trimws(feed)
 
   # nocov start
   # (functions are tested at lower level)
