@@ -51,6 +51,7 @@ tidyfeed <- function(feed, config = list(), clean_tags = TRUE, list = FALSE,
   if (!is.logical(clean_tags)) stop("`clean_tags` may be FALSE or TRUE only.")
   if (!is.list(config)) stop("`config` should be a list only.")
   if (!is.logical(parse_dates)) stop("`parse_dates` may be FALSE or TRUE only.")
+  feed <- trimws(feed)
 
   # nocov start
   # (functions are tested at lower level)
