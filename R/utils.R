@@ -70,29 +70,20 @@ def <- NA_character_
 #' @usage lhs \%>\% rhs
 NULL
 
-# clean empty lists
-delist <- function(x) {
-  safe_compact <- safely(compact)
-  if (length(x) == 1) {
-    y <- safe_compact(x)
-    if (is.null(y$error)) {
-      z <- y$result
-      if (length(z) == 1) return(z) else return(list(z))
-    } else {
-      z <- NA_character_
-      return(z)
-    }
-    if (length(z) == 0) {
-      z <- NA_character_
-      return(z)
-    }
-  } else if (length(x) == 0) {
-    x <- NA_character_
-    x
-  } else {
-    list(x)
+# delist -- basically turn list-cols of 1 element into regular columns
+delist <- function(df, listcol) {
+  nn <- nrow(df)
+  y <- vector("numeric", nn)
+  for(i in 1:nn) {
+    y[[i]] <- df[[get("listcol")]][[i]] %>% length()
   }
+  if (all(y == 1)) {
+    df[[get("listcol")]] <- unlist(df[[get("listcol")]])
+  }
+  df <- df[, get("listcol")]
+  df
 }
+
 # return if exists
 return_exists <- function(x) {
   if (!is.null(x)) {
