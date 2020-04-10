@@ -7,11 +7,12 @@
 # - list-columns of length 1 are unlisted
 clean_up <- function(df, type, clean_tags, parse_dates) {
   # unlist list-cols of length 1
-  df <- df %>% mutate(
-    across(is.list, delist)
-  )
+  df <- df %>%
+    rowwise() %>%
+    mutate_if(is.list, delist) %>%
+    ungroup()
   # remove empty and NA cols
-  df2 <- df %>%
+  df <- df %>%
     mutate(
       across(is.character, ~{ifelse(nchar(.x) == 0, NA_character_, .x)})
     ) %>%

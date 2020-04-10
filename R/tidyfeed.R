@@ -6,7 +6,7 @@
 #' @importFrom xml2 read_xml as_list xml_text xml_find_all xml_find_first
 #' @importFrom xml2 xml_attr xml_contents xml_ns
 #' @importFrom dplyr select full_join mutate_if mutate select_if bind_cols
-#' @importFrom dplyr case_when
+#' @importFrom dplyr case_when across rowwise ungroup
 #' @importFrom purrr map map_chr safely flatten compact keep map_df
 #' @importFrom jsonlite parse_json
 #' @importFrom glue glue
