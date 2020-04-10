@@ -58,7 +58,7 @@ clean_up <- function(df, type, clean_tags, parse_dates) {
     }
     if (isTRUE(clean_tags)) {
       if (has_name(df, "entry_summary")) {
-        df$entry_summary <- cleanFun(df$entry_summary)
+        df$entry_summary <- cleanFun(df$entry_summary) # nocov
       }
       if (has_name(df, "entry_content")) {
         df$entry_content <- cleanFun(df$entry_content)

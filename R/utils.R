@@ -10,7 +10,7 @@ set_user <- function(config) {
     ua <- user_agent("http://github.com/robertmyles/tidyRSS")
     return(ua)
   } else {
-    return(config)
+    return(config) # nocov
   }
 }
 
@@ -28,12 +28,12 @@ type_check <- function(response) {
     TRUE ~ "unknown"
   )
   if (typ %in% c("json", "unknown")) {
-    return(typ)
+    return(typ) # nocov
   } else {
     # overwrite for cases like https://github.com/RobertMyles/tidyRSS/issues/38
     xmlns <- xml_attr(read_xml(response), "xmlns")
     if (grepl("Atom", xmlns)) typ <- "atom"
-    return(typ)
+    return(typ) # nocov
   }
 }
 

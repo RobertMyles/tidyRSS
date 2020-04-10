@@ -54,8 +54,8 @@ json_parse <- function(response, list, clean_tags, parse_dates) {
   entries <- clean_up(entries, "json", clean_tags, parse_dates)
 
   if (isTRUE(list)) {
-    out <- list(meta = meta, entries = entries)
-    return(out)
+    out <- list(meta = meta, entries = entries) # nocov
+    return(out) # nocov
   } else {
     entries$feed_title <- meta$feed_title
     out <- suppressMessages(full_join(meta, entries))

@@ -152,47 +152,31 @@ test_that("delist works as it should", {
     tibble(
       x = 1:5, y = list(1)
     ) %>%
-      rowwise() %>%
-      mutate_if(is.list, delist) %>%
-      ungroup(),
-    tibble(
-      x = 1:5, y = 1
-    )
+    delist("y"),
+    tibble(y = rep(1, times = 5))
   )
   # extract a column of 'NA' from y
   expect_equal(
     tibble(
       x = 1:5, y = list(NA)
     ) %>%
-      rowwise() %>%
-      mutate_if(is.list, delist) %>%
-      ungroup(),
-    tibble(
-      x = 1:5, y = NA
-    )
+      delist("y"),
+    tibble(y = rep(NA, 5))
   )
   # leave y alone
   expect_equal(
     tibble(
       x = 1:5, y = list(c(1, 2, 3))
-    ) %>%
-      rowwise() %>%
-      mutate_if(is.list, delist) %>%
-      ungroup(),
-    tibble(
-      x = 1:5, y = list(c(1, 2, 3))
-    )
+      ) %>%
+      delist("y"),
+    tibble(y = rep(list(c(1, 2, 3)), 5))
   )
   # leave y alone pt. 2
   expect_equal(
     tibble(
       x = 1:5, y = list(c(1, "hello", TRUE))
     ) %>%
-      rowwise() %>%
-      mutate_if(is.list, delist) %>%
-      ungroup(),
-    tibble(
-      x = 1:5, y = list(c(1, "hello", TRUE))
-    )
+      delist("y"),
+    tibble(y = rep(list(c(1, "hello", TRUE)), 5))
   )
 })
