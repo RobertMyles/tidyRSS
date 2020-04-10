@@ -9,7 +9,7 @@
       "item_date_published", "item_link", "item_title", "feed_update_period",
       "date_modified", "date_published", "temp",
       ":=", "bind_cols", "case_when", "entry_published",
-      "feed_last_build_date",
+      "feed_last_build_date", "entry_last_updated",
       "feed_pub_date", "item_content_html", "item_date_modified", "item_pub_date",
       "xml_contents"
     ))
