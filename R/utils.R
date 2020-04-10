@@ -116,7 +116,10 @@ date_parser <- function(df, kol) {
 # from https://stackoverflow.com/a/17227415/4296028
 # removal != parsing!
 cleanFun <- function(htmlString) {
-  return(gsub("<.*?>", "", htmlString))
+  ht <- gsub("<.*?>", "", htmlString)
+  ret <- gsub("[\n\t]", "", ht)
+  ret <- trimws(ret)
+  return(ret)
 }
 
 safe_join <- safely(full_join)
