@@ -20,7 +20,6 @@ set_user <- function(config) {
 type_check <- function(response) {
   if (class(response) != "response") stop("`type_check` cannot evaluate this response.")
   content_type <- response$headers$`content-type`
-  xmlns <- xml_attr(read_xml(response), "xmlns")
   typ <- case_when(
     grepl(x = content_type, pattern = "atom") ~ "atom",
     grepl(x = content_type, pattern = "xml") ~ "rss",
@@ -28,9 +27,14 @@ type_check <- function(response) {
     grepl(x = content_type, pattern = "json") ~ "json",
     TRUE ~ "unknown"
   )
-  # overwrite for cases like https://github.com/RobertMyles/tidyRSS/issues/38
-  if (grepl("Atom", xmlns)) typ <- "atom"
-  return(typ)
+  if (typ %in% c("json", "unknown")) {
+    return(typ)
+  } else {
+    # overwrite for cases like https://github.com/RobertMyles/tidyRSS/issues/38
+    xmlns <- xml_attr(read_xml(response), "xmlns")
+    if (grepl("Atom", xmlns)) typ <- "atom"
+    return(typ)
+  }
 }
 
 # geocheck - warning about geo feeds
@@ -69,10 +73,17 @@ NULL
 # clean empty lists
 delist <- function(x) {
   safe_compact <- safely(compact)
-  y <- safe_compact(x)
-  if (is.null(y$error)) z <- y$result else z <- NA
-  if (length(z) == 0) z <- NA_character_
-  z
+  if (length(x) == 1) {
+    y <- safe_compact(x)
+    if (is.null(y$error)) z <- y$result else z <- NA
+    if (length(z) == 0) z <- NA_character_
+    z
+  } else if (length(x) == 0) {
+    x <- NA_character_
+    x
+  } else {
+    list(x)
+  }
 }
 # return if exists
 return_exists <- function(x) {

@@ -13,16 +13,16 @@ Encoding: UTF-8
 License: MIT + file LICENSE
 LazyData: true
 Depends: R (>= 3.1.0)
-Imports: xml2 (>= 1.2.0),
-    httr(>= 1.3.0),
+Imports: xml2 (>= 1.3.1),
+    httr(>= 1.4.1),
     magrittr (>= 1.5),
-    tibble (>= 1.4.0),
-    dplyr (>= 0.8.0),
-    jsonlite (>= 1.5),
-    purrr (>= 0.3.0),
-    anytime(>= 0.3.0),
-    rlang (>= 0.4.0),
-    glue (>= 1.3.1)
+    tibble (>= 3.0.0),
+    dplyr (>= 0.8.99.9002),
+    jsonlite (>= 1.6.1),
+    purrr (>= 0.3.3),
+    anytime(>= 0.3.7),
+    rlang (>= 0.4.5.9000),
+    glue (>= 1.4.0)
 Suggests: 
     httptest,
     knitr,
