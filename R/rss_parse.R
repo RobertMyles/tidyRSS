@@ -57,7 +57,21 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
     out <- list(meta = meta, entries = entries)
     return(out)
   } else {
+    if (!has_name(meta, "feed_title")) {
+      meta$feed_title <- NA_character_
+    }
     entries$feed_title <- meta$feed_title
-    out <- suppressMessages(full_join(meta, entries))
+    out <- suppressMessages(safe_join(meta, entries))
+    if (is.null(out$error)) {
+      out <- out$result
+      if (all(is.na(out$feed_title))) out <- out %>% select(-feed_title)
+      return(out)
+    } else {
+      meta$tmp <- "temp"
+      entries$tmp <- "temp"
+      out <- suppressMessages(full_join(meta, entries))
+      out <- out %>% select(-tmp)
+      return(out)
+    }
   }
 }

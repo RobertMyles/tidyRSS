@@ -75,9 +75,17 @@ delist <- function(x) {
   safe_compact <- safely(compact)
   if (length(x) == 1) {
     y <- safe_compact(x)
-    if (is.null(y$error)) z <- y$result else z <- NA
-    if (length(z) == 0) z <- NA_character_
-    z
+    if (is.null(y$error)) {
+      z <- y$result
+      if (length(z) == 1) return(z) else return(list(z))
+    } else {
+      z <- NA_character_
+      return(z)
+    }
+    if (length(z) == 0) {
+      z <- NA_character_
+      return(z)
+    }
   } else if (length(x) == 0) {
     x <- NA_character_
     x
@@ -111,3 +119,4 @@ cleanFun <- function(htmlString) {
   return(gsub("<.*?>", "", htmlString))
 }
 
+safe_join <- safely(full_join)
