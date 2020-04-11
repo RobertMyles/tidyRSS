@@ -57,7 +57,7 @@ There are a number of bugfixes in this version, however, you’ll need
 dplyr 0.8.99.9002 and rlang 0.4.5.9000 to install. These can be
 installed with the remotes package from
 [here](https://github.com/tidyverse/dplyr) and
-[here](https://github.com/r-lib/rlang).
+[here](https://github.com/r-lib/rlang). Or just update dplyr and it should update the rest.
 
 ## Usage
 
