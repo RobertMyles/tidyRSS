@@ -44,6 +44,7 @@ The development version can be installed from GitHub with the [remotes](https://
 remotes::install_github("robertmyles/tidyrss")
 ```
 
+**Note**: Currently, the development version is updated with the pre-release version of dplyr, in preparation for dplyr 1.0.0 (see [here](https://www.tidyverse.org/blog/2020/03/dplyr-1-0-0-is-coming-soon/)). There are a number of bugfixes in this version, however, you'll need dplyr 0.8.99.9002 and rlang 0.4.5.9000 to install. These can be installed with the remotes package from [here](https://github.com/tidyverse/dplyr) and [here](https://github.com/r-lib/rlang).
 
 ## Usage 
 
