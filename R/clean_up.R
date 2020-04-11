@@ -6,11 +6,22 @@
 # - HTML tags are removed
 # - list-columns of length 1 are unlisted
 clean_up <- function(df, type, clean_tags, parse_dates) {
-  # unlist list-cols of length 1
-  df <- df %>% mutate_if(is.list, delist)
+  # remove lists of length 1
+  dflistcols <- df %>% select_if(is.list)
+  if (ncol(dflistcols) > 0) {
+    for (i in 1:length(ncol(dflistcols))) {
+      kolnm <- colnames(dflistcols)[i]
+      df[, kolnm] <- delist(dflistcols, kolnm)
+    }
+  }
+
   # remove empty and NA cols
   df <- df %>%
-    map_df(~ {ifelse(is.character(.x) & nchar(.x) == 0, NA_character_, .x)}) %>%
+    mutate(
+      across(is.character, ~ {
+        ifelse(nchar(.x) == 0, NA_character_, .x)
+      })
+    ) %>%
     keep(~ {
       !all(is.na(.x))
     })
@@ -47,7 +58,7 @@ clean_up <- function(df, type, clean_tags, parse_dates) {
     }
     if (isTRUE(clean_tags)) {
       if (has_name(df, "entry_summary")) {
-        df$entry_summary <- cleanFun(df$entry_summary)
+        df$entry_summary <- cleanFun(df$entry_summary) # nocov
       }
       if (has_name(df, "entry_content")) {
         df$entry_content <- cleanFun(df$entry_content)

@@ -10,7 +10,7 @@ set_user <- function(config) {
     ua <- user_agent("http://github.com/robertmyles/tidyRSS")
     return(ua)
   } else {
-    return(config)
+    return(config) # nocov
   }
 }
 
@@ -20,7 +20,6 @@ set_user <- function(config) {
 type_check <- function(response) {
   if (class(response) != "response") stop("`type_check` cannot evaluate this response.")
   content_type <- response$headers$`content-type`
-  xmlns <- xml_attr(read_xml(response), "xmlns")
   typ <- case_when(
     grepl(x = content_type, pattern = "atom") ~ "atom",
     grepl(x = content_type, pattern = "xml") ~ "rss",
@@ -28,9 +27,14 @@ type_check <- function(response) {
     grepl(x = content_type, pattern = "json") ~ "json",
     TRUE ~ "unknown"
   )
-  # overwrite for cases like https://github.com/RobertMyles/tidyRSS/issues/38
-  if (grepl("Atom", xmlns)) typ <- "atom"
-  return(typ)
+  if (typ %in% c("json", "unknown")) {
+    return(typ) # nocov
+  } else {
+    # overwrite for cases like https://github.com/RobertMyles/tidyRSS/issues/38
+    xmlns <- xml_attr(read_xml(response), "xmlns")
+    if (grepl("Atom", xmlns)) typ <- "atom"
+    return(typ) # nocov
+  }
 }
 
 # geocheck - warning about geo feeds
@@ -66,14 +70,20 @@ def <- NA_character_
 #' @usage lhs \%>\% rhs
 NULL
 
-# clean empty lists
-delist <- function(x) {
-  safe_compact <- safely(compact)
-  y <- safe_compact(x)
-  if (is.null(y$error)) z <- y$result else z <- NA
-  if (length(z) == 0) z <- NA_character_
-  z
+# delist -- basically turn list-cols of 1 element into regular columns
+delist <- function(df, listcol) {
+  nn <- nrow(df)
+  y <- vector("numeric", nn)
+  for(i in 1:nn) {
+    y[[i]] <- df[[get("listcol")]][[i]] %>% length()
+  }
+  if (all(y == 1)) {
+    df[[get("listcol")]] <- unlist(df[[get("listcol")]])
+  }
+  df <- df[, get("listcol")]
+  df
 }
+
 # return if exists
 return_exists <- function(x) {
   if (!is.null(x)) {
@@ -97,6 +107,10 @@ date_parser <- function(df, kol) {
 # from https://stackoverflow.com/a/17227415/4296028
 # removal != parsing!
 cleanFun <- function(htmlString) {
-  return(gsub("<.*?>", "", htmlString))
+  ht <- gsub("<.*?>", "", htmlString)
+  ret <- gsub("[\n\t]", "", ht)
+  ret <- trimws(ret)
+  return(ret)
 }
 
+safe_join <- safely(full_join)

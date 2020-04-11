@@ -67,10 +67,26 @@ atom_parse <- function(response, list, clean_tags, parse_dates) {
   entries <- clean_up(entries, "atom", clean_tags, parse_dates)
 
   if (isTRUE(list)) {
-    out <- list(meta = meta, entries = entries)
+    out <- list(meta = meta, entries = entries) # nocov
     return(out) # nocov
   } else {
+    if (!has_name(meta, "feed_title")) {
+      meta$feed_title <- NA_character_ # nocov
+    }
     entries$feed_title <- meta$feed_title
-    out <- suppressMessages(full_join(meta, entries))
+    out <- suppressMessages(safe_join(meta, entries))
+    if (is.null(out$error)) {
+      out <- out$result
+      if (all(is.na(out$feed_title))) out <- out %>% select(-feed_title) # nocov
+      return(out)
+    } else {
+      # nocov start
+      meta$tmp <- "temp"
+      entries$tmp <- "temp"
+      out <- suppressMessages(full_join(meta, entries))
+      out <- out %>% select(-tmp)
+      return(out)
+      # nocov end
+    }
   }
 }

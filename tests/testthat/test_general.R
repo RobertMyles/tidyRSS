@@ -83,7 +83,8 @@ test_that("df is cleaned properly", {
   df_cleaned <- df %>% select(one, two, five, six)
   expect_equal(
     names(df_cleaned),
-    names(clean_up(df, "rss", clean_tags = TRUE, parse_dates = TRUE)))
+    names(clean_up(df, "rss", clean_tags = TRUE, parse_dates = TRUE))
+    )
 })
 
 test_that("dates are only parsed when they should be", {
@@ -143,4 +144,39 @@ If you would like to fetch this information, try the tidygeoRSS package:
 https://github.com/RobertMyles/tidygeoRSS",
                    fixed = TRUE)
   })
+})
+# cleaning empty list-columns
+test_that("delist works as it should", {
+  # extract a column of '1' from y
+  expect_equal(
+    tibble(
+      x = 1:5, y = list(1)
+    ) %>%
+    delist("y"),
+    tibble(y = rep(1, times = 5))
+  )
+  # extract a column of 'NA' from y
+  expect_equal(
+    tibble(
+      x = 1:5, y = list(NA)
+    ) %>%
+      delist("y"),
+    tibble(y = rep(NA, 5))
+  )
+  # leave y alone
+  expect_equal(
+    tibble(
+      x = 1:5, y = list(c(1, 2, 3))
+      ) %>%
+      delist("y"),
+    tibble(y = rep(list(c(1, 2, 3)), 5))
+  )
+  # leave y alone pt. 2
+  expect_equal(
+    tibble(
+      x = 1:5, y = list(c(1, "hello", TRUE))
+    ) %>%
+      delist("y"),
+    tibble(y = rep(list(c(1, "hello", TRUE)), 5))
+  )
 })
