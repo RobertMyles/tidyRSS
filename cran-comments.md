@@ -1,6 +1,6 @@
 # v2.0.2
 
-Updates tidyRSS to be compatible with dplyr 1.0.0.
+Updates tidyRSS to be compatible with dplyr 1.0.0, along with some minor bugfixes and improvements.
 
 ## Test environments
 
