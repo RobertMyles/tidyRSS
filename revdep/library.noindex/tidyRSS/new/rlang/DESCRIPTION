@@ -1,0 +1,40 @@
+Package: rlang
+Version: 0.4.6.9000
+Title: Functions for Base Types and Core R and 'Tidyverse' Features
+Description: A toolbox for working with base types, core R features
+  like the condition system, and core 'Tidyverse' features like tidy
+  evaluation.
+Authors@R: c(
+    person("Lionel", "Henry", ,"lionel@rstudio.com", c("aut", "cre")),
+    person("Hadley", "Wickham", ,"hadley@rstudio.com", "aut"),
+    person("RStudio", role = "cph")
+    )
+License: GPL-3
+LazyData: true
+ByteCompile: true
+Biarch: true
+Depends: R (>= 3.2.0)
+Suggests: cli, covr, crayon, glue, magrittr, methods, pillar,
+        rmarkdown, testthat (>= 2.3.0), vctrs (>= 0.2.3)
+Encoding: UTF-8
+RoxygenNote: 7.0.2
+Roxygen: list(markdown = TRUE)
+URL: http://rlang.r-lib.org, https://github.com/r-lib/rlang
+BugReports: https://github.com/r-lib/rlang/issues
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: rlang
+RemoteUsername: r-lib
+RemoteRef: master
+RemoteSha: 46778ad180da7d3532900d5b9cd9195f6edea611
+GithubRepo: rlang
+GithubUsername: r-lib
+GithubRef: master
+GithubSHA1: 46778ad180da7d3532900d5b9cd9195f6edea611
+NeedsCompilation: yes
+Packaged: 2020-06-01 16:43:47 UTC; f64k1s8
+Author: Lionel Henry [aut, cre],
+  Hadley Wickham [aut],
+  RStudio [cph]
+Maintainer: Lionel Henry <lionel@rstudio.com>
+Built: R 4.0.0; x86_64-apple-darwin17.0; 2020-06-01 16:43:48 UTC; unix

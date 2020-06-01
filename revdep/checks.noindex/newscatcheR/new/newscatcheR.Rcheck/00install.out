@@ -1,0 +1,14 @@
+* installing *source* package ‘newscatcheR’ ...
+** package ‘newscatcheR’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  namespace ‘dplyr’ 0.8.5 is being loaded, but >= 1.0.0 is required
+Calls: <Anonymous> ... namespaceImportFrom -> asNamespace -> loadNamespace
+Execution halted
+ERROR: lazy loading failed for package ‘newscatcheR’
+* removing ‘/Users/f64k1s8/Documents/Other/tidyRSS/revdep/checks.noindex/newscatcheR/new/newscatcheR.Rcheck/newscatcheR’
