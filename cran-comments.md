@@ -1,3 +1,7 @@
+# v2.0.2
+
+Updates tidyRSS to be compatible with dplyr 1.0.0.
+
 # v2.0.1
 
 This fixes a bug a missing function import; creates a new input argument that allows users to leave dates unparsed, fixing another bug with NA in date columns. It also improves code coverage and testing.
