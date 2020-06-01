@@ -1,7 +1,7 @@
 tidyRSS v2.0.2 (Release date: 01/06/2020)
 ============
 Changes:
-- Updated package to wotk with dplyr 1.0.0.
+- Updated package to work with dplyr 1.0.0.
 
 tidyRSS v2.0.1 (Release date: 07/03/2020)
 ============

@@ -4,6 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# tidyRSS <a href='https://github.com/RobertMyles/tidyrss/'><img src='inst/figures/logo.png' align="right" height="139" /></a>
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
