@@ -1,1 +1,4 @@
 destination: docs
+template:
+  params:
+    bootswatch: cerulean
