@@ -2,10 +2,21 @@
 
 Updates tidyRSS to be compatible with dplyr 1.0.0.
 
-── R CMD check results ────────────────────────────────────────────────────────────────────────────────── tidyRSS 2.0.2 ────
-Duration: 51s
+## Test environments
 
-0 errors ✓ | 0 warnings ✓ | 0 notes ✓
+* local mac OS install, R 4.0.0
+* Ubuntu 16.04 (on GitHub Actions), R-devel, R 4.0.0, R 3.6.3, 3.5.3, R 3.4.4, R 3.3.3
+* mac OS 10.15.4 (on GitHub Actions) R-devel, R 3.6.0
+* Microsoft Windows Server 2019 10.0.17763 (on GitHub Actions) R 4.0.0
+* win-builder (devel)
+* Fedora Linux (on R-hub) R-devel
+* Ubuntu Linux (on R-hub) R-Release
+
+## R CMD check results
+
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+R CMD check succeeded
 
 # v2.0.1
 
