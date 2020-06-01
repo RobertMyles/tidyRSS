@@ -7,7 +7,7 @@
 # - list-columns of length 1 are unlisted
 clean_up <- function(df, type, clean_tags, parse_dates) {
   # remove lists of length 1
-  dflistcols <- df %>% select(where(is.list))
+  dflistcols <- df %>% select_if(is.list)
   if (ncol(dflistcols) > 0) {
     for (i in 1:ncol(dflistcols)) {
       kolnm <- colnames(dflistcols)[i]
