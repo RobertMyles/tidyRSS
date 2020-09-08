@@ -26,6 +26,7 @@ jobs:
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
+          Ncpus: 4
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))
