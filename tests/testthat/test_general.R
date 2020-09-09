@@ -85,6 +85,8 @@ test_that("df is cleaned properly", {
     names(df_cleaned),
     names(clean_up(df, "rss", clean_tags = TRUE, parse_dates = TRUE))
     )
+  ## check dplyr warning message no longer printed
+  expect_silent(clean_up(df, "rss", clean_tags = TRUE, parse_dates = TRUE))
 })
 
 test_that("dates are only parsed when they should be", {
