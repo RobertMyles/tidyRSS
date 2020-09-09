@@ -2,6 +2,7 @@
 
 export("%>%")
 export(tidyfeed)
+import(tidyselect)
 importFrom(anytime,anytime)
 importFrom(dplyr,across)
 importFrom(dplyr,bind_cols)

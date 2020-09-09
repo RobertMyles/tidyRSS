@@ -1,3 +1,7 @@
+## recommended way to stop where() triggering a note in R CMD check
+## https://github.com/r-lib/tidyselect/issues/201
+if(getRversion() >= "2.15.1") utils::globalVariables("where")
+
 # takes a dataframe and feed type (JSON, Atom, RSS) as input and
 # returns a dataframe that has been 'cleaned' in the following way:
 # - columns that only have NA values are removed;
@@ -18,7 +22,7 @@ clean_up <- function(df, type, clean_tags, parse_dates) {
   # remove empty and NA cols
   df <- df %>%
     mutate(
-      across(is.character, ~ {
+      across(where(is.character), ~ {
         ifelse(nchar(.x) == 0, NA_character_, .x)
       })
     ) %>%
