@@ -11,6 +11,7 @@
 #' @importFrom jsonlite parse_json
 #' @importFrom glue glue
 #' @importFrom vctrs new_vctr
+#' @import tidyselect
 #' @author Robert Myles McDonnell, \email{robertmylesmcdonnell@gmail.com}
 #' @references \url{https://en.wikipedia.org/wiki/RSS}
 #' @title Extract a tidy data frame from RSS, Atom and JSON feeds
