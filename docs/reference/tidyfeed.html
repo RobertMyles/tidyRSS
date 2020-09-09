@@ -19,8 +19,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -81,7 +81,7 @@ manipulation and analysis." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyRSS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.3</span>
       </span>
     </div>
 
@@ -132,11 +132,11 @@ manipulation and analysis.</p>
     </div>
 
     <pre class="usage"><span class='fu'>tidyfeed</span>(
-  <span class='no'>feed</span>,
-  <span class='kw'>config</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>clean_tags</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>list</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>parse_dates</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>feed</span>,
+  config = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  clean_tags = <span class='fl'>TRUE</span>,
+  list = <span class='fl'>FALSE</span>,
+  parse_dates = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -182,16 +182,20 @@ lower-level control over the parsing of dates, it's better to leave
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://httr.r-lib.org/reference/GET.html'>GET()</a></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Robert Myles McDonnell, <a href='mailto:robertmylesmcdonnell@gmail.com'>robertmylesmcdonnell@gmail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Atom feed:</span>
 <span class='fu'>tidyfeed</span>(<span class='st'>"http://journal.r-project.org/rss.atom"</span>)
 <span class='co'># rss/xml:</span>
 <span class='fu'>tidyfeed</span>(<span class='st'>"http://fivethirtyeight.com/all/feed"</span>)
 <span class='co'># jsonfeed:</span>
 <span class='fu'>tidyfeed</span>(<span class='st'>"https://daringfireball.net/feeds/json"</span>)
-}</div></pre>
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -203,11 +207,11 @@ lower-level control over the parsing of dates, it's better to leave
 
       <footer>
       <div class="copyright">
-  <p>Developed by Robert Myles McDonnell.</p>
+  <p>Developed by Robert McDonnell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">tidyRSS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.3</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
 <li>the url of the feed;</li>
 <li>a logical flag for whether you want the feed returned as a tibble or a list containing two tibbles;</li>
 <li>a logical flag for whether you want HTML tags removed from columns in the dataframe;</li>
-<li>a config list that is passed off to <a href="https://httr.r-lib.org/reference/config.html"><code><a href="https://httr.r-lib.org/reference/GET.html">httr::GET()</a></code></a>;</li>
+<li>a config list that is passed off to <a href="https://httr.r-lib.org/reference/config.html"><code>httr::GET()</code></a>;</li>
 <li>and a <code>parse_dates</code> argument, a logical flag, which will attempt to parse dates if <code>TRUE</code> (see below).</li>
 </ul>
 <p>If <code>parse_dates</code> is <code>TRUE</code>, <code><a href="reference/tidyfeed.html">tidyfeed()</a></code> will attempt to parse dates using the <a href="https://github.com/eddelbuettel/anytime">anytime</a> package. Note that this removes some lower-level control that you may wish to retain over how dates are parsed. See <a href="https://github.com/RobertMyles/tidyRSS/issues/37">this issue</a> for an example.</p>
@@ -97,17 +97,23 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>It can be installed directly from <a href="https://cran.r-project.org/">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"tidyRSS"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"tidyRSS"</span>)
+</pre></div>
 <p>The development version can be installed from GitHub with the <a href="https://github.com/r-lib/remotes">remotes</a> package:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"robertmyles/tidyrss"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"robertmyles/tidyrss"</span>)
+</pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>Here is how you can get the contents of the <a href="https://journal.r-project.org/">R Journal</a>:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyRSS</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/RobertMyles/tidyrss">tidyRSS</a></span>)
 
-<span class="fu"><a href="reference/tidyfeed.html">tidyfeed</a></span>(<span class="st">"http://journal.r-project.org/rss.atom"</span>)</pre></div>
+<span class="fu"><a href="reference/tidyfeed.html">tidyfeed</a></span>(<span class="st">"http://journal.r-project.org/rss.atom"</span>)
+</pre></div>
 </div>
 <div id="changes-in-version-200" class="section level2">
 <h2 class="hasAnchor">
@@ -182,7 +188,8 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Robert Myles McDonnell <br><small class="roles"> Maintainer </small>  </li>
+<li>Robert McDonnell <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
@@ -200,11 +207,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Robert Myles McDonnell.</p>
+  <p>Developed by Robert McDonnell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
