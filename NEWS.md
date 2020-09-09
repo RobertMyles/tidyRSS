@@ -1,3 +1,10 @@
+tidyRSS v2.0.3 (Release date: 06/09/2020)
+============
+Changes:
+- Removed occurrence of warning message related to tidyselect's `where()`.
+- Updated list of contributors in DESCRIPTION.
+
+
 tidyRSS v2.0.2 (Release date: 01/06/2020)
 ============
 Changes:

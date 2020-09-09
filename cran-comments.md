@@ -1,3 +1,18 @@
+# v2.0.3
+
+Removes occurrence of warning message related to unexported tidyselect function; updates contributors in DESCRIPTION.
+
+## Test environments
+
+* local mac OS install, R 4.0.0
+* Ubuntu 16.04 (on GitHub Actions), R-devel, R 4.0.0, R 3.6.3, 3.5.3, R 3.4.4, R 3.3.3
+* mac OS 10.15.4 (on GitHub Actions) R-devel, R 3.6.0
+* Microsoft Windows Server 2019 10.0.17763 (on GitHub Actions) R 4.0.0
+* win-builder (R-devel, R-release)
+* Fedora Linux (on R-hub) R-devel
+* Ubuntu Linux (on R-hub) R-Release
+
+
 # v2.0.2
 
 Updates tidyRSS to be compatible with dplyr 1.0.0, along with some minor bugfixes and improvements.
