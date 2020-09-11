@@ -3,7 +3,7 @@ Type: Package
 Title: Tidy RSS for R
 Version: 2.0.3
 Authors@R: c(
-    person("Robert", "McDonnell", email = "robertmylesmcdonnell@gmail.com", role = c("aut", "cre")),
+    person("Robert Myles", "McDonnell", email = "robertmylesmcdonnell@gmail.com", role = c("aut", "cre")),
     person("Jonathan", "Carroll", email = "jono@jcarroll.com.au", role = "ctb"),
     person("Mike", "Smith", email = "grimbough@gmail.com", role = "ctb"),
     person("Joseph", "Stachelek", role = "ctb")
