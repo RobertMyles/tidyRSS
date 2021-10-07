@@ -1,3 +1,9 @@
+tidyRSS v2.0.4 (Release date: 07/10/2021)
+============
+Changes:
+- Updated user agent. 
+
+
 tidyRSS v2.0.3 (Release date: 06/09/2020)
 ============
 Changes:
