@@ -1,3 +1,7 @@
+# v2.0.4
+
+Very small change, updated user-agent to bypass 403 errors experienced by some users. 
+
 # v2.0.3
 
 Removes occurrence of warning message related to unexported tidyselect function; updates contributors in DESCRIPTION.
