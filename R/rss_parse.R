@@ -54,6 +54,7 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
     item_pub_date = map(res_entry, "pubDate", .default = def) %>% unlist(),
     item_guid = map(res_entry, "guid", .default = def) %>% unlist(),
     item_author = map(res_entry, "author", .default = def),
+    item_enclosure = map(res_entry, "enclosure", .default = def),
     item_season = map(res_entry, "podcast:season", .default = def),
     item_episode = map(res_entry, "podcast:episode", .default = def),
     item_enclosure = map(res_entry, "enclosure", .default = def),
