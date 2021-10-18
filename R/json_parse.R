@@ -1,5 +1,5 @@
 json_parse <- function(response, list, clean_tags, parse_dates) {
-  # spec here: https://jsonfeed.org/version/1
+  # spec here: https://jsonfeed.org/version/1.1/
   res <- parse_json(response)
   items <- res$items
 
@@ -10,6 +10,9 @@ json_parse <- function(response, list, clean_tags, parse_dates) {
     description = return_exists(res$description),
     feed_author = return_exists(res$author$name),
     feed_author_url = return_exists(res$author$url),
+    next_url = return_exists(res$next_url),
+    language = return_exists(res$language),
+    expired = return_exists(res$expired),
     icon = return_exists(res$icon),
     favicon = return_exists(res$favicon),
     expired = return_exists(res$expired)
@@ -23,12 +26,14 @@ json_parse <- function(response, list, clean_tags, parse_dates) {
     item_url = map_chr(items, "url", .default = def),
     item_external_url = map_chr(items, "external_url", .default = def),
     item_author = map(items, "author", .default = def),
+    item_authors = map(items, "authors", .default = def),
     item_content_html = map_chr(items, "content_html", .default = def),
     item_content_text = map_chr(items, "content_text", .default = def),
     item_summary = map_chr(items, "summary", .default = def),
     item_image = map_chr(items, "image", .default = def),
     item_banner_image = map_chr(items, "banner_image", .default = def),
     item_tags = map_chr(items, "tags", .default = def),
+    item_language = map_chr(items, "language", .default = def),
   )
 
   for (i in seq_len(nrow(entries))) {
