@@ -49,6 +49,7 @@ atom_parse <- function(response, list, clean_tags, parse_dates) {
     entry_url = safe_run(res_entry, "all", glue("{ns_entry}:id")),
     entry_last_updated = safe_run(res_entry, "all", glue("{ns_entry}:updated")),
     entry_author = safe_run(res_entry, "all", glue("{ns_entry}:author")),
+    entry_enclosure = safe_run(res_entry, "all", glue("{ns_entry}:enclosure")),
     entry_content = safe_run(res_entry, "all", glue("{ns_entry}:content")),
     entry_link = ifelse(!is.null(e_link), e_link, def),
     entry_summary = safe_run(res_entry, "all", glue("{ns_entry}:summary")),
