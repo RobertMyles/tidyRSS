@@ -29,15 +29,15 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
       )),
     feed_generator = safe_run(channel, "first", "//*[name()='generator']"),
     feed_docs = safe_run(channel, "first", "//*[name()='docs']"),
-    feed_docs = safe_run(channel, "first", "//*[name()='link']"),
-    feed_docs = safe_run(channel, "first", "//*[name()='managingEditor']"),
-    feed_docs = safe_run(channel, "first", "//*[name()='webMaster']"),
-    feed_docs = safe_run(channel, "first", "//*[name()='podcast:guid']"),
-    feed_docs = safe_run(channel, "first", "//*[name()='podcast:license']"),
-    feed_docs = safe_run(channel, "first", "//*[name()='podcast:locked']"),
-    feed_docs = safe_run(channel, "first", "//*[name()='podcast:funding']"),
-    feed_docs = safe_run(channel, "first", "//*[name()='podcast:location']"),
-    feed_docs = safe_run(channel, "first", "//*[name()='podcast:trailer']"),
+    feed_link = safe_run(channel, "first", "//*[name()='link']"),
+    feed_managingEditor = safe_run(channel, "first", "//*[name()='managingEditor']"),
+    feed_webMaster = safe_run(channel, "first", "//*[name()='webMaster']"),
+    feed_guid = safe_run(channel, "first", "//*[name()='podcast:guid']"),
+    feed_license = safe_run(channel, "first", "//*[name()='podcast:license']"),
+    feed_locked = safe_run(channel, "first", "//*[name()='podcast:locked']"),
+    feed_funding = safe_run(channel, "first", "//*[name()='podcast:funding']"),
+    feed_location = safe_run(channel, "first", "//*[name()='podcast:location']"),
+    feed_trailer = safe_run(channel, "first", "//*[name()='podcast:trailer']"),
     feed_ttl = safe_run(channel, "first", "//*[name()='ttl']")
   )
   meta <- bind_cols(metadata, meta_optional)
@@ -54,9 +54,9 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
     item_pub_date = map(res_entry, "pubDate", .default = def) %>% unlist(),
     item_guid = map(res_entry, "guid", .default = def) %>% unlist(),
     item_author = map(res_entry, "author", .default = def),
-    item_author = map(res_entry, "podcast:season", .default = def),
-    item_author = map(res_entry, "podcast:episode", .default = def),
-    item_author = map(res_entry, "enclosure", .default = def),
+    item_season = map(res_entry, "podcast:season", .default = def),
+    item_episode = map(res_entry, "podcast:episode", .default = def),
+    item_enclosure = map(res_entry, "enclosure", .default = def),
     item_category = map(res_entry_xml, ~ {
       xml_find_all(.x, "category") %>% map(xml_text)
     }),
