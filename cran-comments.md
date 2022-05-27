@@ -1,3 +1,7 @@
+# v2.0.5
+
+Small bugfix to handle HTML comments. Closes issue #57. 
+
 # v2.0.4
 
 Very small change, updated user-agent to bypass 403 errors experienced by some users. 
