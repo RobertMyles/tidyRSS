@@ -18,7 +18,6 @@
 #' @description \code{tidyfeed()} downloads and parses rss feeds. The function
 #' produces either a tidy data frame or a named list, easy to use for further
 #' manipulation and analysis.
-#' @inheritParams httr::GET
 #' @param feed \code{character}, the url for the feed that you want to parse,
 #' e.g. "http://journal.r-project.org/rss.atom".
 #' @param config Arguments passed off to \code{httr::GET()}.
