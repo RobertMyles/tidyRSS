@@ -7,7 +7,7 @@
 #' @importFrom xml2 xml_attr xml_contents xml_ns
 #' @importFrom dplyr select full_join mutate_if mutate bind_cols
 #' @importFrom dplyr case_when across rowwise ungroup select_if
-#' @importFrom purrr map map_chr safely flatten compact keep map_df
+#' @importFrom purrr map map_chr safely flatten compact keep map_df discard
 #' @importFrom jsonlite parse_json
 #' @importFrom glue glue
 #' @importFrom vctrs new_vctr

@@ -1,3 +1,8 @@
+tidyRSS v2.0.5 (Release date: 29/05/2022)
+============
+Changes:
+- Fixed bug relating to HTML comments. 
+
 tidyRSS v2.0.4 (Release date: 07/10/2021)
 ============
 Changes:

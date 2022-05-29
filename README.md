@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# tidyRSS <a href='https://github.com/RobertMyles/tidyrss/'><img src='inst/figures/logo.png' align="right" height="139" /></a>
+# tidyRSS <a href='https://github.com/RobertMyles/tidyrss/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/tidyRSS)](https://cran.r-project.org/package=tidyRSS)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
@@ -20,14 +20,14 @@ designed for that purpose.
 It is easy to use as it only has one function, `tidyfeed()`, which takes
 five arguments:
 
-  - the url of the feed;
-  - a logical flag for whether you want the feed returned as a tibble or
+-   the url of the feed;
+-   a logical flag for whether you want the feed returned as a tibble or
     a list containing two tibbles;
-  - a logical flag for whether you want HTML tags removed from columns
+-   a logical flag for whether you want HTML tags removed from columns
     in the dataframe;
-  - a config list that is passed off to
+-   a config list that is passed off to
     [`httr::GET()`](https://httr.r-lib.org/reference/config.html);
-  - and a `parse_dates` argument, a logical flag, which will attempt to
+-   and a `parse_dates` argument, a logical flag, which will attempt to
     parse dates if `TRUE` (see below).
 
 If `parse_dates` is `TRUE`, `tidyfeed()` will attempt to parse dates
@@ -41,27 +41,21 @@ issue](https://github.com/RobertMyles/tidyRSS/issues/37) for an example.
 It can be installed directly from [CRAN](https://cran.r-project.org/)
 with:
 
-``` r
-install.packages("tidyRSS")
-```
+    install.packages("tidyRSS")
 
 The development version can be installed from GitHub with the
 [remotes](https://github.com/r-lib/remotes) package:
 
-``` r
-remotes::install_github("robertmyles/tidyrss")
-```
+    remotes::install_github("robertmyles/tidyrss")
 
 ## Usage
 
 Here is how you can get the contents of the [R
 Journal](https://journal.r-project.org/):
 
-``` r
-library(tidyRSS)
+    library(tidyRSS)
 
-tidyfeed("http://journal.r-project.org/rss.atom")
-```
+    tidyfeed("http://journal.r-project.org/rss.atom")
 
 ## Changes in version 2.0.0
 
@@ -90,8 +84,8 @@ affect Atom feeds (and should never be a problem with JSON).
 
 There are two other related packages that I’m aware of:
 
-  - [rss](https://github.com/noahhl/r-does-rss)
-  - [feedeR](https://github.com/DataWookie/feedeR)
+-   [rss](https://github.com/noahhl/r-does-rss)
+-   [feedeR](https://github.com/DataWookie/feedeR)
 
 In comparison to feedeR, tidyRSS returns more information from the RSS
 feed (if it exists), and development on rss seems to have stopped some
@@ -101,21 +95,21 @@ time ago.
 
 For the schemas used to develop the parsers in this package, see:
 
-  - RSS: <https://validator.w3.org/feed/docs/rss2.html>  
-  - Atom: <https://validator.w3.org/feed/docs/atom.html>  
-  - JSON: <https://jsonfeed.org/version/1>
+-   RSS: <https://validator.w3.org/feed/docs/rss2.html>  
+-   Atom: <https://validator.w3.org/feed/docs/atom.html>  
+-   JSON: <https://jsonfeed.org/version/1>
 
 I’ve implemented most of the items in the schemas above. The following
 are not yet implemented:
 
 **Atom meta info:**
 
-  - contributor, generator, logo, subtitle
+-   contributor, generator, logo, subtitle
 
 **Rss meta info:**
 
-  - cloud
-  - image
-  - textInput
-  - skipHours
-  - skipDays
+-   cloud
+-   image
+-   textInput
+-   skipHours
+-   skipDays

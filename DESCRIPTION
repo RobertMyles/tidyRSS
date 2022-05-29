@@ -1,7 +1,7 @@
 Package: tidyRSS
 Type: Package
 Title: Tidy RSS for R
-Version: 2.0.4
+Version: 2.0.5
 Authors@R: c(
     person("Robert Myles", "McDonnell", email = "robertmylesmcdonnell@gmail.com", role = c("aut", "cre")),
     person("Jonathan", "Carroll", email = "jono@jcarroll.com.au", role = "ctb"),
@@ -36,4 +36,4 @@ Suggests:
     rmarkdown,
     covr,
     testthat
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
