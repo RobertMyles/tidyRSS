@@ -21,12 +21,15 @@
 <meta property="og:description" content="
     With the objective of including data from RSS feeds into your analysis, 
     tidyRSS parses RSS, Atom and JSON feeds and returns a tidy data frame.">
+<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,18 +42,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">tidyRSS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.5</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -60,8 +57,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RobertMyles/tidyrss/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/RobertMyles/tidyrss/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -78,81 +75,73 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="tidyrss-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#tidyrss-" class="anchor"></a>tidyRSS <a href="https://github.com/RobertMyles/tidyrss/"><img src="inst/figures/logo.png" align="right" height="139"></a>
+<div class="section level1">
+<div class="page-header"><h1 id="tidyrss-">tidyRSS <a href="https://github.com/RobertMyles/tidyrss/" class="external-link"><img src="reference/figures/logo.png" align="right" height="139"></a>
+<a class="anchor" aria-label="anchor" href="#tidyrss-"></a>
 </h1></div>
 
-<p>tidyRSS is a package for extracting data from <a href="https://en.wikipedia.org/wiki/RSS">RSS feeds</a>, including Atom feeds and JSON feeds. For geo-type feeds, see the section on changes in version 2 below, or jump directly to <a href="https://github.com/RobertMyles/tidygeoRSS">tidygeoRSS</a>, which is designed for that purpose.</p>
+<p>tidyRSS is a package for extracting data from <a href="https://en.wikipedia.org/wiki/RSS" class="external-link">RSS feeds</a>, including Atom feeds and JSON feeds. For geo-type feeds, see the section on changes in version 2 below, or jump directly to <a href="https://github.com/RobertMyles/tidygeoRSS" class="external-link">tidygeoRSS</a>, which is designed for that purpose.</p>
 <p>It is easy to use as it only has one function, <code><a href="reference/tidyfeed.html">tidyfeed()</a></code>, which takes five arguments:</p>
 <ul>
 <li>the url of the feed;</li>
 <li>a logical flag for whether you want the feed returned as a tibble or a list containing two tibbles;</li>
 <li>a logical flag for whether you want HTML tags removed from columns in the dataframe;</li>
-<li>a config list that is passed off to <a href="https://httr.r-lib.org/reference/config.html"><code>httr::GET()</code></a>;</li>
+<li>a config list that is passed off to <a href="https://httr.r-lib.org/reference/config.html" class="external-link"><code>httr::GET()</code></a>;</li>
 <li>and a <code>parse_dates</code> argument, a logical flag, which will attempt to parse dates if <code>TRUE</code> (see below).</li>
 </ul>
-<p>If <code>parse_dates</code> is <code>TRUE</code>, <code><a href="reference/tidyfeed.html">tidyfeed()</a></code> will attempt to parse dates using the <a href="https://github.com/eddelbuettel/anytime">anytime</a> package. Note that this removes some lower-level control that you may wish to retain over how dates are parsed. See <a href="https://github.com/RobertMyles/tidyRSS/issues/37">this issue</a> for an example.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>It can be installed directly from <a href="https://cran.r-project.org/">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"tidyRSS"</span>)
-</pre></div>
-<p>The development version can be installed from GitHub with the <a href="https://github.com/r-lib/remotes">remotes</a> package:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"robertmyles/tidyrss"</span>)
-</pre></div>
+<p>If <code>parse_dates</code> is <code>TRUE</code>, <code><a href="reference/tidyfeed.html">tidyfeed()</a></code> will attempt to parse dates using the <a href="https://github.com/eddelbuettel/anytime" class="external-link">anytime</a> package. Note that this removes some lower-level control that you may wish to retain over how dates are parsed. See <a href="https://github.com/RobertMyles/tidyRSS/issues/37" class="external-link">this issue</a> for an example.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>It can be installed directly from <a href="https://cran.r-project.org/" class="external-link">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">"tidyRSS"</span>)</span></code></pre></div>
+<p>The development version can be installed from GitHub with the <a href="https://github.com/r-lib/remotes" class="external-link">remotes</a> package:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"robertmyles/tidyrss"</span>)</span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<p>Here is how you can get the contents of the <a href="https://journal.r-project.org/">R Journal</a>:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/RobertMyles/tidyrss">tidyRSS</a></span>)
-
-<span class="fu"><a href="reference/tidyfeed.html">tidyfeed</a></span>(<span class="st">"http://journal.r-project.org/rss.atom"</span>)
-</pre></div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<p>Here is how you can get the contents of the <a href="https://journal.r-project.org/" class="external-link">R Journal</a>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(tidyRSS)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">tidyfeed</span>(<span class="st">"http://journal.r-project.org/rss.atom"</span>)</span></code></pre></div>
 </div>
-<div id="changes-in-version-200" class="section level2">
-<h2 class="hasAnchor">
-<a href="#changes-in-version-200" class="anchor"></a>Changes in version 2.0.0</h2>
-<p>The biggest change in version 2 is that tidyRSS no longer attempts to parse geo-type feeds into <a href="https://github.com/r-spatial/sf/">sf</a> tibbles. This functionality has been moved to <a href="https://github.com/RobertMyles/tidygeoRSS">tidygeoRSS</a>.</p>
+<div class="section level2">
+<h2 id="changes-in-version-200">Changes in version 2.0.0<a class="anchor" aria-label="anchor" href="#changes-in-version-200"></a>
+</h2>
+<p>The biggest change in version 2 is that tidyRSS no longer attempts to parse geo-type feeds into <a href="https://github.com/r-spatial/sf/" class="external-link">sf</a> tibbles. This functionality has been moved to <a href="https://github.com/RobertMyles/tidygeoRSS" class="external-link">tidygeoRSS</a>.</p>
 </div>
-<div id="issues" class="section level2">
-<h2 class="hasAnchor">
-<a href="#issues" class="anchor"></a>Issues</h2>
-<p>XML feeds can be finicky things, if you find one that doesn’t work with <code><a href="reference/tidyfeed.html">tidyfeed()</a></code>, feel free to create an <a href="https://github.com/robertmyles/tidyrss/issues">issue</a> with the url of the feed that you are trying. Pull Requests are welcome if you’d like to try and fix it yourself. For older RSS feeds, some fields will almost never be ‘clean’, that is, they will contain things like newlines (<code>\n</code>) or extra quote marks. Cleaning these in a generic way is more or less impossible so I suggest you use <a href="https://github.com/tidyverse/stringr">stringr</a>, <a href="https://rorynolan.github.io/strex/">strex</a> and/or tools from base R such as gsub to clean these. This will mainly affect the <code>item_description</code> column of a parsed RSS feed, and will not often affect Atom feeds (and should never be a problem with JSON).</p>
+<div class="section level2">
+<h2 id="issues">Issues<a class="anchor" aria-label="anchor" href="#issues"></a>
+</h2>
+<p>XML feeds can be finicky things, if you find one that doesn’t work with <code><a href="reference/tidyfeed.html">tidyfeed()</a></code>, feel free to create an <a href="https://github.com/robertmyles/tidyrss/issues" class="external-link">issue</a> with the url of the feed that you are trying. Pull Requests are welcome if you’d like to try and fix it yourself. For older RSS feeds, some fields will almost never be ‘clean’, that is, they will contain things like newlines (<code>\n</code>) or extra quote marks. Cleaning these in a generic way is more or less impossible so I suggest you use <a href="https://github.com/tidyverse/stringr" class="external-link">stringr</a>, <a href="https://rorynolan.github.io/strex/" class="external-link">strex</a> and/or tools from base R such as gsub to clean these. This will mainly affect the <code>item_description</code> column of a parsed RSS feed, and will not often affect Atom feeds (and should never be a problem with JSON).</p>
 </div>
-<div id="related" class="section level2">
-<h2 class="hasAnchor">
-<a href="#related" class="anchor"></a>Related</h2>
+<div class="section level2">
+<h2 id="related">Related<a class="anchor" aria-label="anchor" href="#related"></a>
+</h2>
 <p>There are two other related packages that I’m aware of:</p>
 <ul>
-<li><a href="https://github.com/noahhl/r-does-rss">rss</a></li>
-<li><a href="https://github.com/DataWookie/feedeR">feedeR</a></li>
+<li><a href="https://github.com/noahhl/r-does-rss" class="external-link">rss</a></li>
+<li><a href="https://github.com/DataWookie/feedeR" class="external-link">feedeR</a></li>
 </ul>
 <p>In comparison to feedeR, tidyRSS returns more information from the RSS feed (if it exists), and development on rss seems to have stopped some time ago.</p>
 </div>
 </div>
-<div id="other" class="section level1">
-<h1 class="hasAnchor">
-<a href="#other" class="anchor"></a>Other</h1>
+<div class="section level1">
+<h1 id="other">Other<a class="anchor" aria-label="anchor" href="#other"></a>
+</h1>
 <p>For the schemas used to develop the parsers in this package, see:</p>
 <ul>
-<li>RSS: <a href="https://validator.w3.org/feed/docs/rss2.html" class="uri">https://validator.w3.org/feed/docs/rss2.html</a><br>
+<li>RSS: <a href="https://validator.w3.org/feed/docs/rss2.html" class="external-link uri">https://validator.w3.org/feed/docs/rss2.html</a><br>
 </li>
-<li>Atom: <a href="https://validator.w3.org/feed/docs/atom.html" class="uri">https://validator.w3.org/feed/docs/atom.html</a><br>
+<li>Atom: <a href="https://validator.w3.org/feed/docs/atom.html" class="external-link uri">https://validator.w3.org/feed/docs/atom.html</a><br>
 </li>
-<li>JSON: <a href="https://jsonfeed.org/version/1" class="uri">https://jsonfeed.org/version/1</a>
+<li>JSON: <a href="https://jsonfeed.org/version/1" class="external-link uri">https://jsonfeed.org/version/1</a>
 </li>
 </ul>
 <p>I’ve implemented most of the items in the schemas above. The following are not yet implemented:</p>
 <p><strong>Atom meta info:</strong></p>
-<ul>
-<li>contributor, generator, logo, subtitle</li>
-</ul>
+<ul><li>contributor, generator, logo, subtitle</li></ul>
 <p><strong>Rss meta info:</strong></p>
 <ul>
 <li>cloud</li>
@@ -167,51 +156,61 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=tidyRSS">https://​cloud.r-project.org/​package=tidyRSS</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/RobertMyles/tidyrss/">https://​github.com/​RobertMyles/​tidyrss/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/RobertMyles/tidyrss/issues">https://​github.com/​RobertMyles/​tidyrss/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Robert McDonnell <br><small class="roles"> Author, maintainer </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="https://cloud.r-project.org/package=tidyRSS" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/RobertMyles/tidyrss/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/RobertMyles/tidyrss/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=tidyRSS"><img src="https://www.r-pkg.org/badges/version/tidyRSS" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://CRAN.R-project.org/package=tidyRSS"><img src="http://cranlogs.r-pkg.org/badges/tidyRSS" alt="CRAN_Download_Badge"></a></li>
-<li><a href="https://CRAN.R-project.org/package=tidyRSS"><img src="http://cranlogs.r-pkg.org/badges/grand-total/tidyRSS" alt="CRAN_Download_Badge"></a></li>
-<li><a href="https://codecov.io/gh/RobertMyles/tidyRSS?branch=master"><img src="https://codecov.io/gh/RobertMyles/tidyRSS/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing tidyRSS</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Robert Myles McDonnell <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=tidyRSS" class="external-link"><img src="https://www.r-pkg.org/badges/version/tidyRSS" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://CRAN.R-project.org/package=tidyRSS" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/tidyRSS" alt="CRAN_Download_Badge"></a></li>
+<li><a href="https://CRAN.R-project.org/package=tidyRSS" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/tidyRSS" alt="CRAN_Download_Badge"></a></li>
+<li><a href="https://codecov.io/gh/RobertMyles/tidyRSS?branch=master" class="external-link"><img src="https://codecov.io/gh/RobertMyles/tidyRSS/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Robert McDonnell.</p>
+  <p></p>
+<p>Developed by Robert Myles McDonnell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -219,6 +218,8 @@
 
   
 
+
+  
 
   </body>
 </html>
