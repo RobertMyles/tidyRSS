@@ -18,7 +18,7 @@ set_user <- function(config) {
 # simply reads 'content-type' of response to check type.
 # if contains both atom & rss, prefers rss
 type_check <- function(response) {
-  if (class(response) != "response") stop("`type_check` cannot evaluate this response.")
+  if (!inherits(response, "response")) stop("`type_check` cannot evaluate this response.")
   content_type <- response$headers$`content-type`
   typ <- case_when(
     grepl(x = content_type, pattern = "atom") ~ "atom",

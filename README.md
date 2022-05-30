@@ -8,7 +8,7 @@
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/grand-total/tidyRSS)](https://CRAN.R-project.org/package=tidyRSS)
 ![R-CMD-check](https://github.com/RobertMyles/tidyRSS/workflows/R-CMD-check/badge.svg)
 [![Codecov test
-coverage](https://codecov.io/gh/RobertMyles/tidyRSS/branch/master/graph/badge.svg)](https://codecov.io/gh/RobertMyles/tidyRSS?branch=master)
+coverage](https://codecov.io/gh/RobertMyles/tidyRSS/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RobertMyles/tidyRSS?branch=master)
 
 tidyRSS is a package for extracting data from [RSS
 feeds](https://en.wikipedia.org/wiki/RSS), including Atom feeds and JSON
