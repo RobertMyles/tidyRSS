@@ -39,7 +39,7 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
     item_title = map(res_entry, "title", .default = def) %>% unlist(),
     item_link = map(res_entry, "link", .default = def) %>% unlist(),
     item_description = map(res_entry, "description", .default = def) %>%
-      unlist() %>% discard(~.x == "[ comment ]"),
+      unlist() %>% discard(safe_check_comment),
     item_pub_date = map(res_entry, "pubDate", .default = def) %>% unlist(),
     item_guid = map(res_entry, "guid", .default = def) %>% unlist(),
     item_author = map(res_entry, "author", .default = def),

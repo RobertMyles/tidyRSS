@@ -182,3 +182,7 @@ test_that("delist works as it should", {
     tibble(y = rep(list(c(1, "hello", TRUE)), 5))
   )
 })
+
+test_that("RSS feed without item description #61", {
+  expect_error(rss_parse("ws_catalog.rss.xml", list = FALSE, parse_dates = TRUE, clean_tags = TRUE), NA)
+})
