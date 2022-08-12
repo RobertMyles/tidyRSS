@@ -114,3 +114,10 @@ cleanFun <- function(htmlString) {
 }
 
 safe_join <- safely(full_join)
+
+safe_check_comment <- function(x) {
+  if (is.na(x)) {
+    return(FALSE)
+  }
+  x == "[ comment ]"
+}
