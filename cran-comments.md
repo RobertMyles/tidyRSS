@@ -1,3 +1,7 @@
+# v2.0.6
+
+More comprehensive fix for HTML comments, by @chainsawriot. 
+
 # v2.0.5
 
 Small bugfix to handle HTML comments. Closes issue #57. 
