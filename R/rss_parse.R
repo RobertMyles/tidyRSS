@@ -46,7 +46,8 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
     item_category = map(res_entry_xml, ~ {
       xml_find_all(.x, "category") %>% map(xml_text)
     }),
-    item_comments = map(res_entry, "comments", .default = def) %>% unlist()
+    item_comments = map(res_entry, "comments", .default = def) %>% unlist(),
+    item_duration = map(res_entry, "duration", .default = def) %>% unlist()
   )
 
   # clean up
