@@ -7,7 +7,7 @@ atom_parse <- function(response, list, clean_tags, parse_dates) {
   # get default namespace
   ns_entry <- xml_ns(res) %>% attributes() %>% .[[1]] %>% .[[1]]
 
-  # metadata: id, title, updated necessary
+  # metadata: id, title, updated necessary,
   metadata <- tibble(
     feed_title = xml_find_first(res, glue("{ns_entry}:title")) %>% xml_text(),
     feed_url = xml_find_first(res, glue("{ns_entry}:id")) %>% xml_text(),
@@ -18,7 +18,18 @@ atom_parse <- function(response, list, clean_tags, parse_dates) {
   link <- xml_find_first(res, glue("{ns_entry}:link")) %>% xml_attr("href")
   meta_optional <- tibble(
     feed_author = safe_run(res, "first", glue("{ns_entry}:author")),
-    feed_link = ifelse(!is.null(link), link, def),
+    feed_transcript = safe_run(res, "first", glue("{ns_entry}:transcript")),
+    feed_locked = safe_run(res, "first", glue("{ns_entry}:locked")),
+    feed_funding = safe_run(res, "first", glue("{ns_entry}:funding")),
+    feed_chapters = safe_run(res, "first", glue("{ns_entry}:chapters")),
+    feed_soundbite = safe_run(res, "first", glue("{ns_entry}:soundbite")),
+    feed_person = safe_run(res, "first", glue("{ns_entry}:person")),
+    feed_location = safe_run(res, "first", glue("{ns_entry}:location")),
+    feed_season = safe_run(res, "first", glue("{ns_entry}:season")),
+    feed_episode = safe_run(res, "first", glue("{ns_entry}:episode")),
+    feed_value = safe_run(res, "first", glue("{ns_entry}:value")),
+    feed_link = safe_run(res, "first", glue("{ns_entry}:link")),
+    feed_images = safe_run(res, "first", glue("{ns_entry}:images")),
     feed_category = list(category = safe_run(res, "first", glue("{ns_entry}:category"))),
     feed_generator = safe_run(res, "first", glue("{ns_entry}:generator")),
     feed_icon = safe_run(res, "first", glue("{ns_entry}:icon")),
@@ -38,6 +49,7 @@ atom_parse <- function(response, list, clean_tags, parse_dates) {
     entry_url = safe_run(res_entry, "all", glue("{ns_entry}:id")),
     entry_last_updated = safe_run(res_entry, "all", glue("{ns_entry}:updated")),
     entry_author = safe_run(res_entry, "all", glue("{ns_entry}:author")),
+    entry_enclosure = safe_run(res_entry, "all", glue("{ns_entry}:enclosure")),
     entry_content = safe_run(res_entry, "all", glue("{ns_entry}:content")),
     entry_link = ifelse(!is.null(e_link), e_link, def),
     entry_summary = safe_run(res_entry, "all", glue("{ns_entry}:summary")),
