@@ -14,8 +14,7 @@ json_parse <- function(response, list, clean_tags, parse_dates) {
     language = return_exists(res$language),
     expired = return_exists(res$expired),
     icon = return_exists(res$icon),
-    favicon = return_exists(res$favicon),
-    expired = return_exists(res$expired)
+    favicon = return_exists(res$favicon)
   )
 
   entries <- tibble(

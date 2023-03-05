@@ -121,3 +121,10 @@ safe_check_comment <- function(x) {
   }
   x == "[ comment ]"
 }
+
+# From https://github.com/RobertMyles/tidyRSS/issues/69
+
+replace_null <- function(x){
+  x <- map(x, ~ replace(.x, is.null(.x), NA_character_))
+  map(x, ~ if(is.list(.x)) replace_null(.x) else .x)
+}

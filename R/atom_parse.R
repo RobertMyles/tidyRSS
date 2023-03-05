@@ -7,7 +7,7 @@ atom_parse <- function(response, list, clean_tags, parse_dates) {
   # get default namespace
   ns_entry <- xml_ns(res) %>% attributes() %>% .[[1]] %>% .[[1]]
 
-  # metadata: id, title, updated necessary,
+  # metadata: id, title, updated necessary
   metadata <- tibble(
     feed_title = xml_find_first(res, glue("{ns_entry}:title")) %>% xml_text(),
     feed_url = xml_find_first(res, glue("{ns_entry}:id")) %>% xml_text(),
@@ -38,10 +38,7 @@ atom_parse <- function(response, list, clean_tags, parse_dates) {
   meta <- bind_cols(metadata, meta_optional)
   # entries
   # necessary: id, title, updated
-
   res_entry <- xml_find_all(res, glue("{ns_entry}:entry"))
-  e_link <- xml_find_first(res_entry, glue("{ns_entry}:link")) %>%
-    xml_attr("href")
 
   # optional
   entries <- tibble(
@@ -51,7 +48,8 @@ atom_parse <- function(response, list, clean_tags, parse_dates) {
     entry_author = safe_run(res_entry, "all", glue("{ns_entry}:author")),
     entry_enclosure = safe_run(res_entry, "all", glue("{ns_entry}:enclosure")),
     entry_content = safe_run(res_entry, "all", glue("{ns_entry}:content")),
-    entry_link = ifelse(!is.null(e_link), e_link, def),
+    # https://github.com/RobertMyles/tidyRSS/issues/70
+    entry_link = xml_attr(xml_find_first(res_entry, glue("{ns_entry}:link")),"href"),
     entry_summary = safe_run(res_entry, "all", glue("{ns_entry}:summary")),
     entry_category = list(NA),
     entry_published = safe_run(res_entry, "all", glue("{ns_entry}:published")),
