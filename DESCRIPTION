@@ -1,12 +1,15 @@
 Package: tidyRSS
 Type: Package
 Title: Tidy RSS for R
-Version: 2.0.6
+Version: 2.0.7
 Authors@R: c(
     person("Robert Myles", "McDonnell", email = "robertmylesmcdonnell@gmail.com", role = c("aut", "cre")),
     person("Jonathan", "Carroll", email = "jono@jcarroll.com.au", role = "ctb"),
     person("Mike", "Smith", email = "grimbough@gmail.com", role = "ctb"),
     person("Joseph", "Stachelek", role = "ctb"),
+    person("Andrew", "Frasier", role = "ctb"),
+    person("Tom", "Broekel", role = "ctb"),
+    person("Jeremy", "Gerdes", role = "ctb"),
     person("Chung-hong", "Chan", email = "chainsawtiney@gmail.com", role = "ctb", comment = c(ORCID = "0000-0002-6232-7530"))
     )
 Maintainer: Robert Myles McDonnell <robertmylesmcdonnell@gmail.com>

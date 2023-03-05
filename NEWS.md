@@ -1,3 +1,9 @@
+tidyRSS v2.0.7 (Release date: 05/03/2023)
+============
+Changes:
+- Fixed bug relating to list sizes of differing lengths (#69 @tombroekel) and missing href attributes (#70 @Arf9999)
+- Merged PR from @seakintruth (#56)
+
 tidyRSS v2.0.6 (Release date: )
 ============
 Changes:
