@@ -19,7 +19,7 @@ manipulation and analysis."><meta property="og:image" content="/logo.png"><!-- m
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidyRSS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.7</span>
       </span>
     </div>
 
@@ -57,13 +57,13 @@ manipulation and analysis.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tidyfeed</span><span class="op">(</span>
-  <span class="va">feed</span>,
-  config <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,
-  clean_tags <span class="op">=</span> <span class="cn">TRUE</span>,
-  list <span class="op">=</span> <span class="cn">FALSE</span>,
-  parse_dates <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tidyfeed</span><span class="op">(</span></span>
+<span>  <span class="va">feed</span>,</span>
+<span>  config <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  clean_tags <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  list <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  parse_dates <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,18 +71,27 @@ manipulation and analysis.</p>
     <dl><dt>feed</dt>
 <dd><p><code>character</code>, the url for the feed that you want to parse,
 e.g. "http://journal.r-project.org/rss.atom".</p></dd>
+
+
 <dt>config</dt>
 <dd><p>Arguments passed off to <code><a href="https://rdrr.io/pkg/httr/man/GET.html" class="external-link">httr::GET()</a></code>.</p></dd>
+
+
 <dt>clean_tags</dt>
 <dd><p><code>logical</code>, default <code>TRUE</code>.
 Cleans columns of HTML tags.</p></dd>
+
+
 <dt>list</dt>
 <dd><p><code>logical</code>, default <code>FALSE</code>.
 Return metadata and content as separate dataframes in a named list.</p></dd>
+
+
 <dt>parse_dates</dt>
 <dd><p><code>logical</code>, default <code>TRUE</code>.
 If <code>TRUE</code>, tidyRSS will attempt to parse columns that contain
 datetime values, although this may fail, see note.</p></dd>
+
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -107,14 +116,14 @@ lower-level control over the parsing of dates, it's better to leave
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># Atom feed:</span></span>
-<span class="r-in"><span class="fu">tidyfeed</span><span class="op">(</span><span class="st">"http://journal.r-project.org/rss.atom"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># rss/xml:</span></span>
-<span class="r-in"><span class="fu">tidyfeed</span><span class="op">(</span><span class="st">"http://fivethirtyeight.com/all/feed"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># jsonfeed:</span></span>
-<span class="r-in"><span class="fu">tidyfeed</span><span class="op">(</span><span class="st">"https://daringfireball.net/feeds/json"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Atom feed:</span></span></span>
+<span class="r-in"><span><span class="fu">tidyfeed</span><span class="op">(</span><span class="st">"http://journal.r-project.org/rss.atom"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># rss/xml:</span></span></span>
+<span class="r-in"><span><span class="fu">tidyfeed</span><span class="op">(</span><span class="st">"http://fivethirtyeight.com/all/feed"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># jsonfeed:</span></span></span>
+<span class="r-in"><span><span class="fu">tidyfeed</span><span class="op">(</span><span class="st">"https://daringfireball.net/feeds/json"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -129,7 +138,7 @@ lower-level control over the parsing of dates, it's better to leave
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

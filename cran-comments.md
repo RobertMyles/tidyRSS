@@ -1,3 +1,7 @@
+# v2.0.7
+
+Two minor bugfixes (#69 & 70) and added functionality for including podcasts (#56).  
+
 # v2.0.6
 
 More comprehensive fix for HTML comments, by @chainsawriot. 

@@ -4,7 +4,7 @@ Changes:
 - Fixed bug relating to list sizes of differing lengths (#69 @tombroekel) and missing href attributes (#70 @Arf9999)
 - Merged PR from @seakintruth (#56)
 
-tidyRSS v2.0.6 (Release date: )
+tidyRSS v2.0.6 (Release date: 25/08/2022)
 ============
 Changes:
 - Fixed bug relating to HTML comments, a contribution by @chainsawriot. 
