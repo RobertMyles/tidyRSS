@@ -13,7 +13,7 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
   )
   # optional metadata: language, copyright, managingEditor, webMaster, pubDate,
   # lastBuildDate; category, generator, docs, cloud, link, managingEditor,
-  # podcast:guid, podcast:license, podcast:locked, podcast:funding, 
+  # podcast:guid, podcast:license, podcast:locked, podcast:funding,
   # podcast:location, podcast:trailer, ttl, image, textInput,
   # skipHours, skipDays
   meta_optional <- tibble(
@@ -29,7 +29,6 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
       )),
     feed_generator = safe_run(channel, "first", "//*[name()='generator']"),
     feed_docs = safe_run(channel, "first", "//*[name()='docs']"),
-    feed_link = safe_run(channel, "first", "//*[name()='link']"),
     feed_managingEditor = safe_run(channel, "first", "//*[name()='managingEditor']"),
     feed_webMaster = safe_run(channel, "first", "//*[name()='webMaster']"),
     feed_guid = safe_run(channel, "first", "//*[name()='podcast:guid']"),
@@ -50,11 +49,10 @@ rss_parse <- function(response, list, clean_tags, parse_dates) {
     item_title = map(res_entry, "title", .default = def) %>% unlist(),
     item_link = map(res_entry, "link", .default = def) %>% unlist(),
     item_description = map(res_entry, "description", .default = def) %>%
-      unlist() %>% discard(safe_check_comment),
+      replace_null() %>% discard(safe_check_comment) %>% unlist(),
     item_pub_date = map(res_entry, "pubDate", .default = def) %>% unlist(),
     item_guid = map(res_entry, "guid", .default = def) %>% unlist(),
     item_author = map(res_entry, "author", .default = def),
-    item_enclosure = map(res_entry, "enclosure", .default = def),
     item_season = map(res_entry, "podcast:season", .default = def),
     item_episode = map(res_entry, "podcast:episode", .default = def),
     item_enclosure = map(res_entry, "enclosure", .default = def),
