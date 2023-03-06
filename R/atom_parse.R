@@ -49,7 +49,9 @@ atom_parse <- function(response, list, clean_tags, parse_dates) {
     entry_enclosure = safe_run(res_entry, "all", glue("{ns_entry}:enclosure")),
     entry_content = safe_run(res_entry, "all", glue("{ns_entry}:content")),
     # https://github.com/RobertMyles/tidyRSS/issues/70
-    entry_link = xml_attr(xml_find_first(res_entry, glue("{ns_entry}:link")),"href"),
+    ##Updated entry_link to test for null strings - this avoids list errors where feed has no entries.
+   entry_link = ifelse(!is.null(xml_attr(xml_find_first(res_entry, glue("{ns_entry}:link")),"href")),
+                        xml_attr(xml_find_first(res_entry, glue("{ns_entry}:link")),"href"), def),
     entry_summary = safe_run(res_entry, "all", glue("{ns_entry}:summary")),
     entry_category = list(NA),
     entry_published = safe_run(res_entry, "all", glue("{ns_entry}:published")),
