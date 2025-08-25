@@ -4,7 +4,7 @@ Title: Tidy RSS for R
 Version: 2.0.7
 Authors@R: c(
     person("Robert Myles", "McDonnell", email = "robertmylesmcdonnell@gmail.com", role = c("aut", "cre")),
-    person("Jonathan", "Carroll", email = "jono@jcarroll.com.au", role = "ctb"),
+    person("Jonathan", "Carroll", email = "rpkg@jcarroll.com.au", role = "ctb", comment = c(ORCID = "0000-0002-1404-5264")), 
     person("Mike", "Smith", email = "grimbough@gmail.com", role = "ctb"),
     person("Joseph", "Stachelek", role = "ctb"),
     person("Andrew", "Frasier", role = "ctb"),
